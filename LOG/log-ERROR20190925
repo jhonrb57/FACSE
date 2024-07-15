@@ -1,0 +1,339 @@
+2019-09-25 00:41:02,773 [6] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> System.ApplicationException: No se ha especificado la definiciÃ³n del informe 'pdf' ---> System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'D:\APP\FACSE\FasceMVC\Report\pdf.rdlc'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth) en D:\APP\FACSE\Report\Generador.cs:lÃ­nea 180
+2019-09-25 00:43:52,626 [6] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> System.ApplicationException: No se ha especificado la definiciÃ³n del informe 'pdf' ---> System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'D:\APP\FACSE\FasceMVC\Report\pdf.rdlc'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth) en D:\APP\FACSE\Report\Generador.cs:lÃ­nea 180
+2019-09-25 00:43:52,702 [6] ERROR EmisorInicioController  - Error al exportar pdf: Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> System.ApplicationException: No se ha especificado la definiciÃ³n del informe 'pdf' ---> System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'D:\APP\FACSE\FasceMVC\Report\pdf.rdlc'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Report.Generador.GenerarPdf(Guid gIdDocumento) en D:\APP\FACSE\Report\Generador.cs:lÃ­nea 111
+   en FasceMVC.Controllers.EmisorInicioController.ExportarPdf(Guid gDocumento) en D:\APP\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:lÃ­nea 180
+2019-09-25 00:47:41,331 [9] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> System.ApplicationException: No se ha especificado la definiciÃ³n del informe 'pdf' ---> System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'D:\APP\FACSE\FasceMVC\Report\pdf.rdlc'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth) en D:\APP\FACSE\Report\Generador.cs:lÃ­nea 180
+2019-09-25 00:49:39,368 [9] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> System.ApplicationException: No se ha especificado la definiciÃ³n del informe 'pdf' ---> System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'D:\APP\FACSE\FasceMVC\Report\pdf.rdlc'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth) en D:\APP\FACSE\Report\Generador.cs:lÃ­nea 180
+2019-09-25 00:49:39,439 [9] ERROR EmisorInicioController  - Error al exportar pdf: Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> System.ApplicationException: No se ha especificado la definiciÃ³n del informe 'pdf' ---> System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'D:\APP\FACSE\FasceMVC\Report\pdf.rdlc'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Report.Generador.GenerarPdf(Guid gIdDocumento) en D:\APP\FACSE\Report\Generador.cs:lÃ­nea 111
+   en FasceMVC.Controllers.EmisorInicioController.ExportarPdf(Guid gDocumento) en D:\APP\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:lÃ­nea 180
+2019-09-25 00:49:47,982 [6] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> System.ApplicationException: No se ha especificado la definiciÃ³n del informe 'pdf' ---> System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'D:\APP\FACSE\FasceMVC\Report\pdf.rdlc'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth) en D:\APP\FACSE\Report\Generador.cs:lÃ­nea 180
+2019-09-25 00:49:48,049 [6] ERROR EmisorInicioController  - Error al exportar pdf: Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> System.ApplicationException: No se ha especificado la definiciÃ³n del informe 'pdf' ---> System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'D:\APP\FACSE\FasceMVC\Report\pdf.rdlc'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Report.Generador.GenerarPdf(Guid gIdDocumento) en D:\APP\FACSE\Report\Generador.cs:lÃ­nea 111
+   en FasceMVC.Controllers.EmisorInicioController.ExportarPdf(Guid gDocumento) en D:\APP\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:lÃ­nea 180
+2019-09-25 00:55:39,745 [7] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> System.ApplicationException: No se ha especificado la definiciÃ³n del informe 'pdf' ---> System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'D:\APP\FACSE\FasceMVC\Report\pdf.rdlc'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth) en D:\APP\FACSE\Report\Generador.cs:lÃ­nea 180
+2019-09-25 00:56:08,316 [7] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> System.ApplicationException: No se ha especificado la definiciÃ³n del informe 'pdf' ---> System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'D:\APP\FACSE\FasceMVC\Report\pdf.rdlc'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth) en D:\APP\FACSE\Report\Generador.cs:lÃ­nea 180
+2019-09-25 01:00:34,218 [6] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> System.ApplicationException: No se ha especificado la definiciÃ³n del informe 'pdf' ---> System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'D:\APP\FACSE\FasceMVC\Report\pdf.rdlc'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth) en D:\APP\FACSE\Report\Generador.cs:lÃ­nea 180
+2019-09-25 01:04:14,582 [6] ERROR EmisorInicioController  - Error al exportar pdf: Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> System.ApplicationException: No se ha especificado la definiciÃ³n del informe 'pdf' ---> System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'D:\APP\FACSE\FasceMVC\Report\pdf.rdlc'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Report.Generador.GenerarPdf(Guid gIdDocumento) en D:\APP\FACSE\Report\Generador.cs:lÃ­nea 111
+   en FasceMVC.Controllers.EmisorInicioController.ExportarPdf(Guid gDocumento) en D:\APP\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:lÃ­nea 180
+2019-09-25 01:07:32,750 [7] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> System.ApplicationException: No se ha especificado la definiciÃ³n del informe 'pdf' ---> System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'D:\APP\FACSE\FasceMVC\Report\pdf.rdlc'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth) en D:\APP\FACSE\Report\Generador.cs:lÃ­nea 180
+2019-09-25 01:15:05,843 [5] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> System.ApplicationException: No se ha especificado la definiciÃ³n del informe 'pdf' ---> System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'D:\APP\FACSE\FasceMVC\Report\pdf.rdlc'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth) en D:\APP\FACSE\Report\Generador.cs:lÃ­nea 180
+2019-09-25 01:16:33,642 [8] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> System.ApplicationException: No se ha especificado la definiciÃ³n del informe 'pdf' ---> System.IO.DirectoryNotFoundException: No se puede encontrar una parte de la ruta de acceso 'D:\APP\FACSE\FasceMVC\Report\pdf.rdlc'.
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.ReportingServices.StandalonePreviewStore.GetReportDefinition(PreviewItemContext itemContext)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepciÃ³n interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth) en D:\APP\FACSE\Report\Generador.cs:lÃ­nea 180
+2019-09-25 12:00:49,999 [6] ERROR EmisorInicioController  - Error al exportar pdf: System.ArgumentNullException: El valor no puede ser nulo.
+Nombre del parÃ¡metro: report
+   en Report.Generador.GenerarPdf(Guid gIdDocumento) en D:\APP\FACSE\Report\Generador.cs:lÃ­nea 113
+   en FasceMVC.Controllers.EmisorInicioController.ExportarPdf(Guid gDocumento) en D:\APP\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:lÃ­nea 180
+2019-09-25 16:12:48,025 [5] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> Microsoft.Reporting.DefinitionInvalidException: La definición del informe '' no es válida. ---> Microsoft.ReportingServices.ReportProcessing.ReportPublishingException: La expresión Value del objeto ‘Textbox4’ de tipo text box hace referencia al campo ‘Serie’. Las expresiones de elementos de informe solo pueden hacer referencia a campos en el ámbito del conjunto de datos actual o, si están dentro de un agregado, en el ámbito de conjunto de datos. Los nombres de los campos deben estar deletreados correctamente.
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.InternalCreateIntermediateFormat(Stream definitionStream, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.CreateIntermediateFormat(Byte[] definition, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CompileOdpReport(PublishingContext reportPublishingContext, IDataProtection dataProtection, PublishingErrorContext errorContext, String& reportDescription, String& reportLanguage, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CreateIntermediateFormat(PublishingContext reportPublishingContext, IDataProtection dataProtection)
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth) en D:\FST\website\vs2017\FACSE.PRODUCCION\FACSE\Report\Generador.cs:línea 141
+2019-09-25 16:12:48,109 [5] ERROR EmisorInicioController  - Error al exportar pdf: Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> Microsoft.Reporting.DefinitionInvalidException: La definición del informe '' no es válida. ---> Microsoft.ReportingServices.ReportProcessing.ReportPublishingException: La expresión Value del objeto ‘Textbox4’ de tipo text box hace referencia al campo ‘Serie’. Las expresiones de elementos de informe solo pueden hacer referencia a campos en el ámbito del conjunto de datos actual o, si están dentro de un agregado, en el ámbito de conjunto de datos. Los nombres de los campos deben estar deletreados correctamente.
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.InternalCreateIntermediateFormat(Stream definitionStream, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.CreateIntermediateFormat(Byte[] definition, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CompileOdpReport(PublishingContext reportPublishingContext, IDataProtection dataProtection, PublishingErrorContext errorContext, String& reportDescription, String& reportLanguage, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CreateIntermediateFormat(PublishingContext reportPublishingContext, IDataProtection dataProtection)
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Report.Generador.GenerarPdf(Guid gIdDocumento) en D:\FST\website\vs2017\FACSE.PRODUCCION\FACSE\Report\Generador.cs:línea 113
+   en FasceMVC.Controllers.EmisorInicioController.ExportarPdf(Guid gDocumento) en D:\FST\website\vs2017\FACSE.PRODUCCION\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 180
+2019-09-25 16:56:10,240 [6] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> Microsoft.Reporting.DefinitionInvalidException: La definición del informe '' no es válida. ---> Microsoft.ReportingServices.ReportProcessing.ReportPublishingException: La expresión Value para text box 'Textbox20' hace referencia directa al campo 'SubTotal' sin especificar un agregado de conjunto de datos. Cuando el informe contiene varios conjuntos de datos, las referencias de campo fuera de una región de datos deben estar incluidas en funciones de agregado que especifiquen un ámbito de conjunto de datos. 
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.InternalCreateIntermediateFormat(Stream definitionStream, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.CreateIntermediateFormat(Byte[] definition, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CompileOdpReport(PublishingContext reportPublishingContext, IDataProtection dataProtection, PublishingErrorContext errorContext, String& reportDescription, String& reportLanguage, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CreateIntermediateFormat(PublishingContext reportPublishingContext, IDataProtection dataProtection)
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth) en D:\FST\website\vs2017\FACSE.PRODUCCION\FACSE\Report\Generador.cs:línea 141
+2019-09-25 16:56:10,335 [6] ERROR EmisorInicioController  - Error al exportar pdf: Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> Microsoft.Reporting.DefinitionInvalidException: La definición del informe '' no es válida. ---> Microsoft.ReportingServices.ReportProcessing.ReportPublishingException: La expresión Value para text box 'Textbox20' hace referencia directa al campo 'SubTotal' sin especificar un agregado de conjunto de datos. Cuando el informe contiene varios conjuntos de datos, las referencias de campo fuera de una región de datos deben estar incluidas en funciones de agregado que especifiquen un ámbito de conjunto de datos. 
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.InternalCreateIntermediateFormat(Stream definitionStream, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.CreateIntermediateFormat(Byte[] definition, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CompileOdpReport(PublishingContext reportPublishingContext, IDataProtection dataProtection, PublishingErrorContext errorContext, String& reportDescription, String& reportLanguage, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CreateIntermediateFormat(PublishingContext reportPublishingContext, IDataProtection dataProtection)
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Report.Generador.GenerarPdf(Guid gIdDocumento) en D:\FST\website\vs2017\FACSE.PRODUCCION\FACSE\Report\Generador.cs:línea 113
+   en FasceMVC.Controllers.EmisorInicioController.ExportarPdf(Guid gDocumento) en D:\FST\website\vs2017\FACSE.PRODUCCION\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 180

@@ -1,0 +1,82 @@
+﻿@model FasceMVC.Models.CatalogoDetalle
+@{
+
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header amarillo">
+                    <h5 style="color:white;"><img src="~/Content/Images/logo_blanco.png" /> Catalogo detalles</h5>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <br />
+                        @using (Html.BeginForm("AgregarDetalleCatalogo", "Configuracion", FormMethod.Post, new { autocomplete = "off" }))
+                        {
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        @Html.TextBoxFor(Model => Model.Descripcion, new { placeholder = "Descripción", @class = "form-control", aria_describedby = "button-addon2", type = "text", style = "width:60%" })
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="submit" id="button-addon2">Agregar</button> &nbsp; &nbsp;
+                                            @Html.ActionLink("Volver", "Catalogo", "Configuracion", new { idTipoCat = Guid.Empty }, new { @class = "btn btn-danger " })
+                                            @Html.HiddenFor(Model => Model.IdCatalogo)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                        }
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <table class="table tablaDatos">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>
+
+                                            </th>
+                                            <th>Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    @if (Model.ListadoDetallesCatalogo != null && Model.ListadoDetallesCatalogo.Any())
+                                    {
+                                        <tbody>
+                                            @foreach (var item in Model.ListadoDetallesCatalogo)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.ActionLink("Eliminar", "EliminarDetalleCatalogo", new { idDetalle = item.Id, idCatalogo = Model.IdCatalogo }, new { @class = "eliminar" })
+                                                    </td>
+                                                    <td>@item.Descripcion</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="2">
+                                                <h5>No cuenta con detalles para el catalogo</h5>
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br />
+<style>
+    a.eliminar {
+        background: url("../../Content/Images/basura.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+</style>

@@ -1,0 +1,6 @@
+2019-08-08 20:44:28,464 [9] ERROR NuevoDocumentoController  - Error al consultar la consulta documento: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Area.Emisor.Controllers.NuevoDocumentoController.Index(NuevoDocumento nuevoDocumento) en D:\APP\FACSE\FasceMVC\Areas\Emisor\Controllers\NuevoDocumentoController.cs:línea 51
+2019-08-08 20:44:29,784 [12] ERROR NuevoDocumentoController  - Error al consultar la consulta documento: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Area.Emisor.Controllers.NuevoDocumentoController.Index(NuevoDocumento nuevoDocumento) en D:\APP\FACSE\FasceMVC\Areas\Emisor\Controllers\NuevoDocumentoController.cs:línea 51
+2019-08-08 20:44:30,715 [11] ERROR NuevoDocumentoController  - Error al consultar la consulta documento: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Area.Emisor.Controllers.NuevoDocumentoController.Index(NuevoDocumento nuevoDocumento) en D:\APP\FACSE\FasceMVC\Areas\Emisor\Controllers\NuevoDocumentoController.cs:línea 51

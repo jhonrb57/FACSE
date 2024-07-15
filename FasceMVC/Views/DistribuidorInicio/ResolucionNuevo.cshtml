@@ -1,0 +1,108 @@
+﻿@model DataBase.adm_emisor_resolucion
+@{
+    /**/
+
+    Layout = null;
+}
+@Scripts.Render("~/bundles/modernizr")
+@Styles.Render("~/Content/bootstrap.css")
+@Styles.Render("~/Content/css/inicio.css")
+
+@Styles.Render("~/Content/pace-theme-mac-osx.css")
+@Scripts.Render("~/bundles/jquery")
+
+
+@using (Ajax.BeginForm("CrearResolucion", new AjaxOptions()
+{
+    InsertionMode = InsertionMode.Replace,
+    OnSuccess = "onSuccessCatalogo(data,this)"
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ere_emisor)
+
+    <br />
+
+        <div class="card mb-3 fondopciones">
+        <div style="color:#ffffff" class="card-header amarillo">
+            <i class="fas fa-chart-area"></i>
+           Adicionar Resolucion
+        </div>
+        <div class="card-body">
+            <div>
+
+
+    <div class="form-group col-md-12">
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.ere_tipo_documento, htmlAttributes: new { @class = "inputState" })
+
+            @Html.DropDownList("ere_tipo_documento", null, "--Seleccione--", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ere_tipo_documento, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.ere_prefijo, htmlAttributes: new { @class = "inputState" })
+
+            @Html.EditorFor(model => model.ere_prefijo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ere_prefijo, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.ere_numero_resolucion, htmlAttributes: new { @class = "inputState" })
+
+            @Html.EditorFor(model => model.ere_numero_resolucion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ere_numero_resolucion, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.ere_fecha, htmlAttributes: new { @class = "inputState" })
+
+            @Html.EditorFor(model => model.ere_fecha, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ere_fecha, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.ere_numero_inicial, htmlAttributes: new { @class = "inputState" })
+
+            @Html.EditorFor(model => model.ere_numero_inicial, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ere_numero_inicial, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.ere_numero_final, htmlAttributes: new { @class = "inputState" })
+
+            @Html.EditorFor(model => model.ere_numero_final, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ere_numero_final, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.ere_clave_tecnica, htmlAttributes: new { @class = "inputState" })
+
+            @Html.EditorFor(model => model.ere_clave_tecnica, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ere_clave_tecnica, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.ere_fecha_inicio, htmlAttributes: new { @class = "inputState" })
+
+            @Html.EditorFor(model => model.ere_fecha_inicio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ere_fecha_inicio, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.ere_fecha_final, htmlAttributes: new { @class = "inputState" })
+
+            @Html.EditorFor(model => model.ere_fecha_final, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ere_fecha_final, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.ere_activo, htmlAttributes: new { @class = "" })
+
+            @Html.EditorFor(model => model.ere_activo, new { htmlAttributes = new { @class = "" } })
+            @Html.ValidationMessageFor(model => model.ere_activo, "", new { @class = "" })
+        </div>
+        <div class="form-group col-md-12">
+            <button type="submit" class="btn btn-primary">Crear</button>
+
+            <a class="btn btn-danger" style="color:white; cursor:pointer" onclick="cancelarCatalogo()" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Cancelar
+            </a>
+        </div>
+    </div>
+                </div>
+            </div>
+            </div>
+            
+}

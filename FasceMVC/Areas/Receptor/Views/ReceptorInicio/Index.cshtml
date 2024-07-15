@@ -1,0 +1,733 @@
+﻿@model DataBase.adm_documento
+
+@{
+    ViewBag.Title = "Inicio";
+    Layout = null;
+}
+
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Styles.Render("~/Content/bootstrap.css")
+@Scripts.Render("~/Scripts/pace.js")
+@Scripts.Render("~/Scripts/bootstrap.min.js")
+@Styles.Render("~/Content/css/inicio.css")
+
+
+<title>.::FACSE::..</title>
+
+<style type="text/css">
+    .colorblanco {
+        color: #FFFFFF;
+    }
+
+
+    .checkbox label:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+
+    .checkbox .cr {
+        position: relative;
+        display: inline-block;
+        border: 1px solid #a9a9a9;
+        border-radius: .25em;
+        width: 1.3em;
+        height: 1.3em;
+        float: left;
+        margin-right: .5em;
+    }
+
+        .checkbox .cr .cr-icon {
+            position: absolute;
+            font-size: .8em;
+            line-height: 0;
+            top: 50%;
+            left: 15%;
+        }
+
+    .checkbox label input[type="checkbox"] {
+        display: none;
+    }
+
+        .checkbox label input[type="checkbox"] + .cr > .cr-icon {
+            opacity: 0;
+        }
+
+        .checkbox label input[type="checkbox"]:checked + .cr > .cr-icon {
+            opacity: 1;
+        }
+
+        .checkbox label input[type="checkbox"]:disabled + .cr {
+            opacity: .5;
+        }
+
+    a.crear {
+        background: url("../../Content/Images/crear.png") no-repeat top left;
+        display: block;
+        height: 83px;
+        text-indent: -9999px;
+    }
+
+    a.clientes {
+        background: url("../../Content/Images/ConsultarClientes.png") no-repeat top left;
+        display: block;
+        height: 83px;
+        text-indent: -9999px;
+    }
+
+    a.configuracion {
+        background: url("../../Content/Images/configuracion.png") no-repeat top left;
+        display: block;
+        height: 83px;
+        text-indent: -9999px;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light  border-bottom banner  Small ">
+    <div class="container-fluid">
+        <a class="navbar-brand  " href="#">
+            <img src="~/Content/Images/logo_facse.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+           
+                <li class="nav-item">
+                    @Html.ActionLink("Cerrar Sesión", "Cerrar", "LoginReceptor", null, new { @class = "nav-link glyphicon glyphicon-star" })
+                    @*<a class="nav-link glyphicon glyphicon-star" href="index.html">
+                            Cerrar sesión
+                        </a>*@
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br />
+<br />
+<div class="container-fluid">
+    <div class="card mb-3">
+        <div style=" color: #ffffff" class="card-header rojo">
+            <i class="fas fa-table"></i>
+            Consultar Facturas / @Session["i_susuario"]
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                    <a class="btn btn-primary azul " data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Filtros Específicos
+                    </a>
+
+                    <br />
+                    <br />
+                    @using (Html.BeginForm())
+                    {
+                        <div class="collapse" id="collapseExample">
+
+                            @Html.HiddenFor(model => model.UrlImportar)
+                            @Html.AntiForgeryToken()
+                            <div class="form-row container">
+                                <div class="form-group col-md-12">
+                                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-3">
+                                        @Html.LabelFor(model => model.FechaInicial, new { @class = "validationCustom01" })
+                                        @Html.EditorFor(model => model.FechaInicial, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.FechaInicial, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        @Html.LabelFor(model => model.Identificacion, new { @class = "control-label" })
+
+                                        @Html.EditorFor(model => model.Identificacion, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Identificacion, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        @Html.LabelFor(model => model.IdComprobante, new { @class = "control-label" })
+
+                                        @Html.DropDownList("IdComprobante", null, "--Todos--", new { @class = "form-control" })
+                                    </div>
+
+                                    <div class="col-md-4 mb-3">
+                                        @Html.LabelFor(model => model.FechaFinal, new { @class = "control-label" })
+
+                                        @Html.EditorFor(model => model.FechaFinal, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.FechaFinal, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        @Html.LabelFor(model => model.Nombre, new { @class = "control-label" })
+
+                                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        @Html.LabelFor(model => model.Numero, new { @class = "control-label" })
+
+                                        @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="submit" id="search" name="_search" value="Buscar" class="btn btn-info" onclick="validar();" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr />
+                        </div>
+
+                        <div class="col-md-12  text-right">
+                            <input type="submit" id="search" name="_search" value="Refrescar" class="btn   btn-secondary  btn-sm" onclick="validar();" />
+                            <input type="submit" id="exportar" name="_exportar" value="Exportar" class="btn btn-success  btn-sm" />
+                        </div>
+                    }
+                    <br />
+                    @if (Model.ListadoDocumento != null)
+                    {
+                        <div class="row">
+
+                            <div class="col-sm-12">
+                                <input id="myInput" onkeyup="myFunction()" type="text" class="form-control" placeholder="Buscar" name="text1">
+                                <br />
+                            </div>
+                            <div class="form-group col-md-12">
+                                <span id="errorinicio" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <table id="myTable" class="table  tablaDatos">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th scope="col"></th>
+                                            <th valign="bottom">
+
+                                                <label style="margin-bottom:0" class=" fuente btn btn-sm btn-default colorblanco"> @Html.DisplayNameFor(model => model.IdComprobante) </label>
+                                            </th>
+                                            <th valign="middle" scope="col">    <label style="margin-bottom:0" class="fuente btn btn-sm btn-default colorblanco">@Html.DisplayNameFor(model => model.doc_prefijo)</label></th>
+                                            <th valign="middle" scope="col">
+                                                @if (ViewBag.sortOrder == "Numero")
+                                                {
+                                                    @Html.ActionLink("Numero Asc", "Index", new { pagina = 1, p = "f", sortOrder = ViewBag.NumeroSortParm },
+                                                                       new { @class = "fuente btn btn-sm btn-default colorblanco" })
+                                                }
+                                                else if (ViewBag.sortOrder == "Numero_desc")
+                                                {
+                                                    @Html.ActionLink("Numero Des", "Index", new { pagina = 1, p = "f", sortOrder = ViewBag.NumeroSortParm },
+                                                                       new { @class = "fuente btn btn-sm btn-default colorblanco" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink("Numero", "Index", new { pagina = 1, p = "f", sortOrder = ViewBag.NumeroSortParm },
+                                                                     new { @class = "fuente btn btn-sm btn-default colorblanco" })
+                                                }
+                                            </th>
+                                            <th valign="middle" scope="col">
+                                                @if (ViewBag.sortOrder == "Identificacion")
+                                                {
+                                                    @Html.ActionLink("Identificación Asc", "Index", new { pagina = 1, p = "f", sortOrder = ViewBag.IdentificacionSortParm },
+                                                                       new { @class = "fuente btn btn-sm btn-default colorblanco" })
+                                                }
+                                                else if (ViewBag.sortOrder == "Identificacion_desc")
+                                                {
+                                                    @Html.ActionLink("Identificación Des", "Index", new { pagina = 1, p = "f", sortOrder = ViewBag.IdentificacionSortParm },
+                                                                       new { @class = "fuente btn btn-sm btn-default colorblanco" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink("Identificación", "Index", new { pagina = 1, p = "f", sortOrder = ViewBag.IdentificacionSortParm },
+                                                                     new { @class = " fuente btn btn-sm btn-default colorblanco" })
+                                                }
+                                            </th>
+                                            <th scope="col">
+                                                @if (ViewBag.sortOrder == "Nombre")
+                                                {
+                                                    @Html.ActionLink("Nombre Asc", "Index", new { pagina = 1, p = "f", sortOrder = ViewBag.NombreSortParm },
+                                                              new { @class = "fuente btn btn-sm btn-default colorblanco" })
+                                                }
+                                                else if (ViewBag.sortOrder == "fuente Nombre_desc")
+                                                {
+                                                    @Html.ActionLink("Nombre Desc", "Index", new { pagina = 1, p = "f", sortOrder = ViewBag.NombreSortParm },
+                                                            new { @class = "fuente btn btn-sm btn-default colorblanco" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink("Nombre", "Index", new { pagina = 1, p = "f", sortOrder = ViewBag.NombreSortParm },
+                                                                     new { @class = "fuente btn btn-sm btn-default colorblanco" })
+                                                }
+                                            </th>
+                                            @*<th style="cursor:pointer" scope="col">@Html.DisplayNameFor(model => model.NitEmisor)</th>*@
+                                            <th scope="col">
+                                                @if (ViewBag.sortOrder == "FechaRecepcion")
+                                                {
+                                                    @Html.ActionLink("Fecha Emisión Asc", "Index", new { pagina = 1, p = "f", sortOrder = ViewBag.FechaRecepcionSortParm },
+                                                                    new { @class = "fuente btn btn-sm btn-default colorblanco" })
+                                                }
+                                                else if (ViewBag.sortOrder == null)
+                                                {
+                                                    @Html.ActionLink("Fecha Emisión Desc", "Index", new { pagina = 1, p = "f", sortOrder = ViewBag.FechaRecepcionSortParm },
+                                                                   new { @class = "fuente btn btn-sm btn-default colorblanco" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink("Fecha Emisión", "Index", new { pagina = 1, p = "f", sortOrder = ViewBag.FechaRecepcionSortParm },
+                                                                   new { @class = "fuente btn btn-sm btn-default colorblanco" })
+                                                }
+                                            </th>
+                                            <th valign="middle" scope="col">
+                                                @if (ViewBag.sortOrder == "FechaEnvio")
+                                                {
+                                                    @Html.ActionLink("Fecha Envio Asc", "Index", new { pagina = 1, p = "f", sortOrder = ViewBag.FechaEnvioSortParm },
+                                                                    new { @class = "fuente btn btn-sm btn-default colorblanco" })
+                                                }
+                                                else if (ViewBag.sortOrder == "FechaEnvio_desc")
+                                                {
+                                                    @Html.ActionLink("Fecha Envio Desc", "Index", new { pagina = 1, p = "f", sortOrder = ViewBag.FechaEnvioSortParm },
+                                                                    new { @class = "fuente btn btn-sm btn-default colorblanco" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink("Fecha Envio", "Index", new { pagina = 1, p = "f", sortOrder = ViewBag.FechaEnvioSortParm },
+                                                                   new { @class = "fuente btn btn-sm btn-default colorblanco" })
+                                                }
+                                            </th>
+                                            <th valign="middle" scope="col">
+                                                @if (ViewBag.sortOrder == "Total")
+                                                {
+                                                    @Html.ActionLink("Total Asc", "Index", new { pagina = 1, p = "f", sortOrder = ViewBag.TotalSortParm },
+                                                                       new { @class = "fuente btn btn-sm btn-default colorblanco" })
+                                                }
+                                                else if (ViewBag.sortOrder == "Total_desc")
+                                                {
+                                                    @Html.ActionLink("Total Desc", "Index", new { pagina = 1, p = "f", sortOrder = ViewBag.TotalSortParm },
+                                                                      new { @class = "fuente btn btn-sm btn-default colorblanco" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink("Total", "Index", new { pagina = 1, p = "f", sortOrder = ViewBag.TotalSortParm },
+                                                                      new { @class = "fuente btn btn-sm btn-default colorblanco" })
+                                                }
+                                            </th>
+                                            <th valign="middle" scope="col">
+                                                <label style="margin-bottom:0" class="fuente btn btn-sm btn-default colorblanco"> @Html.DisplayNameFor(model => model.doc_usuario) </label>
+                                            </th>
+                                            <th valign="middle" scope="col">
+                                                <label style="margin-bottom:0" class="fuente btn btn-sm btn-default colorblanco">Documentos </label>
+
+                                            </th>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.ListadoDocumento.Where(i=>i.CodigoEstado=="1" || i.CodigoEstado=="10"))
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.HiddenFor(model => model.doc_id, new { @Value = item.doc_id })
+                                                    @Html.HiddenFor(model => model.RutaJson, new { @Value = item.RutaJson })
+                                                    @Html.HiddenFor(model => model.CodigoEstado, new { @Value = item.CodigoEstado })
+                                                    @Html.HiddenFor(model => model.CorreoReceptor, new { @Value = item.CorreoReceptor })
+                                                    @if (item.CodigoEstado == "1")
+                                                    {
+                                                        <img src="~/Content/Images/verde.png" title="Aprobado por la Dian" />
+                                                    }
+                                                    @if (item.CodigoEstado == "10")
+                                                    {
+                                                        <img src="~/Content/Images/aprobacion_novedad.png" title="Aprobado con Novedad" />
+                                                    }
+                                                </td>
+                                                <td>
+                                                    <div style="display:none;">
+                                                        <div id="tip4-@item.doc_numero">
+                                                            <div style="padding:20px;">
+                                                                <div>
+                                                                    <table>
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>
+                                                                                    Estado
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @foreach (var itemNoti in item.adm_documento_estado_facse.OrderByDescending(n => n.def_fecha))
+                                                                            {
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        @itemNoti.sys_estado_documento_facse.edf_descripcion
+                                                                                    </td>
+                                                                                </tr>
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <a class="tooltip" style="cursor:pointer" onclick="tooltip.pop(this, '#tip4-@item.doc_numero', {sticky:true, position:0, cssClass:'no-padding'})">
+                                                        @if (item.RutaEstadoFacse != null && item.RutaEstadoFacse.Any())
+                                                        {
+
+                                                            <img src='@Url.Content(item.RutaEstadoFacse)' />
+                                                        }
+                                                        @*<img src="~/Content/Images/estados/pendiente_correos.png" />*@
+                                                    </a>
+
+                                                </td>
+                                                <td>
+                                                    <div style="display:none;">
+                                                        <div id="tip5-@item.doc_numero">
+                                                            <div style="padding:20px;">
+                                                                <div>
+                                                                    <table style="font-size:x-small" width="900">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th style="font-size:x-small" width="20%">
+                                                                                    Fecha
+                                                                                </th>
+                                                                                <th style="font-size:x-small">
+                                                                                    Correo
+                                                                                </th>
+                                                                                <th style="font-size:x-small">
+                                                                                    Estado
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody style="font-size:x-small">
+                                                                            @foreach (var itemCorre in item.adm_documento_correo.OrderByDescending(n => n.dco_fecha))
+                                                                            {
+                                                                                <tr>
+                                                                                    <td style="font-size:x-small">
+                                                                                        @itemCorre.dco_fecha
+                                                                                    </td>
+
+                                                                                    <td style="font-size:x-small">
+                                                                                        @itemCorre.dco_correo
+                                                                                    </td>
+                                                                                    <td style="font-size:x-small">
+                                                                                        @itemCorre.sys_estado_documento_correo.edc_descripcion
+                                                                                    </td>
+                                                                                </tr>
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                                <td>
+                                                    <div style="display:none;">
+                                                        <div id="tip6-@item.doc_numero">
+                                                            <div style="padding:20px;">
+                                                                <div>
+                                                                    <table style="font-size:x-small" width="900">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th style="font-size:x-small" width="20%">
+                                                                                    Nombre
+                                                                                </th>
+
+                                                                                <th style="font-size:x-small">
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody style="font-size:x-small">
+                                                                            @foreach (var itemAne in item.adm_documentos_anexo.OrderByDescending(n => n.dan_nombre))
+                                                                            {
+                                                                                <tr>
+                                                                                    <td style="font-size:x-small">
+                                                                                        <a target="_blank" href="@itemAne.dan_directorio"
+                                                                                           title="Adjunto">
+                                                                                            @itemAne.dan_nombre
+                                                                                        </a>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @if (item.adm_documentos_anexo.Any())
+                                                    {
+                                                        <a class="tooltip" style="cursor:pointer" onclick="tooltip.pop(this, '#tip6-@item.doc_numero', {sticky:true, position:0, cssClass:'no-padding'})" title="Adjunto">
+                                                            <img src="~/Content/Images/adjuntar.png" />
+                                                        </a>
+                                                    }
+                                                </td>
+                                                <td class="text-uppercase">
+                                                    @Html.DisplayFor(modelItem => item.NombreComprobante)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.doc_prefijo)
+                                                </td>
+                                                <td style="text-align:right;">
+                                                    @Html.DisplayFor(modeItem => item.doc_numero)
+                                                </td>
+                                                <td style="text-align:right;">
+                                                    @Html.DisplayFor(modelItem => item.Identificacion)
+                                                </td>
+                                                <td class="text-capitalize">
+                                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                                </td>
+                                                @*<td>
+                                                        @Html.DisplayFor(modelItem => item.NitEmisor)
+                                                    </td>*@
+                                                <td class="text-center">
+                                                    @string.Format("{0:yyyy-MM-dd H:mm:ss}", item.doc_fecha_recepcion)
+                                                </td>
+                                                <td class="text-center">
+                                                    @string.Format("{0:yyyy-MM-dd H:mm:ss}", item.doc_fecha_envio)
+                                                </td>
+                                                <td class="text-right">
+                                                    @Html.DisplayFor(modelItem => item.doc_valor_total)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.doc_usuario)
+                                                </td>
+                                                <td class="text-right">
+                                                    @if (!string.IsNullOrEmpty(item.RutaXml))
+                                                    {
+                                                        <a target="_blank" href="@item.RutaZip"
+                                                           title="Xml">
+                                                            <img src="~/Content/Images/xml.png" />
+                                                        </a>
+                                                        <a target="_blank" href="@Url.Action("ExportarPdf", "ReceptorInicio", new { gDocumento = item.doc_id })"
+                                                           title="PDF">
+                                                            <img src="~/Content/Images/pdf.png" />
+                                                        </a>
+                                                    }
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
+                                    <h6> Se muestran registros  @Model.TotalRegistros </h6>
+                                    <span>&nbsp;|&nbsp;</span>
+                                    <span>
+                                        Página <strong>@(Model.PaginaActual)</strong> de
+                                        <strong>@Model.TotalPaginas</strong>
+                                    </span>
+                                    <span>&nbsp;|&nbsp;</span>
+                                    @if (Model.PaginaActual > 1)
+                                    {
+                                        @Html.ActionLink("<<", "Index", new { pagina = 1, p = "f" },
+                                                             new { @class = "btn btn-sm btn-default" })
+                                        <span></span>
+                                        @Html.ActionLink("Anterior", "Index", new { pagina = Model.PaginaActual - 1, p = "f" },
+                                                             new { @class = "btn btn-sm btn-default" })
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink("<<", "Index", new { pagina = 1, p = "f" },
+                                                             new { @class = "btn btn-sm btn-default disabled" })
+                                        <span></span>
+                                        @Html.ActionLink("Anterior", "Index", new { pagina = 1, p = "f" },
+                                                             new { @class = "btn btn-sm btn-default disabled" })
+                                    }
+                                    <span></span>
+                                    @if (Model.PaginaActual < Model.TotalPaginas)
+                                    {
+                                        @Html.ActionLink("Siguiente", "Index", new { pagina = Model.PaginaActual + 1, p = "f" },
+                                                             new { @class = "btn btn-sm btn-default" })
+                                        <span></span>
+                                        @Html.ActionLink(">>", "Index", new { pagina = Model.TotalPaginas, p = "f" },
+                                                             new { @class = "btn btn-sm btn-default" })
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink("Siguiente", "Index", new { pagina = Model.TotalPaginas - 1, p = "f" },
+                                                             new { @class = "btn btn-sm btn-default disabled" })
+                                        <span></span>
+                                        @Html.ActionLink(">>", "Index", new { pagina = Model.TotalPaginas, p = "f" },
+                                                             new { @class = "btn btn-sm btn-default disabled" })
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="card-footer small text-muted "></div>
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    //$(document).ready(function () {
+    //    $("table").tablesorter();
+
+    //});
+
+    function validar() {
+        var inicio = document.getElementById('FechaInicial').value;
+        var finalq = document.getElementById('FechaFinal').value;
+        inicio = new Date(inicio);
+        finalq = new Date(finalq);
+        if (inicio > finalq)
+            alert('La fecha de inicio no puede ser mayor que la fecha fin');
+    }
+
+    function myFunction() {
+        var input, filter, table, tr, td, i, t;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            var filtered = false;
+            var tds = tr[i].getElementsByTagName("td");
+            if (tds.length == 0) {
+                filtered = true;
+            }
+            for (t = 0; t < tds.length - 1; t++) {
+                var td = tds[t];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        filtered = true;
+                    }
+                }
+            }
+            if (filtered === true) {
+                tr[i].style.display = '';
+            }
+            else {
+                tr[i].style.display = 'none';
+            }
+        }
+    }
+
+    function EnvioDian() {
+        var token = $('input[name="__RequestVerificationToken"]').val();
+
+        var toStore = [];
+        var i = 0;
+        $('#myTable').each(function () {
+            $("input[type=\"checkbox\"]:checked").each(function () {
+                if (this.id != "checkUncheckAll") {
+                    toStore[i] = {};
+                    $(this).closest('td').siblings().each(function () {
+                        $(this).find(':input').each(function () {
+                            toStore[i][this.name] = this.value;
+                        });
+                    });
+                    i++;
+                }
+            });
+        });
+        if (i == 0) {
+            $('#errorinicio').text("Debe Seleccionar un Documento");
+        }
+        else {
+            toStore = JSON.stringify({ 'listadoDocumento': toStore});
+
+            Pace.track(function () {
+                $.ajax({
+                    url: '@Url.Action("ReenvioDian", "EmisorInicio")',
+                    type: 'POST',
+                    data: toStore,
+                    async: false,
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8", //Added so ASP recognized JSON
+                    traditional: true,
+                    success: function (data) {
+                        if (data) {
+                            var url = '@Url.Action("Index", "EmisorInicio")?pagina=1&p=f';
+                            window.location.href = url;
+                        }
+                    },
+                    error: function (e) {
+                        if (e.status == 403) {
+                            window.location.href = '@Url.Content("~/Login/Index/Se caduco la session")';
+                        }
+                        else {
+                            window.location.href = '@Url.Content("~/Login/Index/Se presento un inconveniente inesperado volver a intentar, si el incoveniente persiste comuniquese con el administrador")';
+                        }
+                    }
+                });
+            });
+        }
+    }
+
+    function EnvioCorreo() {
+        var token = $('input[name="__RequestVerificationToken"]').val();
+
+        var toStore = [];
+        var i = 0;
+        $('#myTable').each(function () {
+            $("input[type=\"checkbox\"]:checked").each(function () {
+                if (this.id != "checkUncheckAll") {
+                    toStore[i] = {};
+                    $(this).closest('td').siblings().each(function () {
+                        $(this).find(':input').each(function () {
+                            toStore[i][this.name] = this.value;
+                        });
+                    });
+                    i++;
+                }
+            });
+        });
+        if (i == 0) {
+            $('#errorinicio').text("Debe Seleccionar un Documento");
+        }
+        else {
+            toStore = JSON.stringify({ 'listadoDocumento': toStore, 'email': document.getElementById("email").value});
+
+            Pace.track(function () {
+                $.ajax({
+                    url: '@Url.Action("ReenvioCorreo", "EmisorInicio")',
+                    type: 'POST',
+                    data: toStore,
+                    async: false,
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8", //Added so ASP recognized JSON
+                    traditional: true,
+                    success: function (data) {
+                        if (data) {
+                            var url = '@Url.Action("Index", "EmisorInicio")?pagina=1&p=f';
+                            window.location.href = url;
+                        }
+                    },
+                    error: function (e) {
+                        if (e.status == 403) {
+                            window.location.href = '@Url.Content("~/Login/Index/Se caduco la session")';
+                        }
+                        else {
+                            window.location.href = '@Url.Content("~/Login/Index/Se presento un inconveniente inesperado volver a intentar, si el incoveniente persiste comuniquese con el administrador")';
+                        }
+                    }
+                });
+            });
+        }
+    }
+
+    function validarEmail(email) {
+
+            var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+            if (!reg.test(email)) {
+                alert("Correo Invalido");
+                document.getElementById("email").value = "";
+            }
+        }
+
+
+</script>

@@ -1,0 +1,100 @@
+﻿@model FasceMVC.Models.Usuario
+@{
+
+}
+
+
+<div class="container">
+    <br />
+    <h2>
+        <img src="~/Content/Images/logo_titulos.png" />    Usuario
+    </h2>
+    <hr />
+    <div class="row">
+        <div class="col">
+            @Html.ActionLink("Volver", "Index", "Configuracion", null, new { @class = "btn btn-danger btn-sm" })
+            @Html.ActionLink("Agregar", "CrearEditarUsuario", "Configuracion", null, new { @class = "btn btn-success btn-sm" })
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col">
+            @if (Model.ListadoUsuario != null && Model.ListadoUsuario.Any())
+            {
+                <table class="table table-bordered table-striped table-sm table-responsive-sm table-responsive-md">
+                    <thead class="thead-dark text-center">
+                        <tr>
+                            <th ></th>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Email</th>
+                            <th>Dirección</th>
+                            <th>Teléfono</th>
+                            <th>Activo</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ListadoUsuario)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink("Editar", "CrearEditarUsuario", "Configuracion", new { idUsuario = item.Id }, new { @class = "editar" })
+                                </td>
+                                <td>@item.sUsuario</td>
+                                <td>@item.Nombre</td>
+                                <td>@item.Apellido</td>
+                                <td>@item.Email</td>
+                                <td>@item.Direccion</td>
+                                <td>@item.Telefono</td>
+                                <td class="text-center">
+                                    @Html.CheckBox("Activo", @item.Activo, new { disabled = "disabled" })
+                                </td>
+                                <td >
+                                    @Html.ActionLink("Sucursal", "UsuarioSucursal", new { idUsuario = item.Id }, new { @class = "usuSucursal" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            }
+            else
+            {
+                <h5>No cuenta con usuarios.</h5>
+            }
+        </div>
+    </div>
+    <br /><br />
+</div>
+
+<style>
+    a.editar {
+        background: url("../../Content/Images/edit.png") no-repeat top left;
+        display: block;
+        width: 20px;
+        text-indent: -9999px;
+    }
+
+    a.usuSucursal {
+        background: url("../../Content/Images/sucursal_usuario.png") no-repeat top left;
+        display: block;
+        width: 20px;
+        text-indent: -9999px;
+    }
+</style>
+
+<script>
+
+    @Html.Raw(Model.JsFuncion)
+
+    function mensaje(mensaje, icon) {
+        swal({
+            title: mensaje,
+            icon: icon
+        });
+    }
+
+</script>
+

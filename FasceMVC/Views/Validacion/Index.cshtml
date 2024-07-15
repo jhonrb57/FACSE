@@ -1,0 +1,500 @@
+﻿@model DataBase.adm_usuario_perfil_tipo
+@using DataBase
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>.::FACSE::..</title>
+    <link rel="icon" type="image/png" href="~/Content/Images/iconos.ico" />
+    @Styles.Render("~/Content/bootstrap.css")
+    @Styles.Render("~/Content/css/inicio.css")
+    @Scripts.Render("~/Scripts/sweetalert2.js")
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+
+    <style type="text/css">
+        .banner_m {
+            background: rgba(0,122,39,1);
+            background: -moz-linear-gradient(left, rgba(0,122,39,1) 0%, rgba(64,217,56,1) 100%);
+            background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0,122,39,1)), color-stop(100%, rgba(64,217,56,1)));
+            background: -webkit-linear-gradient(left, rgba(0,122,39,1) 0%, rgba(64,217,56,1) 100%);
+            background: -o-linear-gradient(left, rgba(0,122,39,1) 0%, rgba(64,217,56,1) 100%);
+            background: -ms-linear-gradient(left, rgba(0,122,39,1) 0%, rgba(64,217,56,1) 100%);
+            background: linear-gradient(to right, rgba(0,122,39,1) 0%, rgba(64,217,56,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007a27', endColorstr='#40d938', GradientType=1 );
+        }
+
+        a.logout {
+            background: url("../../Content/Images/logout.png") no-repeat;
+            display: block;
+            text-indent: -9999px;
+        }
+
+        .eliminarNotificaciones {
+            background: url("../../Content/Images/navegador.png") no-repeat;
+            display: block;
+            text-indent: -9999px;
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+
+
+</head>
+<body style="background-color:#ffffff">
+
+
+    @*<div class="modal" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">.::FACSE SERVICIO DE MANTENIMIENTO ::.</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <p class="text-center ">
+
+                        <img src="~/Content/Images/multimedia.png" />
+                    </p>
+                    <p>
+
+                      
+                        <b> Cordial saludo,</b><br />
+
+                        Es para nosotros un placer contar con el respaldo de ustedes en estos momentos que han generando nuevos cambios en nuestro entorno comercial y productivo. Plataforma Colombia no es ageno a estos cambios por tal motivo informamos que durante los dias 23,24,25 desde las 6am del dia 23 a las 6pm del dia 25, la plataforma FACSE, no estará disponible, por tal motivo los invitamos a realizar las diferentes actividades durante los dias anteriores o posteriores a los dias mencionados, recordando que por reglamentación la factura electrónica podrá se entregada al cliente final en un plazo no máximo de 48 horas de expedida.
+
+                        En estos dias realizaremos una actualización de infraestructura con el fin de mejorar la latencia de nuestro servicio.
+
+                        Contamos siempre con su apoyo.<br /><br />
+
+                        Gracias por preferirnos
+                    </p>
+                   
+                </div>
+                <div class="modal-footer">
+                   
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+    <script type="text/javascript">
+        $('#myModal').modal('show')
+    </script>
+
+
+    <div class="container">
+        <!-- Heading Row -->
+        <div class="row align-items-center my-1">
+            <div class="col-lg-7">
+                <img class="img-fluid rounded mb-6 mb-lg-0" src="~/Content/Images/inicio_em.png" alt="">
+
+            </div>
+            <!-- /.col-lg-8 -->
+            <div class="col-lg-5">
+                <h1 class="font-weight-light">Bienvenidos a FACSE</h1>
+
+                <h6 class="alert-heading">@Session["i_snombreusuario"].ToString() - @Session["i_sabreviatura"]</h6>
+                <hr />
+                <p>Cómo quieres trabajar?</p>
+
+
+                <div class="form-group col-md-12">
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                </div>
+                @foreach (var item in Model.ListadoUsuarioPerfil)
+                {
+                    <div class="form-group col-md-12">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.upt_tipo_usuario, new { @Value = item.upt_tipo_usuario })
+                            @Html.HiddenFor(model => model.upt_persona, new { @Value = item.upt_persona })
+                            <input class="btn btn-warning btn-sm" type="submit" value="@item.sys_tipo_usuario.tus_descripcion" name="@item.sys_tipo_usuario.tus_descripcion" />
+                        }
+                    </div>
+                }
+            </div>
+            <!-- /.col-md-4 -->
+        </div>
+        <!-- /.row -->
+        <!-- Call to Action Well -->
+
+        <div class="card-body banner_m shadow p-3 mb-5 bg-white rounded row">
+            <div class="col-11">
+                <p class="text-white m-0">CON FACSE LA FACTURACIÓN ELECTRÓNICA ES MUCHO MÁS SENCILLA ! </p>
+            </div>
+            <div class="col-1  float-right">
+                @Html.ActionLink("Logout", "Cerrar", "Login", null, new { @class = "logout", title = "Cerrar sesión" })
+
+            </div>
+        </div>
+
+        <!-- Content Row -->
+        <div class="row">
+
+            <div class="col-md-4 mb-1">
+                <div class="card ">
+
+                    <div class="card-body">
+                        <a target="_blank" href="http://ticket.facsep.com/">
+
+                            <img src="~/Content/Images/ticket.png" />
+                        </a>
+                        <hr />
+                        <h4 class="card-title">Cómo importa tu factura </h4>
+                        <p class="card-text">Desde Excel puedes importar tus facturas a Facse, descargando la siguiente plantilla </p>
+                        <a href="~/Content/plantilla/PLANTILA_FACSE_FACTURAS_V.1L.xlsx">
+                            Descargar
+                            <img src="~/Content/Images/excel_em.png" />
+                        </a>
+                        <hr />
+                        <h4 class="card-title">Manual de usuario </h4>
+                        <p class="card-text">Ver el manual de Facse y conozca más de la aplicación</p>
+                        <a href="~/Content/manual/index.html" target="_blank">
+                            Ver 
+                            <img src="~/Content/Images/ayuda_m.png" />
+                        </a>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" style="display:none" class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">Más información</button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8  mb-10">
+                <div class="row">
+                    <div class="col-3">  <h6 class="card-title">Notificaciones Facse   </h6> </div>
+                    <div class="col">
+                        <button onclick="CambiarNotificacion()" style="cursor:pointer" title="Eliminar todas la notificaciones" class="eliminarNotificaciones btn  btn-light"></button>
+                    </div>
+
+                </div>
+
+
+
+                <div class="card text-center">
+                    <div class="card-header ">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                @Html.ActionLink("Todas las notificaciones", "Index", new { tipoNotificacion = "" }, new { @class = "nav-link", id = "todos" })
+                                @*<a class="nav-link active" href="#">Todas las notificaciones</a>*@
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Informativas", "Index", new { tipoNotificacion = "46F9461F-18A1-413C-8A93-AD8479D7CB25" }, new { @class = "nav-link", id = "informativas" })
+
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Advertencia", "Index", new { tipoNotificacion = "35038EF3-CEDB-494C-9951-9D7D85B96CA0" }, new { @class = "nav-link", id = "advertencia" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Error", "Index", new { tipoNotificacion = "D851F55A-5CAD-42F0-A505-77F35426053F" }, new { @class = "nav-link", id = "error" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Ticket", "Index", new { tipoNotificacion = "00000000-0000-0000-0000-000000000000" }, new { @class = "nav-link", id = "ticket" })
+                            </li>
+
+                        </ul>
+                    </div>
+
+
+                    <div class="card-body">
+
+                        @foreach (var item in (List<Notificaciones>)ViewBag.ListadoNotificaciones)
+                        {
+
+                            if (item.Tipo == Guid.Parse("46F9461F-18A1-413C-8A93-AD8479D7CB25"))
+                            {
+
+
+
+                                <br />
+                                <a onclick='abrirAlerta("@(item.Id)", "@(item.Descripcion)")' style="cursor:pointer">
+                                    <div class="alert alert-info" role="alert">
+                                        <button type="button" onclick='abrirCambiar("@item.Id")' class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        @item.Descripcion
+                                    </div>
+
+
+                                </a>
+                            }
+
+                            if (item.Tipo == Guid.Parse("603328DA-58B4-4F3C-AB35-81966A81728C"))
+                            {
+
+
+
+                                <br />
+                                <a onclick='abrirAlerta("@(item.Id)", "@(item.Descripcion)")' style="cursor:pointer">
+                                    <div class="alert alert-dark" role="alert">
+                                        <button type="button" onclick='abrirCambiar("@item.Id")' class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        @item.Descripcion
+                                    </div>
+                                </a>
+                            }
+                            if (item.Tipo == Guid.Parse("35038EF3-CEDB-494C-9951-9D7D85B96CA0"))
+                            {
+
+                                <br />
+                                <a onclick='abrirAlerta("@(item.Id)", "@(item.Descripcion)")' style="cursor:pointer">
+                                    <div class="alert alert-warning" role="alert">
+                                        <button type="button" onclick='abrirCambiar("@item.Id")' class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        @item.Descripcion
+                                    </div>
+                                </a>
+                            }
+                            if (item.Tipo == Guid.Parse("D851F55A-5CAD-42F0-A505-77F35426053F"))
+                            {
+
+                                <br />
+                                <a onclick='abrirAlerta("@(item.Id)", "@(item.Descripcion)")' style="cursor:pointer">
+                                    <div class="alert alert-danger" role="alert">
+
+                                        <button type="button" onclick='abrirCambiar("@item.Id")' class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        @item.Descripcion
+                                    </div>
+                                </a>
+                            }
+
+                            if (item.Tipo == Guid.Empty)
+                            {
+                                <br />
+                                <a onclick='abrirAlertaTicket("@(item.Id)", "@(item.Descripcion)")' style="cursor:pointer">
+                                    <div class="alert" style="background-color:@item.Color" role="alert">
+                                        <button type="button" onclick='abrirCambiarTicket("@item.Id")' class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        @item.Descripcion
+                                    </div>
+                                </a>
+                            }
+
+
+                        }
+
+                    </div>
+
+
+                    @*<div class="card-body">
+                            <div class="alert alert-warning" role="alert">
+                                Sea aceptado la Factura  <strong>SETT 105</strong>
+                            </div>
+
+                            <div class="alert alert-danger" role="alert">
+                                Sea aceptado la Factura  <strong>SETT 106</strong>
+                            </div>
+                            <div class="alert alert-info" role="alert">
+                                Sea aceptado la Factura  <strong>SETT 107</strong>
+                            </div>
+                        </div>*@
+
+                </div>
+
+            </div>
+
+
+            <!--<div class="col-md-4 mb-5">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h2 class="card-title">Card Two</h2>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="btn btn-primary btn-sm">More Info</a>
+                </div>
+              </div>
+            </div>
+             <div class="col-md-4 mb-5">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h2 class="card-title">Card Three</h2>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="btn btn-primary btn-sm">More Info</a>
+                </div>
+              </div>
+            </div>-->
+
+        </div>
+        <!-- /.row -->
+        <br />
+
+    </div>
+    <!-- /.container -->
+    <!-- Footer -->
+    <!-- /.container -->
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <img src="~/Content/Images/impor_em.png" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+
+
+    $(document).ready(function () {
+
+        var tipo = getParameterByName('tipoNotificacion');
+        if (tipo == "") {
+            $("#todos").addClass('active');
+        }
+        if (tipo == "46F9461F-18A1-413C-8A93-AD8479D7CB25") {
+            $("#informativas").addClass('active');
+        }
+        if (tipo == "35038EF3-CEDB-494C-9951-9D7D85B96CA0") {
+            $("#advertencia").addClass('active');
+        }
+        if (tipo == "D851F55A-5CAD-42F0-A505-77F35426053F") {
+            $("#error").addClass('active');
+        }
+
+        if (tipo == "00000000-0000-0000-0000-000000000000") {
+            $("#ticket").addClass('active');
+        }
+    });
+    //$('.nav-link').click(function (e) {
+
+    //    $(this).addClass('active');
+    //});
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    function abrirAlertaTicket(idNotificacion, mensaje) {
+        Swal.fire({
+            title: "",
+            text: mensaje,
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Leído',
+            cancelButtonText: 'Pendiente'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Validacion/CambiarEstadoNotificacionTicket",
+                    data: { idNotificacion },
+                    success: (respuesta) => {
+                        if (respuesta) {
+                            location.reload();
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    function abrirCambiarTicket(idNotificacion) {
+        $.ajax({
+            type: "POST",
+            url: "/Validacion/CambiarEstadoNotificacionTicket",
+            data: { idNotificacion },
+            success: (respuesta) => {
+                if (respuesta) {
+                    location.reload();
+                }
+            }
+        });
+    }
+
+    function abrirAlerta(id, mensaje) {
+        Swal.fire({
+            title: "",
+            text: mensaje,
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Leído',
+            cancelButtonText: 'Pendiente'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Validacion/CambiarEstadoNotificacion",
+                    data: { id: id },
+                    success: (data) => {
+                        if (data) {
+                            location.reload();
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    function CambiarNotificacion(tipo) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("CambiarTodasNotificacion", "Validacion")',
+            success: (data) => {
+                if (data) {
+                    location.reload();
+                }
+            }
+        });
+    }
+
+    function abrirCambiar(id) {
+        {
+           $.ajax({
+               type: "POST",
+               url: "/Validacion/CambiarEstadoNotificacion",
+               data: { id: id },
+               success: (data) => {
+                   if (data) {
+                       location.reload();
+                   }
+               }
+           });
+        }
+    }
+</script>
+
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+

@@ -1,0 +1,157 @@
+﻿
+@model FasceMVC.Models.ProductoModel
+
+@{
+
+}
+
+<div class="container">
+
+    <br />
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header rojo">
+                    <h5 style="color:white;"><img src="~/Content/Images/logo_blanco.png" /> @Model.Titulo</h5>
+                </div>
+
+                <div class="card-body">
+                    @using (Html.BeginForm("EnviarFormularioProducto", "Configuracion", FormMethod.Post, new { autocomplete = "off" }))
+                    {
+
+                        <div class="form-group">
+                            <label>Código:</label>
+                            @Html.TextBox("Codigo", Model.Codigo, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción:</label>
+                            @Html.TextBoxFor(Model => Model.Descripcion, new { @class = "form-control", onKeyUp = "CalcularTotal();" })
+                            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="col">
+                                <label>Unidad:</label>
+                                @Html.DropDownListFor(Model => Model.IdUnidad, Model.ListadoTipoUnidad, new { @class = "form-control" })
+                            </div>
+
+                            <div class="col">
+                                <label>Valor unitario:</label>
+                                @Html.TextBoxFor(Model => Model.ValorUnitario, new { @class = "form-control", onKeyUp = "CalcularTotal();" })
+                                @Html.ValidationMessageFor(model => model.ValorUnitario, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col">
+                                <label>Impuesto:</label>
+                                @Html.DropDownListFor(Model => Model.IdImpuesto, Model.ListadoTipoImpuesto, new { @class = "form-control", onchange = "CalcularImpuesto(this.value); CalcularTotal();" })
+                            </div>
+
+                            @if (Model.IdProducto != Guid.Empty)
+                            {
+                                <div class="col-sm-6 col-md-4 col-lg-2">
+                                    <label>Activo</label>
+                                    @Html.CheckBoxFor(Model => Model.Activo)
+                                </div>
+                            }
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <br />
+                                <table id="tableCatalogoFactura" class="table table-bordered table-striped table-sm table-responsive-sm table-responsive-md">
+                                    <thead class="table-primary text-center">
+                                        <tr>
+                                            <th>Descripción</th>
+                                            <th>Valor </th>
+                                        </tr>
+                                    </thead>
+
+                                    @for (int i = 0; i < Model.ListadoCatalogo.Count(); i++)
+                                    {
+                                        <tr>
+                                            <td class="" width="300">@Model.ListadoCatalogo[i].Descripcion</td>
+                                            @if (Model.ListadoCatalogo[i].Lista)
+                                            {
+                                                <td class="catValor">
+                                                    @Html.DropDownListFor(Model => Model.ListadoCatalogo[i].Valor, Model.ListadoCatalogo[i].ListadoCag, new { @class = "form-control", onchange = "GuardarCatalogoFactura('" + Model.ListadoCatalogo[i].Id + "',this.value);" })
+                                                    @Html.ValidationMessageFor(model => Model.ListadoCatalogo[i].Valor, "", new { @class = "text-danger" })
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td class="catValor">
+                                                    @Html.TextBoxFor(Model => Model.ListadoCatalogo[i].Valor, new { @class = "form-control text-left imputtrasnparente", onchange = "GuardarCatalogoFactura('" + Model.ListadoCatalogo[i].Id + "',this.value);" })
+                                                    @Html.ValidationMessageFor(model => Model.ListadoCatalogo[i].Valor, "", new { @class = "text-danger" })
+                                                </td>
+                                            }
+                                        </tr>
+                                    }
+
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                @Html.HiddenFor(Model => Model.IdProducto)
+                                <button type="submit" class="btn btn-sm btn-success" id="btnGuardar">Guardar</button>
+                                @Html.ActionLink("Cancelar", "Producto", new { IdProducto = Guid.Empty }, new { @class = "btn btn-sm btn-danger" })
+                            </div>
+                        </div>
+                        <div id="loading" class="updateProgress" style="display:none;">
+                            <img src="~/Content/Images/procesando.gif" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .updateProgress {
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        opacity: 0.5;
+        filter: alpha(opacity=70);
+        text-align: center;
+    }
+</style>
+<script>
+    function hidePageLoadingSpinner() {
+        setTimeout(function () {
+            $('.ajax-loader').remove();
+            $('#ajaxLoaderDiv').hide();
+        }, 20000);
+    }
+    function GuardarCatalogoFactura(Id, valor) {
+        try {
+
+            console.log(valor);
+                $.ajax({
+                    type: "POST",
+                    url: "/Configuracion/ActualizarCatalogos",
+                    data: { IdCatalogo: Id, valor: valor },
+                    success: (data) => {
+                        if (data != null) {
+                            console.log(data);
+                            CalcularTotal();
+                        }
+                    },
+                    error: (error) => {
+                        console.error(error);
+                    }
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+</script>

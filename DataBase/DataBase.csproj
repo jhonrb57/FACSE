@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CE37D5C2-F5D0-44C4-9098-41C77226B280}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataBase</RootNamespace>
+    <AssemblyName>DataBase</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Produccion|AnyCPU'">
+    <OutputPath>bin\Produccion\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>bin\Debug\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClasesReport.cs" />
+    <Compile Include="CustomException.cs" />
+    <Compile Include="db\adm_centinela.cs" />
+    <Compile Include="db\adm_distriduidor.cs" />
+    <Compile Include="db\adm_documento.cs" />
+    <Compile Include="db\adm_documentos_anexo.cs" />
+    <Compile Include="db\adm_documento_correo.cs" />
+    <Compile Include="db\adm_documento_estado_facse.cs" />
+    <Compile Include="db\adm_documento_eventos.cs" />
+    <Compile Include="db\adm_documento_file.cs" />
+    <Compile Include="db\adm_documento_file_historico.cs" />
+    <Compile Include="db\adm_documento_notificacion.cs" />
+    <Compile Include="db\adm_documento_proveedor.cs" />
+    <Compile Include="db\adm_documento_proveedor_anexo.cs" />
+    <Compile Include="db\adm_documento_proveedor_estado_facse.cs" />
+    <Compile Include="db\adm_documento_proveedor_file.cs" />
+    <Compile Include="db\adm_emisor.cs" />
+    <Compile Include="db\adm_emisor_catalogo.cs" />
+    <Compile Include="db\adm_emisor_catalogo_lista.cs" />
+    <Compile Include="db\adm_emisor_certificado.cs" />
+    <Compile Include="db\adm_emisor_contrato.cs" />
+    <Compile Include="db\adm_emisor_correo.cs" />
+    <Compile Include="db\adm_emisor_impuesto.cs" />
+    <Compile Include="db\adm_emisor_notificacion.cs" />
+    <Compile Include="db\adm_emisor_producto.cs" />
+    <Compile Include="db\adm_emisor_producto_catalogo.cs" />
+    <Compile Include="db\adm_emisor_resolucion.cs" />
+    <Compile Include="db\adm_emisor_sucursal.cs" />
+    <Compile Include="db\adm_emisor_sucursal_json.cs" />
+    <Compile Include="db\adm_emisor_sucursal_plantilla.cs" />
+    <Compile Include="db\adm_emisor_sucursal_resolucion.cs" />
+    <Compile Include="db\adm_grupo_emisor.cs" />
+    <Compile Include="db\adm_mandato.cs" />
+    <Compile Include="db\adm_perfil.cs" />
+    <Compile Include="db\adm_perfil_usuario_receptor.cs" />
+    <Compile Include="db\adm_plantilla.cs" />
+    <Compile Include="db\adm_proveedor.cs" />
+    <Compile Include="db\adm_receptor.cs" />
+    <Compile Include="db\adm_tipo_retencion_fuente.cs" />
+    <Compile Include="db\adm_usuario.cs" />
+    <Compile Include="db\adm_usuario_perfil_tipo.cs" />
+    <Compile Include="db\adm_usuario_receptor.cs" />
+    <Compile Include="db\adm_usuario_sucursal.cs" />
+    <Compile Include="db\AuditLogIngreso.cs" />
+    <Compile Include="db\AuditLogReceptor.cs" />
+    <Compile Include="db\AuditLogs.cs" />
+    <Compile Include="db\DistribuidorInicio.cs" />
+    <Compile Include="db\EmisorInicio.cs" />
+    <Compile Include="db\EmisorInicioProveedor.cs" />
+    <Compile Include="db\log_receptor_nombre.cs" />
+    <Compile Include="db\sys_ciiu.cs" />
+    <Compile Include="db\sys_codigo_postal.cs" />
+    <Compile Include="db\sys_condicion_entrega.cs" />
+    <Compile Include="db\sys_departamento.cs" />
+    <Compile Include="db\sys_descuento.cs" />
+    <Compile Include="db\sys_estado_documento.cs" />
+    <Compile Include="db\sys_estado_documento_correo.cs" />
+    <Compile Include="db\sys_estado_documento_facse.cs" />
+    <Compile Include="db\sys_moneda.cs" />
+    <Compile Include="db\sys_municipio.cs" />
+    <Compile Include="db\sys_origen_documento.cs" />
+    <Compile Include="db\sys_pais.cs" />
+    <Compile Include="db\sys_reglas_dian.cs" />
+    <Compile Include="db\sys_software.cs" />
+    <Compile Include="db\sys_tipo_accion.cs" />
+    <Compile Include="db\sys_tipo_catalogo.cs" />
+    <Compile Include="db\sys_tipo_clasificacion_impuesto.cs" />
+    <Compile Include="db\sys_tipo_contingencia.cs" />
+    <Compile Include="db\sys_tipo_contrato.cs" />
+    <Compile Include="db\sys_tipo_correcion_nota_credito.cs" />
+    <Compile Include="db\sys_tipo_correcion_nota_debito.cs" />
+    <Compile Include="db\sys_tipo_correo.cs" />
+    <Compile Include="db\sys_tipo_dato.cs" />
+    <Compile Include="db\sys_tipo_documento.cs" />
+    <Compile Include="db\sys_tipo_emisor.cs" />
+    <Compile Include="db\sys_tipo_evento.cs" />
+    <Compile Include="db\sys_tipo_forma_pago.cs" />
+    <Compile Include="db\sys_tipo_identificacion.cs" />
+    <Compile Include="db\sys_tipo_impuesto.cs" />
+    <Compile Include="db\sys_tipo_medio_pago.cs" />
+    <Compile Include="db\sys_tipo_negociacion.cs" />
+    <Compile Include="db\sys_tipo_notificacion.cs" />
+    <Compile Include="db\sys_tipo_operacion.cs" />
+    <Compile Include="db\sys_tipo_organizacion.cs" />
+    <Compile Include="db\sys_tipo_persona.cs" />
+    <Compile Include="db\sys_tipo_unidad_cantidad.cs" />
+    <Compile Include="db\sys_tipo_usuario.cs" />
+    <Compile Include="db\tmp_documento.cs" />
+    <Compile Include="FacseEntity.cs" />
+    <Compile Include="IgnoreAuditAttribute.cs" />
+    <Compile Include="Metadata.cs" />
+    <Compile Include="PartialClasses.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

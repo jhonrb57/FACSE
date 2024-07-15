@@ -1,0 +1,408 @@
+﻿@model FasceMVC.Models.ProductoFactura
+@{
+}
+
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+@Styles.Render("~/Content/bootstrap.css")
+@Scripts.Render("~/Scripts/pace.js")
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/Scripts/bootstrap.min.js")
+
+<div class="container-fluid">
+    <div class="card shadow-lg  mb-5 bg-white rounded">
+        <div class="card-header amarillo ">
+            <h5 style="color:white">
+                <img src="~/Content/Images/logo_blanco.png" /> Detalles
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="card card-body">
+                        @if (Model.ListadoProducto != null && Model.ListadoProducto.Any())
+                        {
+                            <table class="table table-bordered table-striped table-sm table-responsive-sm table-responsive-md">
+                                <thead class="thead-dark text-center">
+                                    <tr>
+                                        <th width="25">
+                                        </th>
+                                        <th>Descripción</th>
+                                        <th width="30%">Valor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.ListadoProducto)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" checked="@item.CheckListProducto" onchange="AgregarProducto(this.checked, '@item.epr_id', '@item.epr_codigo', '@item.epr_descripcion', '@item.epr_unidad', '@item.epr_valor_unitario', '@item.epr_tipo_impuesto')" />
+                                            </td>
+                                            <td>@item.epr_descripcion</td>
+                                            <td class="text-right">@string.Format("{0:C2}", item.epr_valor_unitario)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <h6>No cuenta con productos configurados</h6>
+                        }
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-8 col-lg-8">
+                    <div class="card card-body ">
+                        <div id="divMensaje"></div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row" id="divOcultoEditar" style="display:none">
+                <div class="col">
+                    <div class="card card-body">
+                        <div class="row">
+                            <div class="col">
+                                <label>Código:</label>
+                                <input type="text" id="txtCodigo" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label>Descripción:</label>
+                                <input type="text" id="txtDescripcion" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label>Unidad:</label>
+                                <select id="selUnidad" class="form-control"></select>
+                            </div>
+                            <div class="col">
+                                <label>Cantidad:</label>
+                                <input type="number" id="txtCantidad" class="form-control" min="1" onchange="CalcularTotal()" />
+                            </div>
+                            <div class="col">
+                                <label>Valor unitario:</label>
+                                <input type="text" id="txtValorUnidad" class="form-control" onkeyup="CalcularTotal()" />
+                            </div>
+                            <div class="col">
+                                <label>Descuento:</label>
+                                <input type="text" id="txtDescuento" class="form-control" onkeyup="CalcularTotal()" />
+                            </div>
+                            <div class="col">
+                                <label>Cargo</label>
+                                <input type="text" id="txtCargo" class="form-control" onkeyup="CalcularTotal()" />
+                            </div>
+                            <div class="col">
+                                <label>Impuesto:</label>
+                                <select id="selImpuesto" class="form-control" onchange="CalcularTotal()"></select>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6"></div>
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Subtotal:</label>
+                                            <input type="text" id="txtSubtotal" class="form-control" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Impuesto:</label>
+                                            <input type="text" id="txtValorImpuesto" class="form-control" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Total:</label>
+                                            <input type="text" id="txtTotal" class="form-control" disabled />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" id="txtIdProducto" hidden />
+                                <button id="btnGuardarEditado" onclick="GuardarProductoEditado()" class="btn btn-success btn-sm">Guardar</button>
+                                <button onclick="CancelarEditar()" class="btn btn-danger btn-sm">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row" id="divBotonesGeneral">
+                <div class="col">
+                    @Html.ActionLink("Guardar", "GuardarProductoDetalle", null, new { @class = "btn btn-success btn-sm" })
+                    @Html.ActionLink("Cancelar", "CancelarProductos", null, new { @class = "btn btn-danger btn-sm" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function AgregarProducto(check, idProducto, codigo, descripcion, unidad, valor, idImpuesto) {
+        try {
+            Pace.track(() => {
+                $.ajax({
+                    type: "POST",
+                    url: "/FacturacionManual/AgregarProductoSession",
+                    data: { check, idProducto, codigo, descripcion, unidad, valor, idImpuesto },
+                    success: (data) => {
+                        onSuccess(data);
+                    },
+                    error: (error) => {
+                        console.error(error);
+                    }
+                });
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function onSuccess(result) {
+        try {
+            if (result.isValid) {
+                $("#divMensaje").html(result.data);
+            } else {
+
+            }
+        } catch (e) {
+            console.log(result.data);
+        }
+    }
+
+    function CambiarCantidad(cantidad, idItem) {
+        try {
+            Pace.track(() => {
+                $.ajax({
+                    type: "POST",
+                    url: "/FacturacionManual/CambiarCantidad",
+                    data: { idItem, cantidad },
+                    success: (data) => {
+                        if (data.isValid) {
+                            $("#divMensaje").html(data.data);
+                        } else {
+
+                        }
+                    }
+                });
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function CambiarCargo(cargo, idItem) {
+        try {
+            Pace.track(() => {
+                $.ajax({
+                    type: "POST",
+                    url: "/FacturacionManual/CambiarCargo",
+                    data: { idItem, cargo },
+                    success: (data) => {
+                        if (data.isValid) {
+                            $("#divMensaje").html(data.data);
+                        } else {
+
+                        }
+                    }
+                });
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function CambiarDescuento(descuento, idItem) {
+        try {
+            Pace.track(() => {
+                $.ajax({
+                    type: "POST",
+                    url: "/FacturacionManual/CambiarDescuento",
+                    data: { idItem, descuento },
+                    success: (data) => {
+                        if (data.isValid) {
+                            $("#divMensaje").html(data.data);
+                        } else {
+
+                        }
+                    }
+                });
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function EditarProducto(idProduto) {
+        try {
+            $("#txtIdProducto").val(idProduto);
+            Pace.track(() => {
+                $.ajax({
+                    type: "POST",
+                    url: "/FacturacionManual/CargarDatosEditar",
+                    data: { idProduto },
+                    success: (data) => {
+
+                        var datoseditar = data.datosProducto;
+                        var listadoUnidad = data.listadoUnidad;
+                        var listadoImpuesto = data.listadoImpuesto;
+
+                        if (datoseditar != null) {
+                            $("#txtCodigo").val(datoseditar.Codigo);
+                            $("#txtDescripcion").val(datoseditar.DescripcionDetalles);
+                            $("#txtCantidad").val(datoseditar.Cantidad);
+                            $("#txtValorUnidad").val(datoseditar.ValorUnidad);
+                            $("#txtDescuento").val(datoseditar.Descuento);
+                            $("#txtCargo").val(datoseditar.Cargo);
+                        }
+
+                        if (listadoUnidad != null) {
+                            $.each(listadoUnidad, function (index, item) {
+                                if (item.Value == datoseditar.Unidad) {
+                                    $("#selUnidad").append('<option value="' + item.Value + '" selected>' + item.Text + '</option>')
+                                }
+                                else {
+                                    $("#selUnidad").append('<option value="' + item.Value + '">' + item.Text + '</option>')
+                                }
+                            });
+                        }
+
+                        if (listadoImpuesto != null) {
+                            $.each(listadoImpuesto, function (index, item) {
+                                if (item.Value == datoseditar.IdImpuesto) {
+                                    $("#selImpuesto").append('<option value="' + item.Value + '" selected>' + item.Text + '</option>')
+                                }
+                                else {
+                                    $("#selImpuesto").append('<option value="' + item.Value + '">' + item.Text + '</option>')
+                                }
+                            });
+                        }
+
+                        CalcularTotal();
+                        $("#divOcultoEditar").show("slow");
+                        $("#divBotonesGeneral").hide("slow");
+                    }
+                });
+            });
+
+
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    function GuardarProductoEditado() {
+        try {
+            var codigo = $("#txtCodigo").val();
+            var descripcion = $("#txtDescripcion").val();
+            var unidad = $("#selUnidad option:selected").val();
+            var cantidad = $("#txtCantidad").val();
+            var valor = $("#txtValorUnidad").val();
+            var descuento = $("#txtDescuento").val();
+            var cargo = $("#txtCargo").val();
+            var impuesto = $("#selImpuesto option:selected").val();
+            var idProducto = $("#txtIdProducto").val();
+
+            $.ajax({
+                type: "POST",
+                url: "/FacturacionManual/GuardarProductoGeneralEditado",
+                data: { idProducto, cantidad, valor, cargo, codigo, descripcion, descuento, impuesto, unidad },
+                success: (data) => {
+                    if (data.isValid) {
+                        $("#divMensaje").html(data.data);
+                        $("#divOcultoEditar").hide("slow");
+                        $("#divBotonesGeneral").show("slow");
+                    } else {
+
+                    }
+                }
+            });
+
+        } catch (e) {
+            console.log();
+        }
+    }
+
+    function CancelarEditar() {
+        try {
+            $("#divOcultoEditar").hide("slow");
+            $("#divBotonesGeneral").show("slow");
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function CalcularTotal() {
+        try {
+            var nCantidad = $("#txtCantidad").val();
+            var nValorUnidad = $("#txtValorUnidad").val();
+            var nDescuento = $("#txtDescuento").val();
+            var nCargo = $("#txtCargo").val();
+            var nIdImpuesto = $("#selImpuesto option:selected").val();
+
+            var porcentaje = CalcularImpuesto(nIdImpuesto);
+            var subtotal = (((parseFloat(nCantidad) * parseFloat(nValorUnidad)) + parseFloat(nCargo)) - parseFloat(nDescuento)).toFixed(2);
+            $("#txtSubtotal").val(subtotal);
+            var valorImpuesto = (((parseFloat(subtotal) * parseFloat(porcentaje))) / 100).toFixed(2);
+            $("#txtValorImpuesto").val(valorImpuesto);
+            $("#txtTotal").val(((((parseFloat(nCantidad) * parseFloat(nValorUnidad))) - parseFloat(nDescuento)) + parseFloat(nCargo) + parseFloat(valorImpuesto)).toFixed(2));
+
+            if (subtotal > 0) {
+                $("#btnGuardarEditado").prop('disabled', false);
+            }
+            else {
+                $("#btnGuardarEditado").prop('disabled', true);
+            }
+
+            if (valorUnidad > 0) {
+                $("#btnGuardarEditado").prop('disabled', false);
+            }
+            else {
+                $("#btnGuardarEditado").prop('disabled', true);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function CalcularImpuesto(idImpuesto) {
+        try {
+            var porcentaje = 0;
+            Pace.track(() => {
+                $.ajax({
+                    type: "POST",
+                    async: false,
+                    url: "/FacturacionManual/CargarPorcentajeImpuesto",
+                    data: { impuesto: idImpuesto },
+                    success: (data) => {
+                        if (data != null) {
+
+                            $("#PorcentajeImpuesto").val(data);
+                            porcentaje = data;
+                        }
+                    },
+                    error: (error) => {
+                        console.error(error);
+                    }
+                });
+            });
+            return porcentaje;
+        } catch (e) {
+            console.log(e);
+        }
+    }
+</script>

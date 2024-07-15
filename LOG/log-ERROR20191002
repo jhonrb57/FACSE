@@ -1,0 +1,2 @@
+2019-10-02 11:42:18,241 [5] ERROR FacturacionManualController  - Error: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Controllers.FacturacionManualController.Index(FacturacionManual facturacion) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 54

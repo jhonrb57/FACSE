@@ -1,0 +1,20 @@
+2019-10-07 12:07:14,266 [7] ERROR FacturacionManualController  - Error: System.Exception: System.Exception: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Controllers.FacturacionManualController.ConstruirJson(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 984
+   en FasceMVC.Controllers.FacturacionManualController.ConstruirJson(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1152
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1224
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1262
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1160
+2019-10-07 12:07:43,696 [17] ERROR FacturacionManualController  - Error: System.Exception: System.Exception: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Controllers.FacturacionManualController.ConstruirJson(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 984
+   en FasceMVC.Controllers.FacturacionManualController.ConstruirJson(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1152
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1224
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1262
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1160
+2019-10-07 12:08:40,242 [26] ERROR FacturacionManualController  - Error: System.Exception: System.Exception: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Controllers.FacturacionManualController.ConstruirJson(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 984
+   en FasceMVC.Controllers.FacturacionManualController.ConstruirJson(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1152
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1224
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1262
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1160
+2019-10-07 13:51:32,388 [5] ERROR FacturacionManualController  - Error: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Controllers.FacturacionManualController.AgregarObservacion(String observacion) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 832

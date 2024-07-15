@@ -1,0 +1,135 @@
+﻿@model DataBase.ListadoEmisor
+@{
+    Layout = null;
+}
+@Scripts.Render("~/bundles/modernizr")
+@Styles.Render("~/Content/bootstrap.css")
+@Styles.Render("~/Content/css/inicio.css")
+
+@Styles.Render("~/Content/pace-theme-mac-osx.css")
+@Scripts.Render("~/bundles/jquery")
+
+<br />
+@using (Ajax.BeginForm("AdicionarCorreo", new AjaxOptions()
+{
+    InsertionMode = InsertionMode.Replace,
+    //OnSuccess = "onSuccess(data,this)"
+    UpdateTargetId = "adicionar"
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Emisor)
+    <button type="submit" role="button" aria-expanded="false" aria-controls="collapseExample" class="btn btn-primary grilla">Adicionar Correo</button>
+}
+
+<div id="adicionar"></div>
+<br />
+
+@if (Model.ListadoEmisorCorreo != null && Model.ListadoEmisorCorreo.Any())
+{
+    <table id="" class="table  tablaDatos">
+        <thead style="color:white" class="azul ">
+            <tr>
+                @*<th></th>*@
+                <th>
+                    Tipo Correo
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Servidor
+                </th>
+                <th>
+                    Puerto
+                </th>
+                <th>
+                    Usuario
+                </th>
+                <th>
+                    Contraseña
+                </th>
+                <th>
+                    Correo
+                </th>
+                <th>
+                    Ssl
+                </th>
+                <th>
+                    Correo Html
+                </th>
+                <th>
+                    Activo
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListadoEmisorCorreo)
+            {
+                <tr>
+                    @*<td>
+                        @using (Ajax.BeginForm("EliminarEmisoCorreo", new AjaxOptions()
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            //OnSuccess = "onSuccess(data,this)"
+                            OnSuccess = "onSuccessCatalogo(data,this)"
+                        }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.Id, new { @Value = item.eco_id })
+                            @Html.HiddenFor(model => model.Emisor)
+                            <button type="submit" role="button" aria-expanded="false" aria-controls="collapseExample" class="btn btn-link editar"></button>
+                        }
+                    </td>*@
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.NombreTipoCorreo)
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.eco_nombre)
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.eco_servidor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.eco_puerto)
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.eco_usuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.eco_contrasena)
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.eco_correo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.eco_ssl)
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.eco_correo_html)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.eco_activo)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<script type="text/javascript">
+
+     
+    @Html.Raw(Model.JsFuncion)
+
+    function mensaje(mensaje, icon) {
+        swal({
+            title: mensaje,
+            icon: icon
+        });
+    }
+
+    function cancelarCatalogo() {
+        $("#adicionar").html('');
+    }
+</script>

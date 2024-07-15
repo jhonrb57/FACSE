@@ -1,0 +1,144 @@
+﻿@model FasceMVC.Models.Certificado
+@{
+
+}
+
+
+<div class="container">
+
+    <br />
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header rojo">
+                    <h5 style="color:white;"><img src="~/Content/Images/logo_blanco.png" /> @Model.Titulo</h5>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("EnviarFormularioCertificado", "Configuracion", FormMethod.Post, new { autocomplete = "off" }))
+                    {
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <label>Archivo</label>
+                                <input type="file" name="certificadoUpoad" id="certificadoUpoad" onchange="validarExtension(this);" />
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <label>Nombre Archivo</label>
+                                @Html.TextBoxFor(Model => Model.Archivo, new { @class = "form-control" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-3">
+                                <label>Contraseña</label>
+                                @Html.TextBoxFor(Model => Model.Contrasena, new { @class = "form-control" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <label>Fecha vigencia:</label>
+                                @Html.EditorFor(Model => Model.FechaVigencia, new { htmlAttributes = new { @class = "form-control", Value = string.Format("{0:yyyy-MM-dd}", Model.FechaVigencia) } })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label>Certificado</label>
+                                @Html.TextAreaFor(Model => Model.sCertificado, new { @class = "form-control", style = "height: 250px" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col">
+                                <label>Activo: </label>
+                                @Html.CheckBoxFor(Model => Model.Estado, new { onchange = "ValidarActivo(this.value)" })
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="row">
+                            <div class="col">
+                                @Html.HiddenFor(Model => Model.IdCertificado)
+                                <label id="lblMensaje" class="text-danger"></label><br />
+                                <button type="submit" class="btn btn-sm btn-success" id="btnguardar">Guardar</button>
+                                @Html.ActionLink("Cancelar", "Certificado", null, new { @class = "btn btn-sm btn-danger" })
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br />
+<script>
+
+    function ValidarActivo(activo) {
+        try {
+            
+                $.ajax({
+                    type: "POST",
+                    url: "/Configuracion/ValidarActivoCertificado",
+                    success: (result) => {
+
+                        if ($("#Estado").is(":checked")) {
+                            if (result.data) {
+                                $("#btnguardar").prop('disabled', false);
+                                $("#lblMensaje").empty();
+                            } else {
+                                $("#btnguardar").prop('disabled', true);
+                                $("#lblMensaje").append("No se puede guardar, ya existe un certificado activo");
+
+                                if (result.val != "") {
+                                    console.log(result);
+                                }
+                            }
+                        } else {
+                            $("#btnguardar").prop('disabled', false);
+                            $("#lblMensaje").empty();
+                        }
+
+                    },
+                    error: (error) => {
+                        console.log(error);
+                    }
+                });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+
+    /**
+    * Valida que el archivo que está adjuntando el usuario corresponda con el formato del certificado
+    * param input     Es el control del input
+    */
+    function validarExtension(input) {
+        try {
+            console.log(input.value);
+            var filePath = input.value;
+            var allowedExtensions = /(.pfx)$/i;
+
+            if (filePath != "") {
+                if (!allowedExtensions.exec(filePath)) {
+                    $(input).val("");
+                    $("#lblMensaje").html("Solo se admiten archivos de extensión .pfx");
+                }
+                else {
+                    var reader = new FileReader();
+                    reader.onload = (e) => {
+                        //console.log(e.target.result.replace("data:application/x-pkcs12;base64,",""));
+                        $("#sCertificado").val(e.target.result.replace("data:application/x-pkcs12;base64,", ""));
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            else {
+                $(input).val();
+                $("#lblMensaje").html("Archivo incorrecto");
+            }
+        } catch (err) {
+            console.log(err);
+            $(input).val();
+            $("#lblMensaje").html("Ha ocurrido un error al leer el documento");
+        }
+    }
+
+</script>

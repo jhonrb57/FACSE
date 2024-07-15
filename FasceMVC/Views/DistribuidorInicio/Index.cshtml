@@ -1,0 +1,302 @@
+﻿@model DataBase.adm_emisor
+@{
+    Layout = "~/Views/Shared/_LayoutDistribuidor.cshtml";
+}
+
+@Scripts.Render("~/Scripts/sweetalert.min.js")
+
+<style type="text/css">
+    .editar {
+        background-image: url(../../Content/Images/edit.png);
+        background-repeat: no-repeat;
+        text-align: center;
+        width: 16px;
+        height: 16px;
+        text-indent: -9999px;
+    }
+</style>
+<!-- Icon Cards-->
+<div id="form1" class="row">
+
+</div>
+
+
+
+
+<!-- DataTables Example -->
+
+<div class="card-body">
+    <div class="table-responsive">
+        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+            @using (Ajax.BeginForm("CreacionEmisor", new AjaxOptions()
+            {
+                InsertionMode = InsertionMode.Replace,
+                //OnSuccess = "onSuccess(data,this)"
+                OnSuccess = "OcultarGrilla()",
+                UpdateTargetId = "vista",
+            }))
+            {
+                @Html.AntiForgeryToken()
+                <button type="submit" role="button" aria-expanded="false" aria-controls="collapseExample" class="btn btn-primary grilla">Adicionar Emisor</button>
+            }
+            <div id="vista">
+            </div>
+            <div class="col-sm-12">
+                <br />
+                <input id="myInput" onkeyup="myFunction()" type="text" class="form-control" placeholder="Buscar" name="text1">
+            </div>
+            <br />
+            <div class="row" id="grilla">
+                <div class="col-sm-12">
+                </div>
+                <div class="col-sm-12">
+                    <table id="ListadoDistribuidor" class="table  tablaDatos table-striped table-bordered">
+                        <thead style="color:white" class=" grilla ">
+                            <tr>
+                                <th></th>
+                                <th>Nombre Identificacion</th>
+                                <th>Tipo Identificacion</th>
+                                <th>Nombre</th>
+                                <th>Departamento</th>
+                                <th>Municipio</th>
+                                <th>Correo</th>
+                                <th>Telefono</th>
+                                <th>Correo Automatico</th>
+                                <th>Fecha Creacion</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    @*@if (Model.ListadoEmisor != null)
+                        {
+                            <table id="myTable" class="table  tablaDatos">
+                                <thead style="color:white" class=" grilla ">
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th style="cursor:pointer" scope="col">@Html.DisplayNameFor(model => model.NombreTipoIdentificacion)</th>
+                                        <th style="cursor:pointer" scope="col">@Html.DisplayNameFor(model => model.emi_identificacion)</th>
+                                        <th style="cursor:pointer" scope="col">@Html.DisplayNameFor(model => model.emi_nombre)</th>
+                                        <th style="cursor:pointer" scope="col">@Html.DisplayNameFor(model => model.NombreDepartamento)</th>
+                                        <th style="cursor:pointer" scope="col">@Html.DisplayNameFor(model => model.NombreMunicipio)</th>
+                                        <th style="cursor:pointer" scope="col">@Html.DisplayNameFor(model => model.emi_correo)</th>
+                                        <th style="cursor:pointer" scope="col">@Html.DisplayNameFor(model => model.emi_telefono)</th>
+                                        <th style="cursor:pointer" scope="col">@Html.DisplayNameFor(model => model.emi_fecha_creacion)</th>
+                                        <th style="cursor:pointer" scope="col">@Html.DisplayNameFor(model => model.FechaUltimoDocumento)</th>
+                                </thead>
+                                <tbody id="tableBody">
+                                    @foreach (var item in Model.ListadoEmisor)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @using (Ajax.BeginForm("EditarEmisor", new AjaxOptions()
+                                                {
+                                                    InsertionMode = InsertionMode.Replace,
+                                                    //OnSuccess = "onSuccess(data,this)"
+                                                    OnSuccess = "OcultarGrilla()",
+                                                    UpdateTargetId = "vista",
+                                                }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    @Html.HiddenFor(model => model.emi_id, new { @Value = item.emi_id })
+                                                    <button type="submit" role="button" aria-expanded="false" aria-controls="collapseExample" class="btn btn-link editar"></button>
+                                                }
+                                            </td>
+                                            <td class="text-capitalize">@Html.DisplayFor(model => item.NombreTipoIdentificacion)</td>
+                                            <td>@Html.DisplayFor(model => item.emi_identificacion)</td>
+                                            <td class="text-capitalize">@Html.DisplayFor(model => item.emi_nombre)</td>
+                                            <td class="text-capitalize">@Html.DisplayFor(model => item.NombreDepartamento)</td>
+                                            <td class="text-capitalize">@Html.DisplayFor(model => item.NombreMunicipio)</td>
+                                            <td>@Html.DisplayFor(model => item.emi_correo)</td>
+                                            <td>@Html.DisplayFor(model => item.emi_telefono)</td>
+                                            <td class="text-center">@Html.DisplayFor(model => item.emi_fecha_creacion)</td>
+                                            <td class="text-center">@Html.DisplayFor(model => item.FechaUltimoDocumento)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }*@
+                </div>
+            </div>
+            <br />
+            <br />
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+
+        var table;
+        $(document).ready(function () {
+            DistribuidorInicio();
+        });
+
+          @Html.Raw(Model.JsFuncion)
+
+    function mensaje(mensaje, icon) {
+        swal({
+            title: mensaje,
+            icon: icon
+        });
+        }
+
+        function OcultarGrilla() {
+            document.getElementById("grilla").style.display = "none";
+        }
+
+        function onSuccess(result, ref) {
+            if (result.isValid) {
+                   var url = '@Url.Action("Index", "DistribuidorInicio", new { mensaje = "mensaje" })';
+                    window.location.href = url;
+            } else {
+                $("#vista").html(result.data);
+            }
+        }
+
+        function cancelarEmisor() {
+            $("#vista").html('');
+            document.getElementById("grilla").style.display = "block";
+        }
+
+        function OnChangePais() {
+        var ddl = $("#emi_departamento");
+        ddl.empty('');
+        ddl.append($("<option>").text('--Seleccione--').val(''));
+        var ddl2 = $("#emi_municipio");
+        ddl2.empty('');
+        ddl2.append($("<option>").text('--Seleccione--').val(''));
+        if ($("#emi_pais").val().length > 0) {
+            $.ajax(
+                {
+                    url: '@Url.Action("CargarDepartamento", "DistribuidorInicio")',
+                    type: "POST",
+                    data: $("#emi_pais").serialize(),
+                    async: false,
+                    dataType: "text",
+                    success: function (result) {
+                        var existe = JSON.parse(result);
+
+                        $(existe).each(function () {
+                            ddl.append($("<option>").val(this.dep_id).text(this.dep_nombre));
+                        });
+                    },
+                    error: function (result) {
+                        alert("Status: " + result.status + " Message:" + result.statusText);
+                    }
+                });
+        }
+    }
+
+        function OnChangeDepartamento() {
+        var ddl = $("#emi_municipio");
+        ddl.empty('');
+        ddl.append($("<option>").text('--Seleccione--').val(''));
+        if ($("#emi_departamento").val().length > 0) {
+            $.ajax(
+                {
+                    url: '@Url.Action("CargarMunicipio", "DistribuidorInicio")',
+                    type: "POST",
+                    data: $("#emi_departamento").serialize(),
+                    async: false,
+                    dataType: "text",
+                    success: function (result) {
+
+                        var existe = JSON.parse(result);
+                        $(existe).each(function () {
+                            ddl.append($("<option>").val(this.mun_id).text(this.mun_nombre));
+                        });
+                    },
+                    error: function (result) {
+                        alert("Status: " + result.status + " Message:" + result.statusText);
+                    }
+                });
+        }
+        }
+
+           function OnChangeDepartamentoSucursal() {
+               var ddl = $("#esu_municipio");
+        ddl.empty('');
+        ddl.append($("<option>").text('--Seleccione--').val(''));
+               if ($("#esu_departamento").val().length > 0) {
+            $.ajax(
+                {
+                    url: '@Url.Action("CargarMunicipioSucursal", "DistribuidorInicio")',
+                    type: "POST",
+                    data: $("#esu_departamento").serialize(),
+                    async: false,
+                    dataType: "text",
+                    success: function (result) {
+
+                        var existe = JSON.parse(result);
+                        $(existe).each(function () {
+                            ddl.append($("<option>").val(this.mun_id).text(this.mun_nombre));
+                        });
+                    },
+                    error: function (result) {
+                        alert("Status: " + result.status + " Message:" + result.statusText);
+                    }
+                });
+        }
+        }
+
+         function onSuccessCatalogo(result, ref) {
+             $("#general").html(result);
+        }
+
+        function myFunction() {
+            var input, filter, table, tr, td, i, t;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                var filtered = false;
+                var tds = tr[i].getElementsByTagName("td");
+                if (tds.length == 0) {
+                    filtered = true;
+                }
+                for (t = 0; t < tds.length - 1; t++) {
+                    var td = tds[t];
+                    if (td) {
+                        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                            filtered = true;
+                        }
+                    }
+                }
+                if (filtered === true) {
+                    tr[i].style.display = '';
+                }
+                else {
+                    tr[i].style.display = 'none';
+                }
+            }
+        }
+        function EditarEmisor(emi_id) {
+            var toStore = JSON.stringify({ 'emi_id': emi_id });
+            $.ajax({
+                url: '@Url.Action("EditarEmisor", "DistribuidorInicio")',
+                type: 'POST',
+                data: toStore,
+                async: false,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8", //Added so ASP recognized JSON
+                traditional: true,
+                success: function (data) {
+                    document.getElementById("grilla").style.display = "none";
+                    $("#vista").html(data);
+                },
+                error: function (e) {
+                    if (e.status == 403) {
+                        window.location.href = '@Url.Content("~/Login/Index/Se caduco la session")';
+                    }
+                    else {
+                        window.location.href = '@Url.Content("~/Login/Index/Se presento un inconveniente inesperado volver a intentar, si el incoveniente persiste comuniquese con el administrador")';
+                    }
+                }
+            });
+        }
+    </script>
+}
+

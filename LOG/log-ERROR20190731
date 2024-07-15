@@ -1,0 +1,21 @@
+2019-07-31 21:36:18,204 [11] ERROR EmisorInicioController  - Error al consultar la consulta documento: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en Metodos.ClsDocumento.ListadoDocumento(AdmDocumento documento, Int32 StartRowIndex, Int32 MaximumRows, Int32& count) en D:\APP\FACSE\Metodos\ClsDocumento.cs:línea 59
+   en FasceMVC.Controllers.EmisorInicioController.Index(AdmDocumento documento) en D:\APP\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 105
+2019-07-31 21:37:42,995 [11] ERROR EmisorInicioController  - Error al consultar la consulta documento: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en Metodos.ClsDocumento.ListadoDocumento(AdmDocumento documento, Int32 StartRowIndex, Int32 MaximumRows, Int32& count) en D:\APP\FACSE\Metodos\ClsDocumento.cs:línea 59
+   en FasceMVC.Controllers.EmisorInicioController.Index(AdmDocumento documento) en D:\APP\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 105
+2019-07-31 21:40:34,629 [6] ERROR EmisorInicioController  - Error al consultar la consulta documento: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en Metodos.ClsDocumento.ListadoDocumento(AdmDocumento documento, Int32 StartRowIndex, Int32 MaximumRows, Int32& count) en D:\APP\FACSE\Metodos\ClsDocumento.cs:línea 59
+   en FasceMVC.Controllers.EmisorInicioController.Index(AdmDocumento documento) en D:\APP\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 105
+2019-07-31 21:40:37,977 [6] ERROR EmisorInicioController  - Error al consultar la consulta documento: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en Metodos.ClsDocumento.ListadoDocumento(AdmDocumento documento, Int32 StartRowIndex, Int32 MaximumRows, Int32& count) en D:\APP\FACSE\Metodos\ClsDocumento.cs:línea 59
+   en FasceMVC.Controllers.EmisorInicioController.Index(AdmDocumento documento) en D:\APP\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 105
+2019-07-31 21:43:18,858 [6] ERROR EmisorInicioController  - Error al consultar la consulta documento: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en Metodos.ClsDocumento.ListadoDocumento(AdmDocumento documento, Int32 StartRowIndex, Int32 MaximumRows, Int32& count) en D:\APP\FACSE\Metodos\ClsDocumento.cs:línea 59
+   en FasceMVC.Controllers.EmisorInicioController.Index(AdmDocumento documento) en D:\APP\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 105
+2019-07-31 21:43:21,360 [8] ERROR EmisorInicioController  - Error al consultar la consulta documento: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en Metodos.ClsDocumento.ListadoDocumento(AdmDocumento documento, Int32 StartRowIndex, Int32 MaximumRows, Int32& count) en D:\APP\FACSE\Metodos\ClsDocumento.cs:línea 59
+   en FasceMVC.Controllers.EmisorInicioController.Index(AdmDocumento documento) en D:\APP\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 105
+2019-07-31 21:51:21,429 [9] ERROR EmisorInicioController  - Error al consultar la consulta documento: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en Metodos.ClsDocumento.ListadoDocumento(AdmDocumento documento, Int32 StartRowIndex, Int32 MaximumRows, Int32& count) en D:\APP\FACSE\Metodos\ClsDocumento.cs:línea 59
+   en FasceMVC.Controllers.EmisorInicioController.Index(AdmDocumento documento) en D:\APP\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 105

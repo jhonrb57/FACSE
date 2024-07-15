@@ -1,0 +1,93 @@
+﻿@model FasceMVC.Models.Resolucion
+@{
+
+}
+
+
+<div class="container">
+    <br />
+    <h2>
+
+        <img src="~/Content/Images/logo_titulos.png" />   Resolución
+    </h2>
+    <hr />
+    <div class="row">
+        <div class="col">
+            @Html.ActionLink("Volver", "Index", "Configuracion", null, new { @class = "btn btn-danger btn-sm" })
+            @Html.ActionLink("Agregar", "CrearEditarResolucion", "Configuracion", new { idResolucion = Guid.Empty }, new { @class = "btn btn-success btn-sm" })
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col">
+
+            @if (Model.ListadoResolucion != null && Model.ListadoResolucion.Any())
+            {
+            <table class="table table-bordered table-striped table-sm table-responsive-sm table-responsive-md">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th></th>
+                        <th>Numero</th>
+                        <th>Prefijo</th>
+                        <th>N° Inicial</th>
+                        <th>N° Final</th>
+                        <th>Fecha inicio</th>
+                        <th>Fecha final</th>
+                        <th width="50">Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ListadoResolucion)
+                    {
+
+                        <tr>
+                            <td width="40">
+                                @Html.ActionLink("Editar", "CrearEditarResolucion", new { idResolucion = item.Id }, new { @class = "editar" })
+                            </td>
+                            <td class="text-right">@item.NumeroResolucion</td>
+                            <td>@item.Prefijo</td>
+                            <td class="text-right">@item.NumeroInicial</td>
+                            <td class="text-right">@item.NumeroFinal</td>
+                            <td>@item.FechaInicio.ToString("dd/MM/yyyy")</td>
+                            <td>@item.FechaFin.ToString("dd/MM/yyyy")</td>
+                            <td class="text-center" >
+                                @Html.CheckBox("Activo", item.Estado, new { disabled = "disabled" })
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            }
+            else
+            {
+                <h5>No cuenta con resoluciones</h5>
+            }
+        </div>
+    </div>
+</div>
+<br /><br />
+<style>
+    a.editar {
+        background: url("../../Content/Images/edit.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+</style>
+
+<script>
+    @Html.Raw(Model.JsFuncion)
+
+
+    function mensaje(mensaje, icon) {
+        try {
+            swal({
+                title: mensaje,
+                icon: icon
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+</script>
+

@@ -1,0 +1,179 @@
+﻿@model FasceMVC.Models.Sucursal
+
+@{
+
+}
+
+
+<div class="container">
+
+    <br />
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header rojo">
+                    <h5 style="color:white;"><img src="~/Content/Images/logo_blanco.png" /> @Model.Titulo</h5>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("EnviarFormularioSucursal", "Configuracion", FormMethod.Post, new { autocomplete = "off" }))
+                    {
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Nombre:</label>
+
+                                @Html.TextBoxFor(Model => Model.Nombre, new { @class = "form-control obligatorio" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Abreviatura:</label>
+
+                                @if (@Session["clave_super"] == null)
+                                {
+                                    @Html.TextBoxFor(Model => Model.Abreviatura, new { @class = "form-control ", @readonly = "readonly" })
+                                }
+                                else
+                                {
+                                    @Html.TextBoxFor(Model => Model.Abreviatura, new { @class = "form-control " })
+                                }
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <label>País:</label>
+                                @Html.DropDownListFor(model => model.Pais, Model.ListadoPais, new { @class = "chosen-obligatorio  ", onchange = "CambioPais(this.value);", style = "  border: 1px solid #cdcdcd;" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <label>Departamento:</label>
+                                @Html.DropDownListFor(model => model.Departamento, Model.ListadoDepartamento, "-- Seleccione --", new { @class = "form-control obligatorio", onchange = "CambioDepto(this.value);", style = " border: 1px #c83822 solid;" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <label>Ciudad:</label>
+                                @Html.DropDownListFor(model => model.Municipio, Model.ListadoMunicipio, "-- Seleccione --", new { @class = "form-control obligatorio", style = " border: 1px #c83822 solid;" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <label>Dirección:</label>
+                                @Html.TextBoxFor(Model => Model.Direccion, new { @class = "form-control obligatorio" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <label>Codigo postal:</label>
+                                @Html.TextBoxFor(Model => Model.CodigoPostal, new { @class = "form-control" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <label>Teléfono:</label>
+                                @Html.TextBoxFor(Model => Model.Telefono, new { @class = "form-control obligatorio" })
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <label>Email:</label>
+                                @Html.TextBoxFor(Model => Model.Email, new { @class = "form-control obligatorio" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <label>Correo Entrada</label>
+                                @Html.DropDownListFor(Model => Model.CorreoEntrada, Model.ListadoCorreoEntrada, "-- Seleccione --", new { @class = "form-control obligatorio" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <label>Correo Salida</label>
+                                @Html.DropDownListFor(Model => Model.CorreoSalida, Model.ListadoCorreoSalida, "-- Seleccione --", new { @class = "form-control obligatorio" })
+                            </div>
+                        </div>
+                        if (Model.Id != Guid.Empty)
+                        {
+                            <br />
+                            <div class="row">
+                                <div class="col">
+                                    <label>Activo: </label>
+                                    @Html.CheckBoxFor(Model => Model.Estado)
+                                </div>
+                            </div>
+                        }
+                        <br />
+
+                        <div class="row">
+                            <div class="col">
+                                @Html.HiddenFor(Model => Model.Id)
+                                <button type="submit" class="btn btn-sm btn-success">Guardar</button>
+                                @Html.ActionLink("Cancelar", "Sucursal", null, new { @class = "btn btn-sm btn-danger" })
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function CambioPais(pais) {
+        try {
+
+            $("#Departamento").empty();
+
+            $.ajax({
+                type: "GET",
+                url: "/Configuracion/CargarListadoDepartamentos",
+                data: { pais: pais },
+                success: (data) => {
+                    console.log(data);
+                    //var result = JSON.parse(data);
+                    //console.table(result);
+                    if (data != null) {
+                        if (data.length > 0) {
+                            var listadodptos = $("#Departamento")
+                            $(data).each((index, item) => {
+                                listadodptos.append($("<option>").val(item.Value).text(item.Text));
+                            });
+                            CambioDepto(data[0].Value);
+                        }
+                        $("#Departamento").trigger("chosen:updated").change();
+                        $("#Municipio").trigger("chosen:updated").change();
+                    }
+                },
+                error: (error) => {
+                    console.error(error);
+                }
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function CambioDepto(dpto) {
+        try {
+            $("#Municipio").empty();
+
+            $.ajax({
+                type: "GET",
+                url: "/Configuracion/CargarListadoMunicipios",
+                data: { dpto: dpto },
+                success: (data) => {
+                    console.log(data);
+                    if (data != null) {
+                        if (data.length > 0) {
+                            var listmun = $("#Municipio");
+
+                            $(data).each((index, item) => {
+                                listmun.append($("<option>").val(item.Value).text(item.Text));
+                            });
+                        }
+                        $("#Municipio").trigger("chosen:updated").change();
+                    }
+                },
+                error: (error) => {
+                    console.error(error);
+                }
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+
+</script>

@@ -1,0 +1,105 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.LetraBoton = "Ingresar";
+    ViewBag.ImagenBoton = "~/Content/Images/profile.png";
+    ViewBag.RutaBoton = "Index";
+}
+<br />
+<br />
+<br />
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <img src="~/Content/Images/5aeb78f54c4e6.jpg" />
+            <h2 class="mt-5">Más que transformación y comercio digital</h2>
+            <h4><p class="lead">Básicamente es trasladar la logística, almacenamiento y archivo de la facturación a un sistema tecnológico que convierte el papel en documento Electrónico XML, que a su vez contiene toda la información necesaria, tanto comercial como legal.</p></h4>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <hr />
+    <div class="row">
+        <div class="col-md-12 text-center my-3">
+            <h1 class="font-bold pink-text mb-3">CONTÁCTENOS</h1>
+            <hr />
+
+            <div class="container">
+                <div class="container">
+
+                    <div class="form-group">
+                        <label class="control-label" for="Nombre">Nombre de la empresa</label>
+
+                        <asp:TextBox ID="txbEmpresa" class="form-control" placeholder="Introduzca nombre de la empresa" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="Empresa">Nombre del contacto</label>
+                        <asp:TextBox ID="txbNombre" class="form-control" placeholder="Introduzca nombre de la contacto" runat="server"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="Empresa">Teléfono del contacto</label>
+                        <asp:TextBox ID="txbtelefono" class="form-control" placeholder="Introduzca telefono de contacto" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="Correo">Dirección de Correo Electrónico</label>
+                        <asp:TextBox ID="txbcorreo" class="form-control" placeholder="Introduzca su correo electrónico" runat="server"></asp:TextBox>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="Mensaje">Mensaje</label>
+
+                        <asp:TextBox ID="txbMensaje" Height="100px" placeholder="Introduzca su mensaje" class="form-control" runat="server"></asp:TextBox>
+                    </div>
+                    <div>
+
+
+
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal" style="background-position: 50%; width: 378px; height: 67px;">
+                            políticas de tratamiento de la información
+                        </button>
+                        <br />
+
+                        <br />
+                    </div>
+
+                    <div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">HABEAS DATA – AUTORIZACIÓN</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="justify-content-center">
+                                            "
+                                            Al seleccionar o dar clic en esta casilla se entiende que el titular de los datos autoriza de manera expresa e inequívoca a info@facse.net para mantener y manejar la información que se ha incorporado en las bases de datos para permitir su recolección, almacenamiento, uso, supresión, procesamiento, compilación, tratamiento, actualización y para compartir y disponer de dichos datos para enviarle información relacionada con el proceso de facturación y para recibir las facturas de los servicios prestados por info@facse.net. Los datos personales de las personas que por virtud de un contrato adquieren la calidad de Clientes de info@facse.net, son compilados, almacenados, consultados, transmitidos y/o transferidos internacionalmente para efectuar todas las actividades tendientes a formalizar las gestiones pertinentes para el desarrollo de la etapa contractual y pos contractual con info@facse.net.
+
+                                            El titular de los datos personales podrá ejercer en cualquier momento los derechos que le asisten, en especial: conocer la información, solicitar la actualización, rectificación y/o supresión o revocar el consentimiento otorgado para el tratamiento de datos personales, a través del correo electrónico info@facse.net.
+
+                                            La presente autorización se solicita en cumplimiento de la Ley 1581 de 2012, reglamentada por el Decreto 1377 de 2013 y se expide para que traten los datos personales recolectados de manera leal, lícita, segura y confiable para los fines señalados en el presente documento y en las Políticas de Tratamiento de la Información.
+                                            "
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+</div>
+

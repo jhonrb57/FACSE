@@ -1,0 +1,983 @@
+﻿@model DataBase.adm_documento
+
+@{
+    ViewBag.Title = "Inicio";
+}
+
+<style type="text/css">
+    .checkbox label:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+
+    .checkbox .cr {
+        position: relative;
+        display: inline-block;
+        border: 1px solid #a9a9a9;
+        border-radius: .25em;
+        width: 1.3em;
+        height: 1.3em;
+        float: left;
+        margin-right: .5em;
+    }
+
+        .checkbox .cr .cr-icon {
+            position: absolute;
+            font-size: .8em;
+            line-height: 0;
+            top: 50%;
+            left: 15%;
+        }
+
+    .checkbox label input[type="checkbox"] {
+        display: none;
+    }
+
+        .checkbox label input[type="checkbox"] + .cr > .cr-icon {
+            opacity: 0;
+        }
+
+        .checkbox label input[type="checkbox"]:checked + .cr > .cr-icon {
+            opacity: 1;
+        }
+
+        .checkbox label input[type="checkbox"]:disabled + .cr {
+            opacity: .5;
+        }
+</style>
+
+<!-- Icon Cards-->
+<div class="row">
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card fondoCard border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Facturas Generadas</div>
+                        <div class="h1 mb-0 font-weight-bold text-gray-800">@ViewBag.Factura</div>
+                        <div style="font-size:xx-small; color:red" class="text-xs font-weight-bold text-uppercase mb-1">Ultimo cargue : @ViewBag.FFecha</div>
+                    </div>
+                    <div class="col-auto">
+
+                        <img src="~/Content/Images/iconos.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card fondoCard border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Notas Credito</div>
+                        <div class="h1 mb-0 font-weight-bold text-gray-800">@ViewBag.NCredito</div>
+                        <div style="font-size:xx-small; color:red" class="text-xs font-weight-bold text-uppercase mb-1">Ultimo cargue : @ViewBag.FNCredito</div>
+                    </div>
+                    <div class="col-auto">
+                        <img src="~/Content/Images/iconos.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card fondoCard border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Notas Debito</div>
+                        <div class="h1 mb-0 font-weight-bold text-gray-800">@ViewBag.NDebito</div>
+                        <div style="font-size:xx-small; color:red" class="text-xs font-weight-bold text-uppercase mb-1">Ultimo cargue : @ViewBag.FNDebito</div>
+
+                    </div>
+                    <div class="col-auto">
+                        <img src="~/Content/Images/iconos.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card fondoCard border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Resoluciones</div>
+                        <div class="h1 mb-0 font-weight-bold text-gray-800">@ViewBag.Resolucion</div>
+                        <div style="font-size:xx-small; color:red" class="text-xs font-weight-bold text-uppercase mb-1">Fecha Vencer : @ViewBag.FResolucion</div>
+                    </div>
+                    <div class="col-auto">
+                        <img src="~/Content/Images/iconos.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Area Chart Example-->
+<div class="card mb-3 fondopciones">
+    <div style="color:#ffffff" class="card-header amarillo">
+        <i class="fas fa-chart-area"></i>
+        Mas Opciones
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class=" col-lg-2 col-md-2 mb-1">
+
+                <img src="~/Content/Images/ConsultarClientes.png" />
+            </div>
+            <div class=" col-lg-2 col-md-2 mb-1">
+
+                <img src="~/Content/Images/crear.png" />
+            </div>
+            <div class=" col-lg-2 col-md-2 mb-1">
+                <img src="~/Content/Images/proveedores.png" />
+            </div>
+            <div class=" col-lg-2 col-md-2 mb-1">
+
+                <img src="~/Content/Images/configuracion.png" />
+            </div>
+            <div class=" col-lg-2 col-md-2 mb-1">
+                <img src="~/Content/Images/ayuda.png" />
+
+            </div>
+
+
+            <div class=" col-lg-2 col-md-2 mb-1">
+                <img src="~/Content/Images//documento.png" />
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<!-- DataTables Example -->
+<div class="card mb-3">
+    <div style=" color: #ffffff" class="card-header rojo">
+        <i class="fas fa-table"></i>
+        Consultar Facturas / @Session["i_susuario"]
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                <a class="btn btn-primary azul " data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Filtros Especificos
+                </a>
+
+                <br />
+                <br />
+                <div class="collapse" id="collapseExample">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-row container">
+                            <div class="form-group col-md-12">
+                                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    @Html.LabelFor(model => model.FechaInicial, new { @class = "validationCustom01" })
+                                    @Html.EditorFor(model => model.FechaInicial, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.FechaInicial, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    @Html.LabelFor(model => model.Identificacion, new { @class = "control-label" })
+
+                                    @Html.EditorFor(model => model.Identificacion, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Identificacion, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    @Html.LabelFor(model => model.IdComprobante, new { @class = "control-label" })
+
+                                    @Html.DropDownList("IdComprobante", null, "--Todos--", new { @class = "form-control" })
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    @Html.LabelFor(model => model.FechaFinal, new { @class = "control-label" })
+
+                                    @Html.EditorFor(model => model.FechaFinal, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.FechaFinal, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    @Html.LabelFor(model => model.Nombre, new { @class = "control-label" })
+
+                                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    @Html.LabelFor(model => model.Numero, new { @class = "control-label" })
+
+                                    @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="submit" id="search" name="_search" value="Buscar" class="btn btn-light" onclick="validar();" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                    }
+                </div>
+                <br />
+                @if (Model.ListadoDocumento != null)
+                {
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <input id="myInput" onkeyup="myFunction()" type="text" class="form-control" placeholder="Buscar" name="text1">
+                            <br />
+                        </div>
+
+                        <div class="col-sm-12">
+                            @*<table class="table  tablaDatos">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Tipo Docum</th>
+                                            <th scope="col">Prefijo</th>
+                                            <th scope="col">Numero </th>
+                                            <th scope="col">Identificacion</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Nit Emisor</th>
+                                            <th scope="col">Fecha Emisor</th>
+                                            <th scope="col">Fecha Envio</th>
+                                            <th scope="col">Total</th>
+                                            <th scope="col">Opciones</th>
+                                            <th scope="col">Documentos</th>
+                                            <th scope="col">Sucursal</th>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+
+                                                <div style="display:none;">
+
+                                                    <div id="tip3">
+                                                        <div style="padding:20px;">
+                                                            <div class="container">
+                                                                <table>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td width="400" class="text-right font-weight-bold">
+                                                                                Enviada a la DIAN :
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+
+                                                                                <img src="images/aprobado.png" />
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="400" class="text-right font-weight-bold">
+                                                                                Aceptada por la DIAN :
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+
+                                                                                <img src="images/aprobado.png" />
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="400" class="text-right font-weight-bold">
+                                                                                Eventos :
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                200
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="400" class="text-right font-weight-bold">
+                                                                                Descripción :
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                La Factura numero 39
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="400" class="text-right font-weight-bold">
+                                                                                Informacion del documento :
+                                                                            </td>
+                                                                            <td width="400" class="text-left">
+                                                                                Debe ser informado el literal “195”
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a class="tooltip" onclick="tooltip.pop(this, '#tip3', {sticky:true, position:0, cssClass:'no-padding'})">
+                                                    <img src="images/notificacion.png" />
+                                                </a>
+                                            </td>
+                                            <td>Nota de Crédito</td>
+                                            <td>NCRE</td>
+                                            <td>39</td>
+                                            <td>900318712</td>
+                                            <td>DIPLOMAT HOTELES S.A</td>
+                                            <td>830084719</td>
+                                            <td>2019-08-13T00:00:00</td>
+                                            <td>2019-08-13T09:07:26</td>
+                                            <td>3757</td>
+                                            <td></td>
+                                            <td>
+                                                <img src="images/xml.png" />
+                                                <img src="images/pdf.png" />
+                                                <img src="images/descargar.png" />
+                                            </td>
+                                            <td>PRIN</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+
+                                                <div style="display:none;">
+
+                                                    <div id="tip3">
+                                                        <div style="padding:20px;">
+                                                            <div class="container">
+                                                                <table>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Enviada a la SUNAT
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                <i class="fa fa-check">
+
+                                                                                </i>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Aceptada por la SUNAT
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                <i class="fa fa-check"></i>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Código
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                0
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Descripción
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                La Factura numero FFF1-59, ha sido aceptada
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Otros
+                                                                            </td>
+                                                                            <td width="200" class="text-left"></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a class="tooltip" onclick="tooltip.pop(this, '#tip3', {sticky:true, position:0, cssClass:'no-padding'})">
+                                                    <img src="images/notificacion.png" />
+                                                </a>
+                                            </td>
+                                            <td>Nota de Crédito</td>
+                                            <td>NCRE</td>
+                                            <td>39</td>
+                                            <td>900318712</td>
+                                            <td>DIPLOMAT HOTELES S.A</td>
+                                            <td>830084719</td>
+                                            <td>2019-08-13T00:00:00</td>
+                                            <td>2019-08-13T09:07:26</td>
+                                            <td>3757</td>
+                                            <td></td>
+                                            <td>
+                                                <img src="images/xml.png" />
+                                                <img src="images/pdf.png" />
+                                                <img src="images/descargar.png" />
+                                            </td>
+                                            <td>PRIN</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+
+                                                <div style="display:none;">
+
+                                                    <div id="tip3">
+                                                        <div style="padding:20px;">
+                                                            <div class="container">
+                                                                <table>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Enviada a la Dian
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+
+                                                                                <img src="images/aprobado.png" />
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Aceptada por la SUNAT
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                <i class="fa fa-check"></i>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Código
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                0
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Descripción
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                La Factura numero FFF1-59, ha sido aceptada
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Otros
+                                                                            </td>
+                                                                            <td width="200" class="text-left"></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a class="tooltip" onclick="tooltip.pop(this, '#tip3', {sticky:true, position:0, cssClass:'no-padding'})">
+                                                    <img src="images/notificacion.png" />
+                                                </a>
+                                            </td>
+                                            <td>Nota de Crédito</td>
+                                            <td>NCRE</td>
+                                            <td>39</td>
+                                            <td>900318712</td>
+                                            <td>DIPLOMAT HOTELES S.A</td>
+                                            <td>830084719</td>
+                                            <td>2019-08-13T00:00:00</td>
+                                            <td>2019-08-13T09:07:26</td>
+                                            <td>3757</td>
+                                            <td></td>
+                                            <td>
+                                                <img src="images/xml.png" />
+                                                <img src="images/pdf.png" />
+                                                <img src="images/descargar.png" />
+                                            </td>
+                                            <td>PRIN</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+
+                                                <div style="display:none;">
+
+                                                    <div id="tip3">
+                                                        <div style="padding:20px;">
+                                                            <div class="container">
+                                                                <table>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Enviada a la SUNAT
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                <i class="fa fa-check">
+
+                                                                                </i>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Aceptada por la SUNAT
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                <i class="fa fa-check"></i>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Código
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                0
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Descripción
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                La Factura numero FFF1-59, ha sido aceptada
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Otros
+                                                                            </td>
+                                                                            <td width="200" class="text-left"></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a class="tooltip" onclick="tooltip.pop(this, '#tip3', {sticky:true, position:0, cssClass:'no-padding'})">
+                                                    <img src="images/notificacion.png" />
+                                                </a>
+                                            </td>
+                                            <td>Nota de Crédito</td>
+                                            <td>NCRE</td>
+                                            <td>39</td>
+                                            <td>900318712</td>
+                                            <td>DIPLOMAT HOTELES S.A</td>
+                                            <td>830084719</td>
+                                            <td>2019-08-13T00:00:00</td>
+                                            <td>2019-08-13T09:07:26</td>
+                                            <td>3757</td>
+                                            <td></td>
+                                            <td>
+                                                <img src="images/xml.png" />
+                                                <img src="images/pdf.png" />
+                                                <img src="images/descargar.png" />
+                                            </td>
+                                            <td>PRIN</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+
+                                                <div style="display:none;">
+
+                                                    <div id="tip3">
+                                                        <div style="padding:20px;">
+                                                            <div class="container">
+                                                                <table>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Enviada a la SUNAT
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                <i class="fa fa-check">
+
+                                                                                </i>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Aceptada por la SUNAT
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                <i class="fa fa-check"></i>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Código
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                0
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Descripción
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                La Factura numero FFF1-59, ha sido aceptada
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Otros
+                                                                            </td>
+                                                                            <td width="200" class="text-left"></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a class="tooltip" onclick="tooltip.pop(this, '#tip3', {sticky:true, position:0, cssClass:'no-padding'})">
+                                                    <img src="images/notificacion.png" />
+                                                </a>
+                                            </td>
+                                            <td>Nota de Crédito</td>
+                                            <td>NCRE</td>
+                                            <td>39</td>
+                                            <td>900318712</td>
+                                            <td>DIPLOMAT HOTELES S.A</td>
+                                            <td>830084719</td>
+                                            <td>2019-08-13T00:00:00</td>
+                                            <td>2019-08-13T09:07:26</td>
+                                            <td>3757</td>
+                                            <td></td>
+                                            <td>
+                                                <img src="images/xml.png" />
+                                                <img src="images/pdf.png" />
+                                                <img src="images/descargar.png" />
+                                            </td>
+                                            <td>PRIN</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+
+                                                <div style="display:none;">
+
+                                                    <div id="tip3">
+                                                        <div style="padding:20px;">
+                                                            <div class="container">
+                                                                <table>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Enviada a la SUNAT
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                <i class="fa fa-check">
+
+                                                                                </i>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Aceptada por la SUNAT
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                <i class="fa fa-check"></i>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Código
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                0
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Descripción
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                La Factura numero FFF1-59, ha sido aceptada
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="200" class="text-right">
+                                                                                Otros
+                                                                            </td>
+                                                                            <td width="200" class="text-left"></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a class="tooltip" onclick="tooltip.pop(this, '#tip3', {sticky:true, position:0, cssClass:'no-padding'})">
+                                                    <img src="images/notificacion.png" />
+                                                </a>
+                                            </td>
+                                            <td>Nota de Crédito</td>
+                                            <td>NCRE</td>
+                                            <td>39</td>
+                                            <td>900318712</td>
+                                            <td>DIPLOMAT HOTELES S.A</td>
+                                            <td>830084719</td>
+                                            <td>2019-08-13T00:00:00</td>
+                                            <td>2019-08-13T09:07:26</td>
+                                            <td>3757</td>
+                                            <td></td>
+                                            <td>
+                                                <img src="images/xml.png" />
+                                                <img src="images/pdf.png" />
+                                                <img src="images/descargar.png" />
+                                            </td>
+                                            <td>PRIN</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>*@
+                            <table id="myTable" class="table  tablaDatos">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th></th>
+                                        <th scope="col">Estado</th>
+                                        <th scope="col">@Html.DisplayNameFor(model => model.IdComprobante)</th>
+                                        <th scope="col">@Html.DisplayNameFor(model => model.doc_prefijo)</th>
+                                        <th scope="col">@Html.DisplayNameFor(model => model.doc_numero) </th>
+                                        <th scope="col">@Html.DisplayNameFor(model => model.Identificacion)</th>
+                                        <th scope="col">@Html.DisplayNameFor(model => model.Nombre)</th>
+                                        <th scope="col">@Html.DisplayNameFor(model => model.NitEmisor)</th>
+                                        <th scope="col">@Html.DisplayNameFor(model => model.doc_fecha_recepcion)</th>
+                                        <th scope="col">@Html.DisplayNameFor(model => model.doc_fecha_envio)</th>
+                                        <th scope="col">@Html.DisplayNameFor(model => model.doc_valor_total)</th>
+                                        <th scope="col">Documentos</th>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.ListadoDocumento)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" id="customControlAutosizing">
+                                                        <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+
+                                                <div style="display:none;">
+
+                                                    <div id="tip3">
+                                                        <div style="padding:20px;">
+                                                            <div class="container">
+                                                                <table>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td width="400" class="text-right font-weight-bold">
+                                                                                Enviada a la DIAN :
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+
+                                                                                <img src="~/Content/Images/aprobado.png" />
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="400" class="text-right font-weight-bold">
+                                                                                Aceptada por la DIAN :
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+
+                                                                                <img src="~/Content/Images/exclamation.png" />
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="400" class="text-right font-weight-bold">
+                                                                                Eventos :
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                200
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="400" class="text-right font-weight-bold">
+                                                                                Descripción :
+                                                                            </td>
+                                                                            <td width="200" class="text-left">
+                                                                                La Factura numero 39
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="400" class="text-right font-weight-bold">
+                                                                                Informacion del documento :
+                                                                            </td>
+                                                                            <td width="400" class="text-left">
+                                                                                Debe ser informado el literal “195”
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a class="tooltip" onclick="tooltip.pop(this, '#tip3', {sticky:true, position:0, cssClass:'no-padding'})">
+                                                    <img src="~/Content/Images/notificacion.png" />
+                                                </a>
+                                            </td>
+                                            <td class="text-capitalize">
+                                                @Html.DisplayFor(modelItem => item.NombreComprobante)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.doc_prefijo)
+                                            </td>
+                                            <td style="text-align:right;">
+                                                @Html.DisplayFor(modeItem => item.doc_numero)
+                                            </td>
+                                            <td style="text-align:right;">
+                                                @Html.DisplayFor(modelItem => item.Identificacion)
+                                            </td>
+                                            <td class="text-capitalize">
+                                                @Html.DisplayFor(modelItem => item.Nombre)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.NitEmisor)
+                                            </td>
+                                            <td class="text-center">
+                                                @string.Format("{0:yyyy-MM-dd H:mm:ss}", item.doc_fecha_recepcion)
+                                            </td>
+                                            <td class="text-center">
+                                                @string.Format("{0:yyyy-MM-dd H:mm:ss}", item.doc_fecha_envio)
+                                            </td>
+                                            <td class="text-right">
+                                                @Html.DisplayFor(modelItem => item.doc_valor_total)
+                                            </td>
+                                            <td class="text-right">
+                                                <a href="@Url.Action("ExportarXml", "EmisorInicio", new { numero = item.doc_numero, fecha = item.doc_fecha_recepcion, emisor = item.NitEmisor, abreviatura = item.Abreviatura, prefijo = item.doc_prefijo })"
+                                                   title="Xml">
+                                                    <img src="~/Content/Images/xml.png" />
+                                                </a>
+                                                <a href="@Url.Action("ExportarPdf", "EmisorInicio", new { gDocumento=item.doc_id })"
+                                                   title="Xml">
+                                                    <img src="~/Content/Images/pdf.png" />
+                                                </a>
+                                                <img src="~/Content/Images/descargar.png" />
+                                            </td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
+                                <h6> Se muestran registros  @Model.TotalRegistros </h6>
+                                <span>&nbsp;|&nbsp;</span>
+                                <span>
+                                    Página <strong>@(Model.PaginaActual)</strong> de
+                                    <strong>@Model.TotalPaginas</strong>
+                                </span>
+                                <span>&nbsp;|&nbsp;</span>
+                                @if (Model.PaginaActual > 1)
+                                {
+                                    @Html.ActionLink("<<", "Index", new { pagina = 1, p = "f" },
+                                                         new { @class = "btn btn-sm btn-default" })
+                                    <span></span>
+                                    @Html.ActionLink("Anterior", "Index", new { pagina = Model.PaginaActual - 1, p = "f" },
+                                                         new { @class = "btn btn-sm btn-default" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("<<", "Index", new { pagina = 1, p = "f" },
+                                                         new { @class = "btn btn-sm btn-default disabled" })
+                                    <span></span>
+                                    @Html.ActionLink("Anterior", "Index", new { pagina = 1, p = "f" },
+                                                         new { @class = "btn btn-sm btn-default disabled" })
+                                }
+                                <span></span>
+                                @if (Model.PaginaActual < Model.TotalPaginas)
+                                {
+                                    @Html.ActionLink("Siguiente", "Index", new { pagina = Model.PaginaActual + 1, p = "f" },
+                                                         new { @class = "btn btn-sm btn-default" })
+                                    <span></span>
+                                    @Html.ActionLink(">>", "Index", new { pagina = Model.TotalPaginas, p = "f" },
+                                                         new { @class = "btn btn-sm btn-default" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Siguiente", "Index", new { pagina = Model.TotalPaginas - 1, p = "f" },
+                                                         new { @class = "btn btn-sm btn-default disabled" })
+                                    <span></span>
+                                    @Html.ActionLink(">>", "Index", new { pagina = Model.TotalPaginas, p = "f" },
+                                                         new { @class = "btn btn-sm btn-default disabled" })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="card-footer small text-muted ">Ultima Actualizacion at 11:59 PM</div>
+
+</div>
+<script type="text/javascript">
+    function validar() {
+        var inicio = document.getElementById('FechaInicial').value;
+        var finalq = document.getElementById('FechaFinal').value;
+        inicio = new Date(inicio);
+        finalq = new Date(finalq);
+        if (inicio > finalq)
+            alert('La fecha de inicio no puede ser mayor que la fecha fin');
+    }
+
+    function myFunction() {
+        var input, filter, table, tr, td, i, t;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            var filtered = false;
+            var tds = tr[i].getElementsByTagName("td");
+            if (tds.length == 0) {
+                filtered = true;
+            }
+            for (t = 0; t < tds.length - 1; t++) {
+                var td = tds[t];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        filtered = true;
+                    }
+                }
+            }
+            if (filtered === true) {
+                tr[i].style.display = '';
+            }
+            else {
+                tr[i].style.display = 'none';
+            }
+        }
+    }
+
+    function CheckUncheckAll() {
+        var selectAllCheckbox = document.getElementById("checkUncheckAll");
+        if (selectAllCheckbox.checked == true) {
+            var checkboxes = document.getElementsByName("rowSelectCheckBox");
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = true;
+            }
+        } else {
+            var checkboxes = document.getElementsByName("rowSelectCheckBox");
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = false;
+            }
+        }
+    }
+
+
+</script>

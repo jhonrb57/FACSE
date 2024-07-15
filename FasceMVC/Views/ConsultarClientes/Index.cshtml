@@ -1,0 +1,126 @@
+﻿@model FasceMVC.Models.ConsultarClientes
+@{
+
+}
+
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+@Styles.Render("~/Content/bootstrap.css")
+@Scripts.Render("~/Scripts/pace.js")
+@Scripts.Render("~/Scripts/bootstrap.min.js")
+@Styles.Render("~/Content/css/inicio.css")
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+@Scripts.Render("~/Scripts/sweetalert.min.js")
+
+<div class="container">
+    <div class="row">
+
+        <div class=" col-md-12">
+            @using (Html.BeginForm())
+            {
+                <div class="input-group mb-3">
+                    @*<input type="text" class="form-control" placeholder="Buscar..." aria-label="Buscar..." aria-describedby="button-addon2">*@
+                    @Html.TextBoxFor(Model => Model.Buscar, new { placeholder = "Buscar..." , @class = "form-control" , aria_describedby = "button-addon2", type = "text", style = "width:60%" })
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit" id="button-addon2">Buscar</button> &nbsp; &nbsp;
+
+                        @Html.ActionLink("Volver", "Index", "EmisorInicio", null, new { @class = "btn btn-danger " })
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col">
+
+            @if (Model.ListadoReceptor != null && Model.ListadoReceptor.Any())
+            {
+                <table id="tableReceptores" class="table tablaDatos  ">
+                    <thead class="  azul ">
+                        <tr style="color:white ">
+                            <th></th>
+                            <th style="color:white">Identificación</th>
+                            <th style="color:white">Dígito</th>
+                            <th style="color:white">Nombre</th>
+                            <th style="color:white">Razón social</th>
+                            <th style="color:white">Email</th>
+                            <th style="color:white">Teléfono</th>
+                            <th>C/F</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        @foreach (var item in Model.ListadoReceptor)
+                        {
+                            <tr>
+                                <td width="4%" class="text-center">
+                                    @Html.ActionLink("Editar", "EditarReceptor", new { idReceptor = item.Id }, new { @class = "editar" })
+                                </td>
+                                <td class="text-right">@item.Identificacion</td>
+                                <td class="text-right">@item.Digito</td>
+                                <td>@item.Nombre</td>
+                                <td>@item.RazonSocial</td>
+                                <td>@item.Email</td>
+                                <td>@item.Telefono</td>
+                                <td class="text-right">@item.CantidadFacturas</td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+            }
+            else
+            {
+                <h5>No cuenta con receptores</h5>
+            }
+
+        </div>
+    </div>
+
+
+
+    <br /><br />
+    <br /><br />
+</div>
+
+<style>
+    a.editar {
+        background: url("../../Content/Images/edit.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+</style>
+
+<script>
+
+    @Html.Raw(Model.JsFuncion)
+
+    $(document).ready(function () {
+        $("#tableReceptores").tablesorter();
+        $("#tableReceptores thead tr th").prop('style', 'cursor:pointer');
+
+        $("#tableBody").pageMe({
+            pagerSelector: '#developer_page',
+            showPrevNext: true,
+            hidePageNumbers: false,
+            perPage: 3
+        });
+    });
+
+    function mensaje(mensaje, icon) {
+        try {
+            swal({
+                title: mensaje,
+                icon: icon
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+</script>

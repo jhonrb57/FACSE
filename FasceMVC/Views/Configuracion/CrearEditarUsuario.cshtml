@@ -1,0 +1,89 @@
+﻿@model DataBase.DatosUsuario
+@{
+
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header rojo ">
+                    <h5 style="color:white">
+                        <img src="~/Content/Images/logo_blanco.png" /> @ViewBag.Titulo
+                    </h5>
+                </div>
+                <div class="card-body">
+
+                    @using (Html.BeginForm("EnviarFormularioUsuario", "Configuracion", FormMethod.Post, new { autocomplete = "off" }))
+                    {
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label>Nombres:</label>
+                                @Html.TextBoxFor(Model => Model.Nombre, new { @class = "form-control obligatorio" })
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label>Apellidos:</label>
+                                @Html.TextBoxFor(Model => Model.Apellido, new { @class = "form-control obligatorio" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            @*<div class="col-sm-12 col-md-6 col-lg-4">
+                                <label>Tipo Usuario</label>
+                                @Html.DropDownListFor(Model => Model.Tipo, Model.ListadoTipo, new { @class = "form-control" })
+                            </div>*@
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label>Perfil:</label>
+                                @Html.DropDownListFor(Model => Model.Perfil, Model.ListadoPerfil, new { @class = "form-control obligatorio " })
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label>Sucursales:</label>
+                                @Html.ListBoxFor(Model => Model.Sucursales, Model.ListadoSucursales, new { @class = "form-control obligatorio", multiple = "multiple" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                <label>Dirección</label>
+                                @Html.TextBoxFor(Model => Model.Direccion, new { @class = "form-control obligatorio" })
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                <label>Teléfono</label>
+                                @Html.TextBoxFor(Model => Model.Telefono, new { @class = "form-control obligatorio" })
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                <label>Email</label>
+                                @Html.TextBoxFor(Model => Model.Email, new { @class = "form-control obligatorio" })
+                            </div>
+                        </div>
+                        <br />
+                        if (Model.Id != null && Model.Id != Guid.Empty)
+                        {
+                            <div class="row">
+                                <div class="col">
+                                    <label>Activo</label>
+                                    @Html.CheckBoxFor(Model => Model.Activo)
+                                    @Html.HiddenFor(Model => Model.Id)
+                                    @Html.HiddenFor(Model => Model.sUsuario)
+                                    @Html.HiddenFor(Model => Model.Contrasena)
+                                </div>
+                            </div>
+                            <br />
+                        }
+
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" class="btn btn-success btn-sm">Guardar</button>
+                                @Html.ActionLink("Volver", "Usuario", "Configuracion", null, new { @class = "btn btn-danger btn-sm" })
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br />
+<script>
+
+    $("select").chosen();
+</script>

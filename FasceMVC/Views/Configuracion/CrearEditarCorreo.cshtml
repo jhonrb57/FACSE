@@ -1,0 +1,127 @@
+﻿@model FasceMVC.Models.Correo
+@{
+
+}
+
+<div class="container">
+    <br />
+    <div class="row">
+        <div class=" col">
+            <div class="card">
+                <div class="card-header rojo">
+                    <h5 style="color:white;"><img src="~/Content/Images/logo_blanco.png" /> @Model.Titulo</h5>
+                </div>
+                <div class="card-header">
+                    @using (Html.BeginForm("EnviarFomularioCorreo", "Configuracion", FormMethod.Post, new { autocomplete = "off" }))
+                    {
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Nombre</label>
+                                @Html.TextBoxFor(Model => Model.Nombre, new { @class = "form-control obligatorio" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Tipo correo</label>
+                                @Html.DropDownListFor(Model => Model.TipoCorreo, Model.ListaTipoCorreo, new { @class = "form-control obligatorio" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Servidor</label>
+                                @Html.TextBoxFor(Model => Model.Servidor, new { @class = "form-control obligatorio" })
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-2">
+                                <label>Puerto</label>
+                                @Html.TextBoxFor(Model => Model.Puerto, new { @class = "form-control obligatorio" })
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-4">
+                                <label>Usuario</label>
+                                @Html.TextBoxFor(Model => Model.Usuario, new { @class = "form-control obligatorio" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Correo (Validación)</label>
+                                @Html.TextBoxFor(Model => Model.dCorreo, new { @class = "form-control obligatorio" })
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-2">
+                                <blockquote>&nbsp;</blockquote>
+                                SSL @Html.CheckBoxFor(Model => Model.Ssl, new { })
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-4">
+                                <label>Contraseña</label>
+                                @Html.TextBoxFor(Model => Model.Contrasena, new { @class = "form-control obligatorio" })
+                            </div>
+                        </div>
+                        <br />
+                        if (Model.IdCorreo != Guid.Empty)
+                        {
+                            <div class="row">
+                                <div class="col">
+                                    <label>Activo</label>
+                                    @Html.CheckBoxFor(Model => Model.Estado)
+                                </div>
+                            </div>
+                            <br />
+                        }
+
+
+                        <div class="row">
+                            <div class="col">
+                                @Html.HiddenFor(Model => Model.IdCorreo)
+                                <button id="btnGuardar" type="submit" class="btn btn-sm btn-success" disabled>Guardar</button>
+                                @Html.ActionLink("Cancelar", "Correo", null, new { @class = "btn btn-sm btn-danger" })
+                                <a class="btn btn-sm btn-warning" onclick="ValidarCredenciales()">Validar Correo</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label id="lblMensaje" class="text-danger"></label>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<br />
+<br />
+<script>
+    function ValidarCredenciales() {
+        try {
+            debugger;
+            var correo = $("#dCorreo").val();
+            var usuario = $("#Usuario").val();
+            var contrasena = $("#Contrasena").val();
+            var servidor = $("#Servidor").val();
+            var puerto = $("#Puerto").val();
+            var ssl = $("#Ssl").is(":checked");
+
+            console.log(ssl);
+
+            $.ajax({
+                type: "POST",
+                url: "/Configuracion/ValidarDatosCorreo",
+                data: { correo, contrasena, usuario, puerto, servidor, ssl },
+                success: (data) => {
+
+                    if (data.res) {
+                        $("#lblMensaje").html("");
+                        $("#btnGuardar").prop("disabled", false);
+                    }
+                    else {
+                        $("#lblMensaje").html(data.mensaje);
+                        $("#btnGuardar").prop("disabled", true);
+                    }
+                },
+                error: (error) => {
+                    console.log(error);
+                },
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+</script>

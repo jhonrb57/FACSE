@@ -1,0 +1,122 @@
+﻿@{@model FasceMVC.Models.ProductoModel
+}
+<div class="container">
+    <br />
+    <h2>
+        <img src="~/Content/Images/logo_titulos.png" />Producto
+    </h2>
+    <hr />
+    <div class="row">
+        <div class="col">
+            @Html.ActionLink("Volver", "Index", "Configuracion", null, new { @class = "btn btn-danger btn-sm" })
+            @Html.ActionLink("Agregar", "CrearEditarProducto", "Configuracion", new { IdProducto = Guid.Empty }, new { @class = "btn btn-success btn-sm" })
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div class="row">
+        <div class="col">
+            @if (Model.ListadoProducto != null && Model.ListadoProducto.Any())
+            {
+            <table class="table table-bordered table-striped table-sm table-responsive-sm table-responsive-md">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th width="50"></th>
+                        <th>Código</th>
+                        <th align="center">Descripción</th>
+                        <th>Valor Unitario</th>
+                        <th width="70">Activo</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model.ListadoProducto)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink("Editar", "CrearEditarProducto", "Configuracion", new { IdProducto = item.IdProducto }, new { @class = "editar" })
+                            </td>
+                            <td>@item.Codigo</td>
+                            <td>@item.Descripcion</td>
+                            <td class="text-right">@item.ValorUnidad</td>
+                            <td>
+                                @Html.CheckBoxFor(model => item.Activo, new { disabled = "disabled" })
+                            </td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+                <div id="loading" class="updateProgress" style="display:none;">
+                    <img src="~/Content/Images/procesando.gif" />
+                </div>
+
+            }
+            else
+            {
+                <h5>No cuenta con productos configurados</h5>
+            }
+        </div>
+    </div>
+</div>
+<br /><br />
+<style>
+    .updateProgress {
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        opacity: 0.5;
+        filter: alpha(opacity=70);
+        text-align: center;
+    }
+
+    a.editar {
+        background: url("../../Content/Images/edit.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+
+    a.detalleCatalogo {
+        background: url("../../Content/Images/edit.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+</style>
+
+<script>
+      function showPageLoadingSpinner() {
+     $('#ajaxLoaderDiv').show();
+     $('#ajaxLoaderDiv').append(
+                '<img src="@Url.Content("~/Content/Images/configuracion.png")" alt="Loading..."class="ajax-loader" />'
+     );
+ }
+    function hidePageLoadingSpinner() {
+        setTimeout(function () {
+            $('.ajax-loader').remove();
+            $('#ajaxLoaderDiv').hide();
+        }, 20000);
+    }
+
+    @Html.Raw(Model.JsFuncion)
+
+    function mensaje(mensaje, icon) {
+        swal({
+            title: mensaje,
+            icon: icon
+        });
+    }
+
+
+
+</script>
+
+

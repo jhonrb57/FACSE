@@ -1,0 +1,84 @@
+﻿@model FasceMVC.Area.Emisor.Models.NuevoDocumento
+
+@{
+    ViewBag.Title = "Nuevo Documento";
+}
+
+<div class="form-row">
+    <div class="form-group col-md-12">
+        <b>Nuevo Documento</b>
+    </div>
+</div>
+
+<hr />
+
+<div class="form-row">
+    <div class="form-group col-md-12">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    @Html.LabelFor(model => model.Nombre, new { @class = "control-label" })
+
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-5">
+                    @Html.LabelFor(model => model.Identificacion, new { @class = "control-label" })
+
+                    @Html.EditorFor(model => model.Identificacion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Identificacion, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-2">
+                    <br />
+                    <input type="submit" class="btn btn-success" value="Buscar" />
+                </div>
+                @if (Model.ListadoAdquiriente != null)
+                {
+                    <div class="form-group col-md-12">
+                        <button class="btn btn-success" style="cursor: pointer">Adicionar</button>
+                    </div>
+                    <div class="form-group col-md-12 table-reponsive">
+                        <table class="table table-striped table-bordered">
+                            <tr>
+                                <th></th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Identificacion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Nombre)
+                                </th>
+                            </tr>
+                            @foreach (var item in Model.ListadoAdquiriente)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.HiddenFor(model => model.IdAdquiriente, new { @Value = item.AdqId })
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => item.AdqIdentificacion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => item.AdqNombre)
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+
+                }
+                @*<div class="form-group col-md-5">
+                        @Html.LabelFor(model => model.Prefijo, new { @class = "control-label" }):
+
+                        @Html.DisplayFor(model => model.Prefijo)
+                    </div>
+                    <div class="form-group col-md-5">
+                        @Html.LabelFor(model => model.FechaRecepcion, new { @class = "control-label" }):
+
+                        @Html.DisplayFor(model => model.FechaRecepcion)
+                    </div>*@
+            </div>
+        }
+    </div>
+</div>

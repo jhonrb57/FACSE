@@ -1,0 +1,87 @@
+﻿@model FasceMVC.Models.CambioContrasena
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.LetraBoton = "Cerrar Sesión";
+    ViewBag.ImagenBoton = "~/Content/Images/blanco.png";
+    ViewBag.RutaBoton = "Cerrar";
+}
+
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+@Styles.Render("~/Content/bootstrap.css")
+@Scripts.Render("~/Scripts/pace.js")
+@Scripts.Render("~/Scripts/bootstrap.min.js")
+@Styles.Render("~/Content/css/inicio.css")
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/Scripts/sweetalert.min.js")
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <br />
+
+            <h5>
+                <img src="~/Content/Images/logo_titulos.png" /> Cambio contraseña
+            </h5>
+            <hr />
+
+            @using (Html.BeginForm("GuardarNuevaContrasenaGeneral", "Login", FormMethod.Post, new { autocomplete = "off" }))
+            {
+                <div class="row">
+                    <div class="col">
+                        <label>Usuario</label>
+                        @Html.TextBoxFor(Model => Model.Usuario, new { @class = "form-control", disabled = "disabled" })
+                        @Html.HiddenFor(Model => Model.Usuario)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label>Contraseña actual</label>
+                        @Html.TextBoxFor(Model => Model.AnteriorContrasena, new { @class = "form-control", type = "password" })
+                        @Html.ValidationMessageFor(Model => Model.AnteriorContrasena, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label>Nueva contraseña</label>
+                        @Html.TextBoxFor(Model => Model.NuevaContrasena, new { @class = "form-control", type = "password" })
+                        @Html.ValidationMessageFor(Model => Model.NuevaContrasena, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label>Confirmar contraseña</label>
+                        @Html.TextBoxFor(Model => Model.ConfirmarContrasena, new { @class = "form-control", type = "password" })
+                        @Html.ValidationMessageFor(Model => Model.ConfirmarContrasena, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br />
+                <label class="text-danger">@Model.JsFuncion</label>
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-success btn-sm" type="submit">Guardar</button>
+                        @Html.ActionLink("Volver", "Index", "Configuracion", null, new { @class = "btn  btn-danger btn-sm" })
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+<br /><br />
+
+<script>
+
+    @Html.Raw(ViewBag.JsFuncion2)
+
+    function mensaje(mensaje, icon) {
+        swal({
+            title: mensaje,
+            icon: icon
+        });
+    }
+
+</script>

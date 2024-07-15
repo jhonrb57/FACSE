@@ -1,0 +1,5 @@
+2019-09-11 23:32:01,883 [7] ERROR EmisorInicioController  - Error al consultar la consulta documento: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Controllers.EmisorInicioController.<>c.<Index>b__5_0(adm_documento d) en D:\FACSE\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 68
+   en System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   en System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   en FasceMVC.Controllers.EmisorInicioController.Index(Int32 pagina, String p) en D:\FACSE\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 68

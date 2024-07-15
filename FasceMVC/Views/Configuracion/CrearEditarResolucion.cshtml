@@ -1,0 +1,119 @@
+﻿@model FasceMVC.Models.Resolucion
+
+@{
+
+}
+
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col">
+            <div class="card ">
+                <div class="card-header rojo">
+
+                    <h5 style="color:white;"><img src="~/Content/Images/logo_blanco.png" /> @Model.Titulo</h5>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("EnviarFormularioResolucion", "Configuracion", FormMethod.Post, new { autocomplete = "off" }))
+                    {
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6 ">
+                                <label>Tipo documento</label>
+                                @Html.DropDownListFor(Model => Model.TipoDocumento, Model.ListadoTipoDocumento, new { @class = "form-control obligatorio" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Número resolución:</label>
+                                @Html.TextBoxFor(Model => Model.NumeroResolucion, new { @class = "form-control obligatorio" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <label>Prefijo:</label>
+                                @Html.TextBoxFor(Model => Model.Prefijo, new { @class = "form-control obligatorio", maxLength = "5" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <label>N° Inicial:</label>
+                                @Html.TextBoxFor(Model => Model.NumeroInicial, new { @class = "form-control obligatorio" })
+                                @Html.ValidationMessageFor(model => model.NumeroInicial, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <label>N° Final:</label>
+                                @Html.TextBoxFor(Model => Model.NumeroFinal, new { @class = "form-control obligatorio" })
+                                @Html.ValidationMessageFor(model => model.NumeroFinal, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Clave técnica:</label>
+                                @Html.TextBoxFor(Model => Model.ClaveTecnica, new { @class = "form-control obligatorio" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-3">
+                                <label>Fecha inicial:</label>
+                                @Html.EditorFor(Model => Model.FechaInicio, new { htmlAttributes = new { @class = "form-control obligatorio " } })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-3">
+                                <label>Fecha final:</label>
+                                @Html.EditorFor(Model => Model.FechaFin, new { htmlAttributes = new { @class = "form-control obligatorio " } })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6 ">
+                                <label>Plantilla</label>
+                                @Html.DropDownListFor(Model => Model.Plantilla, Model.ListadoPlantilla, new { @class = "form-control obligatorio" })
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        if (Model.Id != Guid.Empty)
+                        {
+                            <div class="row">
+                                <div class="col">
+                                    <label>Activo: </label>
+                                    @Html.CheckBoxFor(Model => Model.Estado)
+                                </div>
+                            </div>
+                            <br />
+                        }
+
+                        <div class="row">
+                            <div class="col">
+                                @Html.HiddenFor(Model => Model.Id)
+                                <button type="submit" class="btn btn-sm btn-success" id="btnGuardar">Guardar</button>
+                                @Html.ActionLink("Cancelar", "Resolucion", null, new { @class = "btn btn-sm btn-danger" })
+                                @if (Model.Plantilla != null)
+                                {
+                                    <iframe id="viewer" src="@Model.Ruta" frameborder="0" scrolling="no" width="1000" height="600"></iframe>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $('#Plantilla').change(function () {
+        if ($("#Plantilla").val() != "Seleccione plantilla") {
+            if ($("#Plantilla").val().length > 0) {
+                $.ajax(
+                    {
+                        url: "TraerRuta",
+                        type: "POST",
+                        data: $("#Plantilla").serialize(),
+                        async: false,
+                        dataType: "json",
+                        success: function (result) {
+                            window.open(result, '_blank');
+                        },
+                        error: function (result) {
+                            alert("Status: " + result.status + " Message:" + result.statusText);
+                        }
+                    });
+            }
+        }
+    });
+
+</script>

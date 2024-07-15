@@ -1,0 +1,507 @@
+2019-10-01 10:39:37,205 [7] ERROR EmisorInicioController  - Error al consultar la consulta documento: System.Data.Entity.Core.EntityCommandExecutionException: An error occurred while executing the command definition. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid column name 'dfi_completo'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   en System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   en System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Metodos.ClsDocumento.ListadoDocumento(adm_documento documento, Int32 StartRowIndex, Int32 MaximumRows, Int32& count, Guid gsucursal) en D:\FST\VS2017\MVC\FACSE\Metodos\ClsDocumento.cs:línea 65
+   en FasceMVC.Controllers.EmisorInicioController.Index(adm_documento documento) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 124
+2019-10-01 10:39:58,858 [7] ERROR EmisorInicioController  - Error al consultar la consulta documento: System.Data.Entity.Core.EntityCommandExecutionException: An error occurred while executing the command definition. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid column name 'dfi_completo'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   en System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   en System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Metodos.ClsDocumento.ListadoDocumento(adm_documento documento, Int32 StartRowIndex, Int32 MaximumRows, Int32& count, Guid gsucursal) en D:\FST\VS2017\MVC\FACSE\Metodos\ClsDocumento.cs:línea 65
+   en FasceMVC.Controllers.EmisorInicioController.Index(adm_documento documento) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 124
+2019-10-01 10:41:45,549 [6] ERROR EmisorInicioController  - Error al consultar la consulta documento: System.Data.Entity.Core.EntityCommandExecutionException: An error occurred while executing the command definition. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid column name 'dfi_completo'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   en System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   en System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Metodos.ClsDocumento.ListadoDocumento(adm_documento documento, Int32 StartRowIndex, Int32 MaximumRows, Int32& count, Guid gsucursal) en D:\FST\VS2017\MVC\FACSE\Metodos\ClsDocumento.cs:línea 65
+   en FasceMVC.Controllers.EmisorInicioController.Index(adm_documento documento) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 122
+2019-10-01 12:32:56,776 [6] ERROR EmisorInicioController  - Error al exportar pdf: Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: d. Path '', line 0, position 0.
+   en Report.Generador.GenerarPdf(Guid gIdDocumento) en D:\FST\VS2017\MVC\FACSE\Report\Generador.cs:línea 139
+   en FasceMVC.Controllers.EmisorInicioController.ExportarPdf(Guid gDocumento) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 181
+2019-10-01 12:35:33,919 [6] ERROR EmisorInicioController  - Error al exportar pdf: Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: d. Path '', line 0, position 0.
+   en Report.Generador.GenerarPdf(Guid gIdDocumento)
+   en FasceMVC.Controllers.EmisorInicioController.ExportarPdf(Guid gDocumento) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 181
+2019-10-01 12:36:12,089 [6] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> Microsoft.ReportingServices.ReportProcessing.ProcessingAbortedException: Error al procesar el informe. ---> Microsoft.ReportingServices.ReportProcessing.ReportProcessingException: No se puede crear un lector de datos para el conjunto de datos 'EmisorResolucion'.
+   en Microsoft.ReportingServices.OnDemandProcessing.RuntimeDataSet.RunEmbeddedQuery(Boolean& readerExtensionsSupported, Boolean& readerFieldProperties, List`1 queryParams, Object[] paramValues)
+   en Microsoft.ReportingServices.OnDemandProcessing.RuntimeDataSet.RunDataSetQueryAndProcessAsIRowConsumer(Boolean processAsIRowConsumer)
+   en Microsoft.ReportingServices.OnDemandProcessing.RuntimeDataSet.InitializeAndRunLiveQuery()
+   en Microsoft.ReportingServices.OnDemandProcessing.RuntimeAtomicDataSet.InitializeRowSourceAndProcessRows()
+   en Microsoft.ReportingServices.OnDemandProcessing.RuntimeAtomicDataSet.Process()
+   en Microsoft.ReportingServices.OnDemandProcessing.RuntimeAtomicDataSet.ProcessConcurrent(Object threadSet)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.ReportingServices.OnDemandProcessing.OnDemandProcessingContext.AbortHelper.ThrowAbortException(String uniqueName)
+   en Microsoft.ReportingServices.OnDemandProcessing.OnDemandProcessingContext.CheckAndThrowIfAborted()
+   en Microsoft.ReportingServices.OnDemandProcessing.RetrievalManager.FetchData()
+   en Microsoft.ReportingServices.OnDemandProcessing.RetrievalManager.PrefetchData(ReportInstance reportInstance, ParameterInfoCollection parameters, Boolean mergeTran)
+   en Microsoft.ReportingServices.OnDemandProcessing.Merge.FetchData(ReportInstance reportInstance, Boolean mergeTransaction)
+   en Microsoft.ReportingServices.ReportProcessing.Execution.ProcessReportOdpInitial.PreProcessSnapshot(OnDemandProcessingContext odpContext, Merge odpMerge, ReportInstance reportInstance, ReportSnapshot reportSnapshot)
+   en Microsoft.ReportingServices.ReportProcessing.Execution.ProcessReportOdp.Execute(OnDemandProcessingContext& odpContext)
+   en Microsoft.ReportingServices.ReportProcessing.Execution.RenderReportOdpInitial.ProcessReport(ProcessingErrorContext errorContext, ExecutionLogContext executionLogContext, UserProfileState& userProfileState)
+   en Microsoft.ReportingServices.ReportProcessing.Execution.RenderReport.Execute(IRenderingExtension newRenderer)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.RenderReport(IRenderingExtension newRenderer, DateTime executionTimeStamp, ProcessingContext pc, RenderingContext rc, IChunkFactory yukonCompiledDefinition)
+   en Microsoft.Reporting.LocalService.CreateSnapshotAndRender(ReportProcessing repProc, IRenderingExtension renderer, ProcessingContext pc, RenderingContext rc, SubreportCallbackHandler subreportHandler, ParameterInfoCollection parameters, DatasourceCredentialsCollection credentials)
+   en Microsoft.Reporting.LocalService.Render(String format, String deviceInfo, String paginationMode, Boolean allowInternalRenderers, IEnumerable dataSources, CreateAndRegisterStream createStreamCallback)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth)
+2019-10-01 12:36:12,163 [6] ERROR EmisorInicioController  - Error al exportar pdf: Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> Microsoft.ReportingServices.ReportProcessing.ProcessingAbortedException: Error al procesar el informe. ---> Microsoft.ReportingServices.ReportProcessing.ReportProcessingException: No se puede crear un lector de datos para el conjunto de datos 'EmisorResolucion'.
+   en Microsoft.ReportingServices.OnDemandProcessing.RuntimeDataSet.RunEmbeddedQuery(Boolean& readerExtensionsSupported, Boolean& readerFieldProperties, List`1 queryParams, Object[] paramValues)
+   en Microsoft.ReportingServices.OnDemandProcessing.RuntimeDataSet.RunDataSetQueryAndProcessAsIRowConsumer(Boolean processAsIRowConsumer)
+   en Microsoft.ReportingServices.OnDemandProcessing.RuntimeDataSet.InitializeAndRunLiveQuery()
+   en Microsoft.ReportingServices.OnDemandProcessing.RuntimeAtomicDataSet.InitializeRowSourceAndProcessRows()
+   en Microsoft.ReportingServices.OnDemandProcessing.RuntimeAtomicDataSet.Process()
+   en Microsoft.ReportingServices.OnDemandProcessing.RuntimeAtomicDataSet.ProcessConcurrent(Object threadSet)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.ReportingServices.OnDemandProcessing.OnDemandProcessingContext.AbortHelper.ThrowAbortException(String uniqueName)
+   en Microsoft.ReportingServices.OnDemandProcessing.OnDemandProcessingContext.CheckAndThrowIfAborted()
+   en Microsoft.ReportingServices.OnDemandProcessing.RetrievalManager.FetchData()
+   en Microsoft.ReportingServices.OnDemandProcessing.RetrievalManager.PrefetchData(ReportInstance reportInstance, ParameterInfoCollection parameters, Boolean mergeTran)
+   en Microsoft.ReportingServices.OnDemandProcessing.Merge.FetchData(ReportInstance reportInstance, Boolean mergeTransaction)
+   en Microsoft.ReportingServices.ReportProcessing.Execution.ProcessReportOdpInitial.PreProcessSnapshot(OnDemandProcessingContext odpContext, Merge odpMerge, ReportInstance reportInstance, ReportSnapshot reportSnapshot)
+   en Microsoft.ReportingServices.ReportProcessing.Execution.ProcessReportOdp.Execute(OnDemandProcessingContext& odpContext)
+   en Microsoft.ReportingServices.ReportProcessing.Execution.RenderReportOdpInitial.ProcessReport(ProcessingErrorContext errorContext, ExecutionLogContext executionLogContext, UserProfileState& userProfileState)
+   en Microsoft.ReportingServices.ReportProcessing.Execution.RenderReport.Execute(IRenderingExtension newRenderer)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.RenderReport(IRenderingExtension newRenderer, DateTime executionTimeStamp, ProcessingContext pc, RenderingContext rc, IChunkFactory yukonCompiledDefinition)
+   en Microsoft.Reporting.LocalService.CreateSnapshotAndRender(ReportProcessing repProc, IRenderingExtension renderer, ProcessingContext pc, RenderingContext rc, SubreportCallbackHandler subreportHandler, ParameterInfoCollection parameters, DatasourceCredentialsCollection credentials)
+   en Microsoft.Reporting.LocalService.Render(String format, String deviceInfo, String paginationMode, Boolean allowInternalRenderers, IEnumerable dataSources, CreateAndRegisterStream createStreamCallback)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Report.Generador.GenerarPdf(Guid gIdDocumento)
+   en FasceMVC.Controllers.EmisorInicioController.ExportarPdf(Guid gDocumento) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 181
+2019-10-01 12:36:55,973 [6] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> Microsoft.ReportingServices.ReportProcessing.ProcessingAbortedException: Error al procesar el informe. ---> Microsoft.ReportingServices.ReportProcessing.ReportProcessingException: No se puede crear un lector de datos para el conjunto de datos 'EmisorResolucion'.
+   en Microsoft.ReportingServices.OnDemandProcessing.RuntimeDataSet.RunEmbeddedQuery(Boolean& readerExtensionsSupported, Boolean& readerFieldProperties, List`1 queryParams, Object[] paramValues)
+   en Microsoft.ReportingServices.OnDemandProcessing.RuntimeDataSet.RunDataSetQueryAndProcessAsIRowConsumer(Boolean processAsIRowConsumer)
+   en Microsoft.ReportingServices.OnDemandProcessing.RuntimeDataSet.InitializeAndRunLiveQuery()
+   en Microsoft.ReportingServices.OnDemandProcessing.RuntimeAtomicDataSet.InitializeRowSourceAndProcessRows()
+   en Microsoft.ReportingServices.OnDemandProcessing.RuntimeAtomicDataSet.Process()
+   en Microsoft.ReportingServices.OnDemandProcessing.RuntimeAtomicDataSet.ProcessConcurrent(Object threadSet)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.ReportingServices.OnDemandProcessing.OnDemandProcessingContext.AbortHelper.ThrowAbortException(String uniqueName)
+   en Microsoft.ReportingServices.OnDemandProcessing.OnDemandProcessingContext.CheckAndThrowIfAborted()
+   en Microsoft.ReportingServices.OnDemandProcessing.RetrievalManager.FetchData()
+   en Microsoft.ReportingServices.OnDemandProcessing.RetrievalManager.PrefetchData(ReportInstance reportInstance, ParameterInfoCollection parameters, Boolean mergeTran)
+   en Microsoft.ReportingServices.OnDemandProcessing.Merge.FetchData(ReportInstance reportInstance, Boolean mergeTransaction)
+   en Microsoft.ReportingServices.ReportProcessing.Execution.ProcessReportOdpInitial.PreProcessSnapshot(OnDemandProcessingContext odpContext, Merge odpMerge, ReportInstance reportInstance, ReportSnapshot reportSnapshot)
+   en Microsoft.ReportingServices.ReportProcessing.Execution.ProcessReportOdp.Execute(OnDemandProcessingContext& odpContext)
+   en Microsoft.ReportingServices.ReportProcessing.Execution.RenderReportOdpInitial.ProcessReport(ProcessingErrorContext errorContext, ExecutionLogContext executionLogContext, UserProfileState& userProfileState)
+   en Microsoft.ReportingServices.ReportProcessing.Execution.RenderReport.Execute(IRenderingExtension newRenderer)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.RenderReport(IRenderingExtension newRenderer, DateTime executionTimeStamp, ProcessingContext pc, RenderingContext rc, IChunkFactory yukonCompiledDefinition)
+   en Microsoft.Reporting.LocalService.CreateSnapshotAndRender(ReportProcessing repProc, IRenderingExtension renderer, ProcessingContext pc, RenderingContext rc, SubreportCallbackHandler subreportHandler, ParameterInfoCollection parameters, DatasourceCredentialsCollection credentials)
+   en Microsoft.Reporting.LocalService.Render(String format, String deviceInfo, String paginationMode, Boolean allowInternalRenderers, IEnumerable dataSources, CreateAndRegisterStream createStreamCallback)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth)
+2019-10-01 13:47:22,396 [26] ERROR FacturacionManualController  - Error: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Controllers.FacturacionManualController.Index(FacturacionManual facturacion) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 25
+2019-10-01 13:47:22,403 [34] ERROR FacturacionManualController  - Error: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Controllers.FacturacionManualController.Index(FacturacionManual facturacion) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 25
+2019-10-01 13:47:22,524 [10] ERROR FacturacionManualController  - Error: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Controllers.FacturacionManualController.Index(FacturacionManual facturacion) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 25
+2019-10-01 13:47:22,722 [10] ERROR FacturacionManualController  - Error: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Controllers.FacturacionManualController.Index(FacturacionManual facturacion) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 25
+2019-10-01 13:50:01,189 [26] ERROR FacturacionManualController  - Error: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Controllers.FacturacionManualController.Index(FacturacionManual facturacion) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 25
+2019-10-01 14:16:50,371 [11] ERROR FacturacionManualController  - Error: System.ArgumentException: El valor no puede ser nulo ni estar vacío.
+Nombre del parámetro: linkText
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, Object routeValues, Object htmlAttributes)
+   en ASP._Page_Views_FacturacionManual_ResultadosBusqueda_cshtml.Execute() en D:\FST\VS2017\MVC\FACSE\FasceMVC\Views\FacturacionManual\ResultadosBusqueda.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en FasceMVC.Controllers.FacturacionManualController.RenderPartialViewToString(Controller controller, String viewName, Object model) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 895
+   en FasceMVC.Controllers.FacturacionManualController.Buscar(Buscar buscar) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 124
+2019-10-01 14:16:51,040 [58] ERROR FacturacionManualController  - Error: System.ArgumentException: El valor no puede ser nulo ni estar vacío.
+Nombre del parámetro: linkText
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, Object routeValues, Object htmlAttributes)
+   en ASP._Page_Views_FacturacionManual_ResultadosBusqueda_cshtml.Execute() en D:\FST\VS2017\MVC\FACSE\FasceMVC\Views\FacturacionManual\ResultadosBusqueda.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en FasceMVC.Controllers.FacturacionManualController.RenderPartialViewToString(Controller controller, String viewName, Object model) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 895
+   en FasceMVC.Controllers.FacturacionManualController.Buscar(Buscar buscar) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 124
+2019-10-01 14:16:51,805 [59] ERROR FacturacionManualController  - Error: System.ArgumentException: El valor no puede ser nulo ni estar vacío.
+Nombre del parámetro: linkText
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, Object routeValues, Object htmlAttributes)
+   en ASP._Page_Views_FacturacionManual_ResultadosBusqueda_cshtml.Execute() en D:\FST\VS2017\MVC\FACSE\FasceMVC\Views\FacturacionManual\ResultadosBusqueda.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en FasceMVC.Controllers.FacturacionManualController.RenderPartialViewToString(Controller controller, String viewName, Object model) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 895
+   en FasceMVC.Controllers.FacturacionManualController.Buscar(Buscar buscar) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 124
+2019-10-01 14:16:56,492 [11] ERROR FacturacionManualController  - Error: System.ArgumentException: El valor no puede ser nulo ni estar vacío.
+Nombre del parámetro: linkText
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, Object routeValues, Object htmlAttributes)
+   en ASP._Page_Views_FacturacionManual_ResultadosBusqueda_cshtml.Execute() en D:\FST\VS2017\MVC\FACSE\FasceMVC\Views\FacturacionManual\ResultadosBusqueda.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en FasceMVC.Controllers.FacturacionManualController.RenderPartialViewToString(Controller controller, String viewName, Object model) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 895
+   en FasceMVC.Controllers.FacturacionManualController.Buscar(Buscar buscar) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 124
+2019-10-01 14:17:00,208 [11] ERROR FacturacionManualController  - Error: System.ArgumentException: El valor no puede ser nulo ni estar vacío.
+Nombre del parámetro: linkText
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, Object routeValues, Object htmlAttributes)
+   en ASP._Page_Views_FacturacionManual_ResultadosBusqueda_cshtml.Execute() en D:\FST\VS2017\MVC\FACSE\FasceMVC\Views\FacturacionManual\ResultadosBusqueda.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en FasceMVC.Controllers.FacturacionManualController.RenderPartialViewToString(Controller controller, String viewName, Object model) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 895
+   en FasceMVC.Controllers.FacturacionManualController.Buscar(Buscar buscar) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 124
+2019-10-01 14:17:08,140 [11] ERROR FacturacionManualController  - Error: System.ArgumentException: El valor no puede ser nulo ni estar vacío.
+Nombre del parámetro: linkText
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, Object routeValues, Object htmlAttributes)
+   en ASP._Page_Views_FacturacionManual_ResultadosBusqueda_cshtml.Execute() en D:\FST\VS2017\MVC\FACSE\FasceMVC\Views\FacturacionManual\ResultadosBusqueda.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en FasceMVC.Controllers.FacturacionManualController.RenderPartialViewToString(Controller controller, String viewName, Object model) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 895
+   en FasceMVC.Controllers.FacturacionManualController.Buscar(Buscar buscar) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 124
+2019-10-01 14:17:08,903 [58] ERROR FacturacionManualController  - Error: System.ArgumentException: El valor no puede ser nulo ni estar vacío.
+Nombre del parámetro: linkText
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, Object routeValues, Object htmlAttributes)
+   en ASP._Page_Views_FacturacionManual_ResultadosBusqueda_cshtml.Execute() en D:\FST\VS2017\MVC\FACSE\FasceMVC\Views\FacturacionManual\ResultadosBusqueda.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en FasceMVC.Controllers.FacturacionManualController.RenderPartialViewToString(Controller controller, String viewName, Object model) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 895
+   en FasceMVC.Controllers.FacturacionManualController.Buscar(Buscar buscar) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 124
+2019-10-01 14:17:09,676 [11] ERROR FacturacionManualController  - Error: System.ArgumentException: El valor no puede ser nulo ni estar vacío.
+Nombre del parámetro: linkText
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, Object routeValues, Object htmlAttributes)
+   en ASP._Page_Views_FacturacionManual_ResultadosBusqueda_cshtml.Execute() en D:\FST\VS2017\MVC\FACSE\FasceMVC\Views\FacturacionManual\ResultadosBusqueda.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en FasceMVC.Controllers.FacturacionManualController.RenderPartialViewToString(Controller controller, String viewName, Object model) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 895
+   en FasceMVC.Controllers.FacturacionManualController.Buscar(Buscar buscar) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 124
+2019-10-01 14:17:09,870 [58] ERROR FacturacionManualController  - Error: System.ArgumentException: El valor no puede ser nulo ni estar vacío.
+Nombre del parámetro: linkText
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, Object routeValues, Object htmlAttributes)
+   en ASP._Page_Views_FacturacionManual_ResultadosBusqueda_cshtml.Execute() en D:\FST\VS2017\MVC\FACSE\FasceMVC\Views\FacturacionManual\ResultadosBusqueda.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en FasceMVC.Controllers.FacturacionManualController.RenderPartialViewToString(Controller controller, String viewName, Object model) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 895
+   en FasceMVC.Controllers.FacturacionManualController.Buscar(Buscar buscar) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 124
+2019-10-01 14:17:10,032 [11] ERROR FacturacionManualController  - Error: System.ArgumentException: El valor no puede ser nulo ni estar vacío.
+Nombre del parámetro: linkText
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, Object routeValues, Object htmlAttributes)
+   en ASP._Page_Views_FacturacionManual_ResultadosBusqueda_cshtml.Execute() en D:\FST\VS2017\MVC\FACSE\FasceMVC\Views\FacturacionManual\ResultadosBusqueda.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en FasceMVC.Controllers.FacturacionManualController.RenderPartialViewToString(Controller controller, String viewName, Object model) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 895
+   en FasceMVC.Controllers.FacturacionManualController.Buscar(Buscar buscar) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 124
+2019-10-01 14:17:10,207 [61] ERROR FacturacionManualController  - Error: System.ArgumentException: El valor no puede ser nulo ni estar vacío.
+Nombre del parámetro: linkText
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, Object routeValues, Object htmlAttributes)
+   en ASP._Page_Views_FacturacionManual_ResultadosBusqueda_cshtml.Execute() en D:\FST\VS2017\MVC\FACSE\FasceMVC\Views\FacturacionManual\ResultadosBusqueda.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en FasceMVC.Controllers.FacturacionManualController.RenderPartialViewToString(Controller controller, String viewName, Object model) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 895
+   en FasceMVC.Controllers.FacturacionManualController.Buscar(Buscar buscar) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 124
+2019-10-01 14:17:10,379 [58] ERROR FacturacionManualController  - Error: System.ArgumentException: El valor no puede ser nulo ni estar vacío.
+Nombre del parámetro: linkText
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, Object routeValues, Object htmlAttributes)
+   en ASP._Page_Views_FacturacionManual_ResultadosBusqueda_cshtml.Execute() en D:\FST\VS2017\MVC\FACSE\FasceMVC\Views\FacturacionManual\ResultadosBusqueda.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en FasceMVC.Controllers.FacturacionManualController.RenderPartialViewToString(Controller controller, String viewName, Object model) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 895
+   en FasceMVC.Controllers.FacturacionManualController.Buscar(Buscar buscar) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 124
+2019-10-01 14:17:10,698 [61] ERROR FacturacionManualController  - Error: System.ArgumentException: El valor no puede ser nulo ni estar vacío.
+Nombre del parámetro: linkText
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, Object routeValues, Object htmlAttributes)
+   en ASP._Page_Views_FacturacionManual_ResultadosBusqueda_cshtml.Execute() en D:\FST\VS2017\MVC\FACSE\FasceMVC\Views\FacturacionManual\ResultadosBusqueda.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en FasceMVC.Controllers.FacturacionManualController.RenderPartialViewToString(Controller controller, String viewName, Object model) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 895
+   en FasceMVC.Controllers.FacturacionManualController.Buscar(Buscar buscar) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 124
+2019-10-01 14:17:10,860 [11] ERROR FacturacionManualController  - Error: System.ArgumentException: El valor no puede ser nulo ni estar vacío.
+Nombre del parámetro: linkText
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, Object routeValues, Object htmlAttributes)
+   en ASP._Page_Views_FacturacionManual_ResultadosBusqueda_cshtml.Execute() en D:\FST\VS2017\MVC\FACSE\FasceMVC\Views\FacturacionManual\ResultadosBusqueda.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en FasceMVC.Controllers.FacturacionManualController.RenderPartialViewToString(Controller controller, String viewName, Object model) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 895
+   en FasceMVC.Controllers.FacturacionManualController.Buscar(Buscar buscar) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 124
+2019-10-01 14:17:11,337 [62] ERROR FacturacionManualController  - Error: System.ArgumentException: El valor no puede ser nulo ni estar vacío.
+Nombre del parámetro: linkText
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, Object routeValues, Object htmlAttributes)
+   en ASP._Page_Views_FacturacionManual_ResultadosBusqueda_cshtml.Execute() en D:\FST\VS2017\MVC\FACSE\FasceMVC\Views\FacturacionManual\ResultadosBusqueda.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en FasceMVC.Controllers.FacturacionManualController.RenderPartialViewToString(Controller controller, String viewName, Object model) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 895
+   en FasceMVC.Controllers.FacturacionManualController.Buscar(Buscar buscar) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 124
+2019-10-01 14:17:13,573 [58] ERROR FacturacionManualController  - Error: System.ArgumentException: El valor no puede ser nulo ni estar vacío.
+Nombre del parámetro: linkText
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   en System.Web.Mvc.Html.LinkExtensions.ActionLink(HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, Object routeValues, Object htmlAttributes)
+   en ASP._Page_Views_FacturacionManual_ResultadosBusqueda_cshtml.Execute() en D:\FST\VS2017\MVC\FACSE\FasceMVC\Views\FacturacionManual\ResultadosBusqueda.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en FasceMVC.Controllers.FacturacionManualController.RenderPartialViewToString(Controller controller, String viewName, Object model) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 895
+   en FasceMVC.Controllers.FacturacionManualController.Buscar(Buscar buscar) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 124
+2019-10-01 15:05:50,940 [10] ERROR FacturacionManualController  - Error: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Controllers.FacturacionManualController.Index(FacturacionManual facturacion) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 25
+2019-10-01 15:06:18,091 [7] ERROR FacturacionManualController  - Error: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Controllers.FacturacionManualController.Index(FacturacionManual facturacion) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 25
+2019-10-01 15:07:20,089 [11] ERROR FacturacionManualController  - Error: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Controllers.FacturacionManualController.Index(FacturacionManual facturacion) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 25
+2019-10-01 15:27:34,125 [6] ERROR FacturacionManualController  - Error: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Controllers.FacturacionManualController.Index(FacturacionManual facturacion) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 28
+2019-10-01 15:40:32,500 [9] ERROR FacturacionManualController  - Error: System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en FasceMVC.Controllers.FacturacionManualController.Index(FacturacionManual facturacion) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 28
+2019-10-01 18:11:56,153 [7] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> Microsoft.Reporting.DefinitionInvalidException: La definición del informe '' no es válida. ---> Microsoft.ReportingServices.ReportProcessing.ReportPublishingException: El valor de la propiedad Top del objeto ‘Textbox19’ de tipo text box es negativo. No se permiten tamaños negativos.
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.InternalCreateIntermediateFormat(Stream definitionStream, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.CreateIntermediateFormat(Byte[] definition, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CompileOdpReport(PublishingContext reportPublishingContext, IDataProtection dataProtection, PublishingErrorContext errorContext, String& reportDescription, String& reportLanguage, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CreateIntermediateFormat(PublishingContext reportPublishingContext, IDataProtection dataProtection)
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth) en D:\FST\website\vs2017\PRODUCCION.FACSE\FACSE\Report\Generador.cs:línea 177
+2019-10-01 18:11:56,235 [7] ERROR EmisorInicioController  - Error al exportar pdf: Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> Microsoft.Reporting.DefinitionInvalidException: La definición del informe '' no es válida. ---> Microsoft.ReportingServices.ReportProcessing.ReportPublishingException: El valor de la propiedad Top del objeto ‘Textbox19’ de tipo text box es negativo. No se permiten tamaños negativos.
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.InternalCreateIntermediateFormat(Stream definitionStream, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.CreateIntermediateFormat(Byte[] definition, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CompileOdpReport(PublishingContext reportPublishingContext, IDataProtection dataProtection, PublishingErrorContext errorContext, String& reportDescription, String& reportLanguage, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CreateIntermediateFormat(PublishingContext reportPublishingContext, IDataProtection dataProtection)
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Report.Generador.GenerarPdf(Guid gIdDocumento) en D:\FST\website\vs2017\PRODUCCION.FACSE\FACSE\Report\Generador.cs:línea 145
+   en FasceMVC.Controllers.EmisorInicioController.ExportarPdf(Guid gDocumento) en D:\FST\website\vs2017\PRODUCCION.FACSE\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 181
+2019-10-01 18:12:31,284 [6] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> Microsoft.Reporting.DefinitionInvalidException: La definición del informe '' no es válida. ---> Microsoft.ReportingServices.ReportProcessing.ReportPublishingException: El valor de la propiedad Top del objeto ‘Textbox19’ de tipo text box es negativo. No se permiten tamaños negativos.
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.InternalCreateIntermediateFormat(Stream definitionStream, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.CreateIntermediateFormat(Byte[] definition, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CompileOdpReport(PublishingContext reportPublishingContext, IDataProtection dataProtection, PublishingErrorContext errorContext, String& reportDescription, String& reportLanguage, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CreateIntermediateFormat(PublishingContext reportPublishingContext, IDataProtection dataProtection)
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth) en D:\FST\website\vs2017\PRODUCCION.FACSE\FACSE\Report\Generador.cs:línea 177
+2019-10-01 18:12:31,356 [6] ERROR EmisorInicioController  - Error al exportar pdf: Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> Microsoft.Reporting.DefinitionInvalidException: La definición del informe '' no es válida. ---> Microsoft.ReportingServices.ReportProcessing.ReportPublishingException: El valor de la propiedad Top del objeto ‘Textbox19’ de tipo text box es negativo. No se permiten tamaños negativos.
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.InternalCreateIntermediateFormat(Stream definitionStream, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.CreateIntermediateFormat(Byte[] definition, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CompileOdpReport(PublishingContext reportPublishingContext, IDataProtection dataProtection, PublishingErrorContext errorContext, String& reportDescription, String& reportLanguage, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CreateIntermediateFormat(PublishingContext reportPublishingContext, IDataProtection dataProtection)
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Report.Generador.GenerarPdf(Guid gIdDocumento) en D:\FST\website\vs2017\PRODUCCION.FACSE\FACSE\Report\Generador.cs:línea 145
+   en FasceMVC.Controllers.EmisorInicioController.ExportarPdf(Guid gDocumento) en D:\FST\website\vs2017\PRODUCCION.FACSE\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 181
+2019-10-01 18:12:46,613 [6] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> Microsoft.Reporting.DefinitionInvalidException: La definición del informe '' no es válida. ---> Microsoft.ReportingServices.ReportProcessing.ReportPublishingException: El valor de la propiedad Top del objeto ‘Textbox19’ de tipo text box es negativo. No se permiten tamaños negativos.
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.InternalCreateIntermediateFormat(Stream definitionStream, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.CreateIntermediateFormat(Byte[] definition, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CompileOdpReport(PublishingContext reportPublishingContext, IDataProtection dataProtection, PublishingErrorContext errorContext, String& reportDescription, String& reportLanguage, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CreateIntermediateFormat(PublishingContext reportPublishingContext, IDataProtection dataProtection)
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth) en D:\FST\website\vs2017\PRODUCCION.FACSE\FACSE\Report\Generador.cs:línea 177
+2019-10-01 18:12:46,690 [6] ERROR EmisorInicioController  - Error al exportar pdf: Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> Microsoft.Reporting.DefinitionInvalidException: La definición del informe '' no es válida. ---> Microsoft.ReportingServices.ReportProcessing.ReportPublishingException: El valor de la propiedad Top del objeto ‘Textbox19’ de tipo text box es negativo. No se permiten tamaños negativos.
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.InternalCreateIntermediateFormat(Stream definitionStream, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.CreateIntermediateFormat(Byte[] definition, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CompileOdpReport(PublishingContext reportPublishingContext, IDataProtection dataProtection, PublishingErrorContext errorContext, String& reportDescription, String& reportLanguage, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CreateIntermediateFormat(PublishingContext reportPublishingContext, IDataProtection dataProtection)
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Report.Generador.GenerarPdf(Guid gIdDocumento) en D:\FST\website\vs2017\PRODUCCION.FACSE\FACSE\Report\Generador.cs:línea 145
+   en FasceMVC.Controllers.EmisorInicioController.ExportarPdf(Guid gDocumento) en D:\FST\website\vs2017\PRODUCCION.FACSE\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 181
+2019-10-01 18:15:17,598 [9] ERROR Generador  - Error renderizando reporte: 
+Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> Microsoft.Reporting.DefinitionInvalidException: La definición del informe '' no es válida. ---> Microsoft.ReportingServices.ReportProcessing.ReportPublishingException: El valor de la propiedad Top del objeto ‘Textbox19’ de tipo text box es negativo. No se permiten tamaños negativos.
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.InternalCreateIntermediateFormat(Stream definitionStream, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.CreateIntermediateFormat(Byte[] definition, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CompileOdpReport(PublishingContext reportPublishingContext, IDataProtection dataProtection, PublishingErrorContext errorContext, String& reportDescription, String& reportLanguage, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CreateIntermediateFormat(PublishingContext reportPublishingContext, IDataProtection dataProtection)
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Microsoft.Reporting.WebForms.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   en Report.Generador.ExportPdf(LocalReport report, Int32 width, Int32 heigth) en D:\FST\website\vs2017\PRODUCCION.FACSE\FACSE\Report\Generador.cs:línea 177
+2019-10-01 18:15:17,675 [9] ERROR EmisorInicioController  - Error al exportar pdf: Microsoft.Reporting.WebForms.LocalProcessingException: Se ha producido un error durante el procesamiento local de informes. ---> Microsoft.Reporting.DefinitionInvalidException: La definición del informe '' no es válida. ---> Microsoft.ReportingServices.ReportProcessing.ReportPublishingException: El valor de la propiedad Top del objeto ‘Textbox19’ de tipo text box es negativo. No se permiten tamaños negativos.
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.InternalCreateIntermediateFormat(Stream definitionStream, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportPublishing.ReportPublishing.CreateIntermediateFormat(Byte[] definition, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CompileOdpReport(PublishingContext reportPublishingContext, IDataProtection dataProtection, PublishingErrorContext errorContext, String& reportDescription, String& reportLanguage, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, DataSetInfoCollection& sharedDataSetReferences, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks, Byte[]& dataSetsHash)
+   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CreateIntermediateFormat(PublishingContext reportPublishingContext, IDataProtection dataProtection)
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Microsoft.Reporting.ReportCompiler.CompileReport(ICatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.GetCompiledReport(PreviewItemContext itemContext, Boolean rebuild, ControlSnapshot& snapshot)
+   en Microsoft.Reporting.LocalService.CompileReport()
+   en Microsoft.Reporting.LocalService.Microsoft.Reporting.ILocalProcessingHost.CompileReport()
+   en Microsoft.Reporting.WebForms.LocalReport.EnsureExecutionSession()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en Report.Generador.GenerarPdf(Guid gIdDocumento) en D:\FST\website\vs2017\PRODUCCION.FACSE\FACSE\Report\Generador.cs:línea 145
+   en FasceMVC.Controllers.EmisorInicioController.ExportarPdf(Guid gDocumento) en D:\FST\website\vs2017\PRODUCCION.FACSE\FACSE\FasceMVC\Controllers\EmisorInicioController.cs:línea 181

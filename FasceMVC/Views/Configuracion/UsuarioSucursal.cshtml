@@ -1,0 +1,102 @@
+﻿@model FasceMVC.Models.UsuarioSucursal
+@{
+
+}
+
+
+<div class="container">
+
+    <br />
+    <h2>
+        <img src="~/Content/Images/logo_titulos.png" /> Asignar sucursal al usuario
+    </h2>
+    <hr />
+    <div class="row">
+        <div class="col">
+            @Html.ActionLink("Volver", "Usuario", "Configuracion", null, new { @class = "btn btn-danger btn-sm" })
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="card">
+                <div class="card-header rojo text-center">
+                    <h5 style="color: white">Disponibles</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table tablaDatos">
+                        <thead>
+                            <tr>
+                                <th>Sucursal</th>
+                                <th>Abreviatura</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        @if (Model.ListDisponible != null && Model.ListDisponible.Any())
+                        {
+                            <tbody>
+                                @foreach (var item in Model.ListDisponible)
+                                {
+                                    <tr>
+                                        <td>@item.NombreSuc</td>
+                                        <td>@item.Abreviatura</td>
+                                        <td>
+                                            @Html.ActionLink("Asignar", "AsignarSucursalUsuario", new { idUsuario = Model.IdUsuario, idSucursal = item.IdSucursal }, new { @class = "asignar" })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="card">
+                <div class="card-header amarillo text-center">
+                    <h5 style="color: white">Asignadas</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table tablaDatos">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Sucursal</th>
+                                <th>Abreviatura</th>
+                            </tr>
+                        </thead>
+                        @if (Model.ListAsignada != null && Model.ListAsignada.Any())
+                        {
+                            <tbody>
+                                @foreach (var item in Model.ListAsignada)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("Eliminar", "EliminarUsuarioSucursal", new { idUsuario = Model.IdUsuario, idSucursal = item.IdSucursal }, new { @class = "eliminar" })
+                                        </td>
+                                        <td>@item.NombreSuc</td>
+                                        <td>@item.Abreviatura</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br />
+<style>
+    a.asignar {
+        background: url("../../Content/Images/punto-de-flecha-a-la-derecha.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+
+    a.eliminar {
+        background: url("../../Content/Images/basura.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+</style>

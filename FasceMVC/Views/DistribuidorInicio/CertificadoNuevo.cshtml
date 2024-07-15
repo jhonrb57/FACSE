@@ -1,0 +1,75 @@
+﻿@model DataBase.adm_emisor_certificado
+@{
+    /**/
+
+    Layout = null;
+}
+@Scripts.Render("~/bundles/modernizr")
+@Styles.Render("~/Content/bootstrap.css")
+@Styles.Render("~/Content/css/inicio.css")
+
+@Styles.Render("~/Content/pace-theme-mac-osx.css")
+@Scripts.Render("~/bundles/jquery")
+
+
+@using (Ajax.BeginForm("CrearCertificado", new AjaxOptions()
+{
+    InsertionMode = InsertionMode.Replace,
+    OnSuccess = "onSuccessCatalogo(data,this)"
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ece_emisor)
+
+    <div class="card mb-3 fondopciones">
+        <div style="color:#ffffff" class="card-header amarillo">
+            <i class="fas fa-chart-area"></i>
+            Adicionar Certificado
+        </div>
+        <div class="card-body">
+            <div>
+
+                <div class="form-group col-md-12">
+                    <div class="form-group col-md-12">
+                        @Html.LabelFor(model => model.ece_archivo, htmlAttributes: new { @class = "inputState" })
+
+                        @Html.EditorFor(model => model.ece_archivo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ece_archivo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-12">
+                        @Html.LabelFor(model => model.ece_certificado, htmlAttributes: new { @class = "inputState" })
+
+                        @Html.EditorFor(model => model.ece_certificado, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ece_certificado, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-12">
+                        @Html.LabelFor(model => model.ece_fecha_vegencia, htmlAttributes: new { @class = "inputState" })
+
+                        @Html.EditorFor(model => model.ece_fecha_vegencia, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ece_fecha_vegencia, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-12">
+                        @Html.LabelFor(model => model.ece_activo, htmlAttributes: new { @class = "" })
+
+                        @Html.EditorFor(model => model.ece_activo, new { htmlAttributes = new { @class = "" } })
+                        @Html.ValidationMessageFor(model => model.ece_activo, "", new { @class = "" })
+                    </div>
+                    <div class="form-group col-md-12">
+                        @Html.LabelFor(model => model.ece_contrasena, htmlAttributes: new { @class = "inputState" })
+
+                        @Html.EditorFor(model => model.ece_contrasena, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ece_contrasena, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-12">
+                        <button type="submit" class="btn btn-primary">Crear</button>
+
+                        <a class="btn btn-danger" style="color:white; cursor:pointer" onclick="cancelarCatalogo()" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Cancelar
+                        </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+                }

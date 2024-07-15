@@ -1,0 +1,77 @@
+﻿@model FasceMVC.Models.CatalogoModel
+
+@{
+
+}
+
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Styles.Render("~/Content/bootstrap.css")
+@Scripts.Render("~/Scripts/pace.js")
+@Scripts.Render("~/Scripts/bootstrap.min.js")
+@Styles.Render("~/Content/css/inicio.css")
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+@Scripts.Render("~/Scripts/sweetalert.min.js")
+
+
+<div class="container">
+
+    <br />
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header rojo">
+                    <h5 style="color:white;"><img src="~/Content/Images/logo_blanco.png" /> @Model.Titulo</h5>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("EnviarFormularioCatalogo", "Configuracion", FormMethod.Post, new { autocomplete = "off" }))
+                    {
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Nombre</label>
+                                @Html.TextBoxFor(Model => Model.Nombre, new { @class = "form-control" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Tipo dato</label>
+                                @Html.DropDownListFor(Model => Model.TipoDato, Model.ListadoTipoDato, new { @class = "form-control" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Tipo catalogo</label>
+                                @Html.DropDownListFor(Model => Model.TipoCatalogo, Model.ListadoTipoCatalogo, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4 col-lg-2">
+                                <label>Lista</label>
+                                @Html.CheckBoxFor(Model => Model.Lista)
+                            </div>
+                            @if (Model.IdCatalogo != Guid.Empty)
+                            {
+                                <div class="col-sm-6 col-md-4 col-lg-2">
+                                    <label>Activo</label>
+                                    @Html.CheckBoxFor(Model => Model.Estado)
+                                </div>
+                            }
+
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col">
+                                @Html.HiddenFor(Model => Model.IdCatalogo)
+                                <button type="submit" class="btn btn-sm btn-success" id="btnGuardar">Guardar</button>
+                                @Html.ActionLink("Cancelar", "Catalogo", new { idTipoCat = Guid.Empty }, new { @class = "btn btn-sm btn-danger" })
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,117 @@
+﻿@model FasceMVC.Models.CatalogoModel
+@{
+
+}
+
+
+<div class="container">
+    <br />
+    <h2>
+        <img src="~/Content/Images/logo_titulos.png" />   Catálogo
+    </h2>
+    <hr />
+    <div class="row">
+        <div class="col">
+            @Html.ActionLink("Volver", "Index", "Configuracion", null, new { @class = "btn btn-danger btn-sm" })
+            @Html.ActionLink("Agregar", "CrearEditarCatalogo", "Configuracion", new { idCatalogo = Guid.Empty }, new { @class = "btn btn-success btn-sm" })
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col">
+            @Html.DropDownListFor(Model => Model.TipoCatalogo, Model.ListadoTipoCatalogo, new { @class = "form-control", onchange = "cambiarTipoCatalogo(this.value)" })
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col">
+            @if (Model.ListadoCatalogo != null && Model.ListadoCatalogo.Any())
+            {
+            <table class="table table-bordered table-striped table-sm table-responsive-sm table-responsive-md">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th width="50"></th>
+                        <th>Nombre</th>
+                        <th width="150">Tipo catálogo</th>
+                        <th width="150">Tipo dato</th>
+                        <th width="60">Lista</th>
+                        <th width="60">Estado</th>
+                        <th width="50"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ListadoCatalogo)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink("Editar", "CrearEditarCatalogo", "Configuracion", new { idCatalogo = item.IdCatalogo }, new { @class = "editar" })
+                            </td>
+                            <td>@item.Nombre</td>
+                            <td>@item.TipoCatalogoText</td>
+                            <td>@item.TipoDatoText</td>
+                            <td>
+                                @Html.CheckBoxFor(model => item.Lista, new { disabled = "disabled" })
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(model => item.Estado, new { disabled = "disabled" })
+                            </td>
+                            <td>
+                                @if (item.Lista)
+                                {
+                                    @Html.ActionLink("CatalogoDetalle", "CatalogoDetalle", new { idCatalogo = item.IdCatalogo }, new { @class = "detalleCatalogo" })
+                                }
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            }
+            else
+            {
+                <h5>No cuenta con catalogos configurados</h5>
+            }
+        </div>
+    </div>
+</div>
+<br /><br />
+<style>
+    a.editar {
+        background: url("../../Content/Images/edit.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+
+    a.detalleCatalogo {
+        background: url("../../Content/Images/edit.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+</style>
+
+<script>
+
+    @Html.Raw(Model.JsFuncion)
+
+    function mensaje(mensaje, icon) {
+        swal({
+            title: mensaje,
+            icon: icon
+        });
+    }
+
+    function cambiarTipoCatalogo(idTipoCat) {
+        try {
+
+            Pace.track(() => {
+
+                document.location.href = "/Configuracion/Catalogo?idTipoCat=" + idTipoCat; 
+            });
+
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+</script>
+

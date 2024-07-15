@@ -1,0 +1,449 @@
+﻿@model FasceMVC.Models.Buscar
+@{
+    /**/
+
+    /**/
+}
+
+
+<style type="text/css">
+
+    .crear_factura {
+        background-color: #244C76;
+        color: white;
+        font-size: small;
+    }
+
+    .crear_receptor {
+        background-color: #5280AA;
+        color: white;
+        font-size: small;
+    }
+
+    .enviar_todos {
+        background-color: #5280AA;
+        color: #424242;
+        font-size: small;
+        width: 140px;
+    }
+
+    .editar_factura {
+        background-color: #81BBDE;
+        color: white;
+        font-size: small;
+    }
+
+    .Crear_nota_credito {
+        background-color: #244C76;
+        color: white;
+        font-size: small;
+    }
+
+    .EditarNotaCredito {
+        background-color: #5280AA;
+        color: #424242;
+        font-size: small;
+    }
+
+    .basura {
+        background: url("../../Content/Images/basura.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+
+    .edit {
+        background: url("../../Content/Images/edit.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+
+    .enviar {
+        background: url("../../Content/Images/enviar.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+
+    .updateProgress {
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        opacity: 0.5;
+        filter: alpha(opacity=70);
+        text-align: center;
+    }
+
+
+    .nota_1 {
+        background-color: #F68720;
+        color: white;
+        font-size: small;
+    }
+
+    .nota_2 {
+        background-color: #F15827;
+        color: white;
+        font-size: small;
+    }
+
+    .nota_3 {
+        background-color: #F62226;
+        color: white;
+        font-size: small;
+    }
+
+    .nota_4 {
+        background-color: #D445A4;
+        color: white;
+        font-size: small;
+    }
+</style>
+
+<div class="container">
+    <br />
+    <div class="card shadow-lg  mb-5 bg-white rounded">
+        <div class="card-header rojo ">
+            <h5 style="color:white">
+                <img src="~/Content/Images/logo_blanco.png" /> Documento
+            </h5>
+        </div>
+        <div class="card-body ">
+            <div class="form-group col-md-12">
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            </div>
+
+
+
+            <div class="row">
+
+                <div class="col-3">
+                    <b> <label>FACTURACION</label></b>
+                    <a class="btn crear_factura form-control" data-toggle="collapse" onclick="Asignartipodocumento('01')" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Crear Factura
+                    </a>
+                </div>
+                <div class="col-3">
+                    <label>&nbsp;</label>
+                    <a class="btn crear_receptor form-control" data-toggle="collapse" onclick="Asignartipodocumento('03')" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Crear Factura Contingencia
+                    </a>
+                    @*@Html.ActionLink("Crear Factura Contingencia", "Index", "FacturacionManual", new { tipodocumento = "03" }, new {  @class = "form-control btn Crear_factura_contingencia" })*@
+                </div>
+
+
+                <div class="col-3">
+                    <label>&nbsp;</label>
+                    @Html.ActionLink("Editar Factura", "Index", "EditarFactura", null, new { @class = "form-control btn editar_factura " })
+                </div>
+            </div>
+            <hr />
+
+            <div class="row">
+                <div class="col-3">
+                    <b> <label> NOTA CREDITO Y DEBITO</label></b>
+                    @Html.ActionLink("Crear Nota crédito", "Index", "NotaCredito", new { tipoDoc = "91" }, new { @class = "form-control btn nota_1" })
+                </div>
+
+                <div class="col-3">
+                    <label>&nbsp;</label>
+                    @Html.ActionLink("Editar Nota crédito", "Index", "EditarNotaCredito", new { tipoDoc = "91" }, new { @class = "form-control btn nota_2" })
+                </div>
+
+                <div class="col-3">
+                    <label>&nbsp;</label>
+                    @Html.ActionLink("Crear Nota debito", "Index", "NotaCredito", new { tipoDoc = "92" }, new { @class = "form-control btn nota_3" })
+                </div>
+
+                <div class="col-3">
+                    <label>&nbsp;</label>
+                    @Html.ActionLink("Editar Nota debito", "Index", "EditarNotaCredito", new { tipoDoc = "92" }, new { @class = "form-control btn nota_4" })
+                </div>
+
+            </div>
+
+            <hr />
+
+            <div class="row">
+                <div class="col-3">
+                    <b>  <label> RECEPTOR</label></b>
+                    @Html.ActionLink("Crear Receptor", "CrearAdquiriente", "Adquiriente", null, new { @class = "form-control btn  crear_receptor" })
+                </div>
+
+            </div>
+            <hr />
+
+            <div class="row">
+                <div class="col">
+                    <label>&nbsp;</label>
+                    @Html.ActionLink("Volver", "Index", "EmisorInicio", null, new { @class = "form-control btn btn-danger", style = "font-size: small" })
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="collapse" id="collapseExample">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        @using (Ajax.BeginForm("Buscar", null, new AjaxOptions() { InsertionMode = InsertionMode.Replace, OnSuccess = "onSuccess(data,this)" }, new { autocomplete = "off" }))
+                        {
+
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-8">
+                                    <label>Receptor:</label>
+                                    @Html.TextBoxFor(Model => Model.CampoBuscar, new { @class = "form-control" })
+                                    <input name="Tipodocumento" id="tipodocumento" value="" hidden />
+                                </div>
+                                <div class="col-2">
+                                    <label>&nbsp;</label>
+                                    <button type="submit" class="btn btn-info form-control">Buscar</button>
+                                </div>
+                                <div class="col-12">
+                                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col">
+                    <div id="vista">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <hr />
+
+    <div class="row">
+        <div class="col">
+            <div class="col">
+
+
+
+            </div>
+            <div id="loading" class="updateProgress" style="display:none;">
+                <img src="~/Content/Images/procesando.gif" />
+            </div>
+
+            @if (Model.ListadoTemporal != null && Model.ListadoTemporal.Any())
+            {
+                using (Html.BeginForm("EnviarTodos", "FacturacionManual", FormMethod.Post, new { id = "formulario", autocomplete = "off", onSubmit = "EnviarTodasFacturas(); return false;" }))
+                {
+                    @Html.HiddenFor(Model => Model.ListaDocumentos)
+
+                    <button class="btn btn-success" style="cursor:pointer">Enviar DIAN</button>
+                }
+            }
+            <br />
+
+            @if (Model.ListadoTemporal != null && Model.ListadoTemporal.Any())
+            {
+                <table id="TablaEnvioTodo" class="table  tablaDatos table-bordered table-sm table-responsive-sm">
+                    <thead class="thead-dark text-center">
+                        <tr>
+                            <th> </th>
+                            @*<th width="30"></th>*@
+                            <th>Consecutivo</th>
+                            <th>Tipo Documento</th>
+                            <th>Receptor</th>
+                            <th>Nit</th>
+                            <th>Subtotal</th>
+                            <th>Impuesto</th>
+                            <th>Valor total</th>
+                            <th>Fecha</th>
+                            <th><input type="checkbox" id="checkUncheckAll" onClick="CheckUncheckAll()" /> </th>
+                            <th></th>
+                            <th></th>
+                            @*<th width="30"></th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ListadoTemporal)
+                        {
+                            <tr>
+                                <td width="30px">
+                                    @Html.ActionLink("edit", "CargaTemporalEditar", "EditarFactura", new { item.emisor, item.Consecutivo }, new { @class = "edit" })
+                                </td>
+                                <td>@item.Consecutivo</td>
+                                <td>@item.Identificacion</td>
+                                <td>@item.Receptor</td>
+                                <td align="right">@item.Nit</td>
+                                <td align="right" class="text-right">@string.Format("{0:C2}", item.Subtotal)</td>
+                                <td align="right" class="text-right">@string.Format("{0:C2}", @item.Impuesto)</td>
+                                <td align="right" class="text-right">@string.Format("{0:C2}", @item.ValorTotal)</td>
+
+                                <td>@item.Fecha</td>
+                                <td width="30px">
+                                    <input type="hidden" value="@item.Consecutivo" id="Consecutivo" />
+                                    <input type="checkbox" name="rowSelectCheckBox" />
+                                </td>
+                                <td width="30px">
+                                    @Html.ActionLink("basura", "EliminarTemporal", "FacturacionManual", new { item.Ides }, new { @class = "basura" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <h5>No cuenta con datos </h5>
+            }
+            @*@if (Model.listaResultados != null && Model.listaResultados.Any())
+                {
+                    <table class="table  tablaDatos table-bordered table-sm table-responsive-sm">
+                        <thead class="thead-dark text-center">
+                            <tr>
+                                <th>Respuesta</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.listaResultados</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <h5>No a realizado envio de facturas</h5>
+                }*@
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<script type="text/javascript">
+
+    @Html.Raw(Model.JsFuncion)
+
+    function CheckUncheckAll() {
+        var selectAllCheckbox = document.getElementById("checkUncheckAll");
+        if (selectAllCheckbox.checked == true) {
+            var checkboxes = document.getElementsByName("rowSelectCheckBox");
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = true;
+            }
+        } else {
+            var checkboxes = document.getElementsByName("rowSelectCheckBox");
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = false;
+            }
+        }
+    }
+
+    function EnviarTodasFacturas() {
+        $('#loading').show();
+        var toStore = [];
+        var i = 0;
+        $('#TablaEnvioTodo').find('tr').each(function () {
+            var row = $(this);
+            if (row.find('input[type="checkbox"]').is(':checked')) {
+                console.log(row.find('input[id="Consecutivo"]').val());
+                toStore.push(row.find('input[id="Consecutivo"]').val())
+            }
+        });
+        console.log(toStore.toString());
+        $('#ListaDocumentos').val(toStore.toString());
+        $('#formulario').submit();
+
+        //console.log(toStore);
+        //    Pace.track(function () {
+        //        $.ajax({
+        //            url: "/FacturacionManual/EnviarTodos",
+        //            type: "POST",
+        //            data: { ListadoTemporal: toStore },
+        //            success: function (data) {
+        //                mensaje(data.mensaje, data.icon);
+        //                location.reload();
+        //            }
+        //        });
+        //    });
+    }
+
+    function onSuccess(result, ref) {
+        if (result.isValid) {
+            $("#vista").html(result.data);
+        } else {
+            jQuery("#form1").html(result.data);
+        }
+    }
+
+    function mensaje(mensaje, icon) {
+
+            try {
+                swal({
+                    title: mensaje,
+                    icon: icon
+                });
+            } catch (e) {
+                console.log(e);
+            }
+    }
+
+    function CargarTotales() {
+        $("#Descuento").val(descuento);
+        var subtotal = $("#SubTotalGeneral").val();
+        var total = $("#TotalGeneral").val();
+
+        var restasubtotal = parseFloat(subtotal) - parseFloat(descuento);
+        var restatotal = parseFloat(total) - parseFloat(descuento);
+
+        $("#Subtotal").val(restasubtotal);
+        $("#Total").val(restatotal);
+    }
+    function Asignartipodocumento(tipodocumento) {
+
+        $("#tipodocumento").val(tipodocumento);
+
+    }
+
+
+    //function onSuccess(result, ref) {
+
+    //    try {
+    //        if (result.isValid) {
+    //            $("#divMensaje").html(result.data);
+    //        } else {
+
+    //            if (result.data == "OK") {
+    //                location.href = "/FacturacionManual/Buscar";
+    //            } else {
+    //                console.log(result.data);
+    //                $("#divMensaje").html("Ha ocurrido un error");
+    //            }
+    //        }
+    //    } catch (e) {
+    //        console.log(result.data);
+    //    }
+    //}
+
+</script>

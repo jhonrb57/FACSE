@@ -1,0 +1,263 @@
+﻿@model FasceMVC.Models.NotaCredito.Detalle
+
+@{
+
+}
+
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+@Styles.Render("~/Content/bootstrap.css")
+@Scripts.Render("~/Scripts/pace.js")
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/Scripts/bootstrap.min.js")
+
+
+<br />
+<div class="container">
+    <div class="card shadow-lg  mb-5 bg-white rounded">
+        <div class="card-header amarillo ">
+            <h5 style="color:white">
+                <img src="~/Content/Images/logo_blanco.png" /> Detalles
+            </h5>
+        </div>
+        <div class="card-body">
+
+            @using (Html.BeginForm("GuardarDetalleFactura", "EditarFactura", FormMethod.Post, new { autocomplete = "off" }))
+            {
+
+
+                <div class="form-group">
+                    <label>Codigo:</label>
+                    @Html.TextBox("Codigo", Model.Codigo, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Codigo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label>Descripción:</label>
+                    @Html.TextBox("Descripcion", Model.Descripcion, new { @class = "form-control" })
+                </div>
+
+
+                <div class="form-row">
+                    <div class="col">
+                        <label>Unidad:</label>
+                        @Html.DropDownListFor(Model => Model.Unidad, Model.ListadoUnidad, new { @class = "form-control" })
+                    </div>
+                    <div class="col">
+                        <label>Cantidad:</label>
+                        @Html.TextBox("Cantidad", Model.Cantidad, new { @class = "form-control", type = "number", min = "1", onchange = "CalcularTotal();" })
+                    </div>
+                    <div class="col">
+                        <label>Valor unitario:</label>
+                        @Html.TextBoxFor(Model => Model.ValorUnidad, new { @class = "form-control", onchange = "CalcularTotal();" })
+                    </div>
+                    <div class="col">
+                        <label>Descuento:</label>
+                        @Html.TextBoxFor(Model => Model.Descuento, new { @class = "form-control", onchange = "CalcularTotal();" })
+                    </div>
+                    <div class="col">
+                        <label>Cargo</label>
+                        @Html.TextBoxFor(Model => Model.Cargo, new { @class = "form-control", onchange = "CalcularTotal();" })
+                    </div>
+                    <div class="col">
+                        <label>Impuesto:</label>
+                        @Html.DropDownListFor(Model => Model.Impuesto, Model.ListadoImpuestos, new { @class = "form-control", onchange = "CalcularImpuesto(this.value); CalcularTotal();" })
+                        @Html.HiddenFor(Model => Model.Porcentaje)
+                        @Html.HiddenFor(Model => Model.Id)
+                    </div>
+
+                </div>
+                <br />
+                <div class="form-row">
+
+                    <div class="col">
+                        <label>Catalogo</label>
+                        <table class="table table-bordered table-striped table-sm table-responsive-sm table-responsive-md">
+
+
+                            <thead class="thead-dark text-center">
+                                <tr>
+                                    <th>Descripción</th>
+                                    <th>Valor</th>
+                                </tr>
+                            </thead>
+
+                            @for (int i = 0; i < Model.ListadoCatalogo.Count(); i++)
+                            {
+                                <tr>
+                                    <td class="" width="300">@Model.ListadoCatalogo[i].Descripcion.ToString()</td>
+                                    @if (Model.ListadoCatalogo[i].Lista)
+                                    {
+                                        <td class="catValor">
+                                            @Html.DropDownListFor(Model => Model.ListadoCatalogo[i].ListadoCag[0].Selected, Model.ListadoCatalogo[i].ListadoCag, new { @class = "form-control", onchange = "GuardarCatalogo('" + Model.ListadoCatalogo[i].Id + "',this.value);" })
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="catValor">
+                                            @Html.TextBoxFor(Model => Model.ListadoCatalogo[i].Valor, new { @class = "form-control text-right imputtrasnparente", onchange = "GuardarCatalogo('" + Model.ListadoCatalogo[i].Id + "',this.value);" })
+                                        </td>
+                                    }
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+
+                    <div class="col">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <label>Subtotal:</label>
+                                    @Html.TextBoxFor(Model => Model.SubTotal, new { @class = "form-control inputClass" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label>Impuesto</label>
+                                    @Html.TextBoxFor(Model => Model.ValorImpuesto, new { @class = "form-control inputClass", onKeyUp = "CalcularTotal();" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label>Total:</label>
+                                    @Html.TextBoxFor(Model => Model.Total, new { @class = "form-control inputClass" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+
+                </div>
+
+                <br />
+
+                <button id="btnGuardar" type="submit" class="btn btn-success">Guardar</button>
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger btn-sm" })
+
+            }
+
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+
+
+
+<style>
+    .inputClass {
+        pointer-events: none;
+        background-color: #e9ecef;
+    }
+</style>
+
+<script>
+
+    $(document).ready(function () {
+        CalcularImpuesto($("#Impuesto").val());
+        CalcularTotal();
+    });
+
+
+    function CalcularImpuesto(idImpuesto) {
+        try {
+
+
+            var porcentaje = 0;
+            Pace.track(() => {
+                $.ajax({
+                    type: "POST",
+                    async: false,
+                    url: "/FacturacionManual/CargarPorcentajeImpuesto",
+                    data: { impuesto: idImpuesto },
+                    success: (data) => {
+                        if (data != null) {
+
+                            $("#Porcentaje").val(data);
+                            porcentaje = data;
+                        }
+                    },
+                    error: (error) => {
+                        console.error(error);
+                    }
+                });
+            });
+            return porcentaje;
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+
+    function CalcularTotal() {
+        try {
+            var porcentaje = CalcularImpuesto($("#Impuesto").val());
+
+            console.log(porcentaje);
+
+            var cantidad = $("#Cantidad").val();
+            var valorUnidad = $("#ValorUnidad").val();
+            var valorDescuento = $("#Descuento").val();
+            var cargo = $("#Cargo").val();
+
+
+
+            $("#SubTotal").val(((((parseFloat(cantidad) * parseFloat(valorUnidad))) - parseFloat(valorDescuento)) + parseFloat(cargo)).toFixed(2));
+
+            var subtotal = $("#SubTotal").val();
+            var valorImpuesto = ((parseFloat(subtotal) * parseFloat(porcentaje))) / 100;
+
+            $('#ValorImpuesto').val(valorImpuesto.toFixed(2));
+
+            $("#Total").val(((((parseFloat(cantidad) * parseFloat(valorUnidad))) - parseFloat(valorDescuento)) + parseFloat(cargo) + parseFloat(valorImpuesto)).toFixed(2));
+
+            var subtotal = $("#SubTotal").val();
+
+            if (subtotal > 0) {
+                $("#btnGuardar").prop('disabled', false);
+            }
+            else {
+                $("#btnGuardar").prop('disabled', true);
+            }
+
+            if (valorUnidad > 0) {
+                $("#btnGuardar").prop('disabled', false);
+            }
+            else {
+                $("#btnGuardar").prop('disabled', true);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+
+
+    function GuardarCatalogo(id, valor) {
+        try {
+            Pace.track(() => {
+                $.ajax({
+                    type: "POST",
+                    url: "/FacturacionManual/ActualizarCatalogoDetalle",
+                    data: { idCatalogo: id, valor: valor },
+                    success: (data) => {
+                        if (data != null) {
+                            console.log(data);
+                        }
+                    },
+                    error: (error) => {
+                        console.error(error);
+                    }
+                });
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+
+    $('select').chosen();
+</script>

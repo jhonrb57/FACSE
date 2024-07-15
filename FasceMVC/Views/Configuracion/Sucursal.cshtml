@@ -1,0 +1,122 @@
+﻿@model FasceMVC.Models.Sucursal
+@{
+
+}
+<div class="container">
+    <br />
+
+
+    <h2>
+        <img src="~/Content/Images/logo_titulos.png" /> Sucursal
+    </h2>
+    <hr />
+    <div class="row">
+        <div class="col">
+            @Html.ActionLink("Volver", "Index", "Configuracion", null, new { @class = "btn btn-danger btn-sm" })
+            @Html.ActionLink("Agregar", "CrearEditarSucursal", "Configuracion", new { idSucursal = Guid.Empty }, new { @class = "btn btn-success btn-sm" })
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col">
+
+            @if (Model.ListadoSucursal != null && Model.ListadoSucursal.Any())
+            {
+
+            <table class="table table-bordered table-striped table-sm table-responsive-sm table-responsive-md">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th></th>
+                        <th>Nombre</th>
+                        <th>Abreviatura</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                        <th>Estado</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model.ListadoSucursal)
+                {
+                    <tr title="@item.Id">
+                        <td width="45">
+                            @Html.ActionLink("Editar", "CrearEditarSucursal", new { idSucursal = item.Id }, new { @class = "editar" })
+                        </td>
+                        <td>@item.Nombre</td>
+                        <td>@item.Abreviatura</td>
+                        <td>@item.Direccion</td>
+                        <td>@item.Telefono</td>
+                        <td width="50">
+                            @Html.CheckBox("Activo", @item.Estado, new { @class = "", disabled = "disabled" })
+                        </td>
+                        <td width="45">
+                            @if (item.HasResolution)
+                            {
+                                @Html.ActionLink("Resoluciones", "SucursalResolucion", new { idSucursal = item.Id }, new { @class = "tresolucion" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Resoluciones", "SucursalResolucion", new { idSucursal = item.Id }, new { @class = "nresolucion" })
+                            }
+                        </td>
+                        <td>
+                            <img src="~/Content/Images/exclamation.png" onclick="ejecutar('@item.Id')" />
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            }
+            else
+            {
+                <h5>No cuenta con sucursales</h5>
+            }
+        </div>
+    </div>
+</div>
+<div id="destino" contentEditable="true">
+</div>
+<br /><br />
+<style>
+    a.editar {
+        background: url("../../Content/Images/edit.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+
+    a.tresolucion {
+        background: url("../../Content/Images/btn_resoluccion.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+
+    a.nresolucion {
+        background: url("../../Content/Images/btn_resoluccion_gris.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+</style>
+<script>
+
+    @Html.Raw(Model.JsFuncion)
+
+
+    function mensaje(mensaje, icon){
+        try {
+            swal({
+                title: mensaje,
+                icon: icon
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function ejecutar(id) {
+        swal({
+            title: id,
+            icon: "info"
+        });
+    }
+    
+</script>

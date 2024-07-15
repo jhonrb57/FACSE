@@ -1,0 +1,84 @@
+﻿@model FasceMVC.Models.Certificado
+@{
+
+}
+
+
+<div class="container">
+    <br />
+    <h2>
+        <img src="~/Content/Images/logo_titulos.png" />   Certificado
+    </h2>
+    <hr />
+    <div class="row">
+        <div class="col">
+            @Html.ActionLink("Volver", "Index", "Configuracion", null, new { @class = "btn btn-danger btn-sm" })
+            @Html.ActionLink("Agregar", "CrearEditarCertificado", "Configuracion", new { idCertificado = Guid.Empty }, new { @class = "btn btn-success btn-sm" })
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col">
+            @if (Model.ListadoCertificados != null && Model.ListadoCertificados.Any())
+            {
+            <table class="table table-bordered table-striped table-sm table-responsive-sm table-responsive-md">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th></th>
+                        <th>Archivo</th>
+                        <th>Vigencia</th>
+                        <th>Contraseña</th>
+                        <th style="width: 50px">Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ListadoCertificados)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink("Editar", "CrearEditarCertificado", new { idCertificado = item.IdCertificado }, new { @class = "editar" })
+                            </td>
+                            <td>@item.Archivo</td>
+                            <td>@item.FechaVigencia.ToString("dd/MM/yyyy")</td>
+                            <td>@item.Contrasena</td>
+                            <td>
+                                @Html.CheckBoxFor(itez => item.Estado, new { disabled = "disabled" })
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+            }
+            else
+            {
+                <h5>No cuenta con certificados</h5>
+            }
+
+        </div>
+    </div>
+</div>
+<br /><br />
+<style>
+    a.editar {
+        background: url("../../Content/Images/edit.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+</style>
+<script>
+    @Html.Raw(Model.JsFuncion)
+
+
+    function mensaje(mensaje, icon) {
+        try {
+            swal({
+                title: mensaje,
+                icon:icon
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+</script>

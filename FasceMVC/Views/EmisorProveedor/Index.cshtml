@@ -1,0 +1,660 @@
+﻿@model DataBase.adm_documento_proveedor
+
+@{
+    ViewBag.Title = "Factura Proveedores";
+}
+
+<title>.::FACSE::..</title>
+@Scripts.Render("~/Scripts/sweetalert.min.js")
+@*<script>
+        $("#gview_jqgrid_ctrs .ui-jqgrid-titlebar").removeClass('ui-widget-header');
+        $("#gview_jqgrid_ctrs .ui-jqgrid-titlebar").addClass('jqgrid-header');
+    </script>*@
+
+<style type="text/css">
+    .ui-widget-header {
+        background: rgba(63,216,56,1);
+        background: -moz-linear-gradient(45deg, rgba(63,216,56,1) 0%, rgba(63,216,56,1) 58%, rgba(99,186,18,1) 100%);
+        background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(63,216,56,1)), color-stop(58%, rgba(63,216,56,1)), color-stop(100%, rgba(99,186,18,1)));
+        background: -webkit-linear-gradient(45deg, rgba(63,216,56,1) 0%, rgba(63,216,56,1) 58%, rgba(99,186,18,1) 100%);
+        background: -o-linear-gradient(45deg, rgba(63,216,56,1) 0%, rgba(63,216,56,1) 58%, rgba(99,186,18,1) 100%);
+        background: -ms-linear-gradient(45deg, rgba(63,216,56,1) 0%, rgba(63,216,56,1) 58%, rgba(99,186,18,1) 100%);
+        background: linear-gradient(45deg, rgba(63,216,56,1) 0%, rgba(63,216,56,1) 58%, rgba(99,186,18,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3fd838', endColorstr='#63ba12', GradientType=1 );
+        color: #FFFFFF;
+        border: solid;
+        border-color: white;
+    }
+
+    .jqgrid-header {
+        background: red;
+        color: #FFFFFF;
+        border: solid;
+        border-color: white;
+    }
+
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+        border: none;
+        background: #f6f6f6;
+        font-weight: bold;
+        color: #454545;
+        font-size: x-small;
+    }
+
+
+    .colorblanco {
+        color: #FFFFFF;
+    }
+
+    .fuente {
+        font-size: 11px;
+    }
+
+    .checkbox label:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+
+    .checkbox .cr {
+        position: relative;
+        display: inline-block;
+        border: 1px solid #a9a9a9;
+        border-radius: .25em;
+        width: 1.3em;
+        height: 1.3em;
+        float: left;
+        margin-right: .5em;
+    }
+
+        .checkbox .cr .cr-icon {
+            position: absolute;
+            font-size: .8em;
+            line-height: 0;
+            top: 50%;
+            left: 15%;
+        }
+
+    .checkbox label input[type="checkbox"] {
+        display: none;
+    }
+
+        .checkbox label input[type="checkbox"] + .cr > .cr-icon {
+            opacity: 0;
+        }
+
+        .checkbox label input[type="checkbox"]:checked + .cr > .cr-icon {
+            opacity: 1;
+        }
+
+        .checkbox label input[type="checkbox"]:disabled + .cr {
+            opacity: .5;
+        }
+
+    a.crear {
+        background: url("../../Content/Images/crear.png") no-repeat top left;
+        display: block;
+        height: 83px;
+        text-indent: -9999px;
+    }
+
+    a.clientes {
+        background: url("../../Content/Images/ConsultarClientes.png") no-repeat top left;
+        display: block;
+        height: 83px;
+        text-indent: -9999px;
+    }
+
+    a.configuracion {
+        background: url("../../Content/Images/configuracion.png") no-repeat top left;
+        display: block;
+        height: 83px;
+        text-indent: -9999px;
+    }
+
+
+    .AdicionarDocuentos {
+        background: url("../../Content/Images/adicionar_documentos.png") no-repeat;
+        display: block;
+        text-indent: -9999px;
+    }
+
+    .modal {
+        position: fixed;
+        z-index: 999;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        background-color: Black;
+        filter: alpha(opacity=60);
+        opacity: 0.6;
+        -moz-opacity: 0.8;
+        display: none;
+    }
+
+    .hiddenClass {
+        display: none;
+    }
+
+    .table th {
+        font-size: 11px;
+    }
+
+    .table td {
+        font-size: 11px;
+    }
+
+    .updateProgress {
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        opacity: 0.5;
+        filter: alpha(opacity=70);
+        text-align: center;
+    }
+</style>
+
+<div id="divEmisor">
+    <div class="card mb-3 fondopciones">
+        <div style=" color: #ffffff" class="card-header rojo">
+            <i class="fas fa-table"></i>
+            Documentos Proveedores / @Session["i_susuario"]
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div id="grillabuscar">
+                        <a class="btn btn-primary azul " data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Filtros Específicos Para Documentos Proveedores
+                        </a>
+                        <br />
+                        <br />
+
+                        @using (Ajax.BeginForm("ListadoBuscar", new AjaxOptions()
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            OnSuccess = "onSucces(data, this)",
+                            LoadingElementId = "loading"
+                        }))
+                        {
+                            <div class="collapse" id="collapseExample">
+
+                                @Html.HiddenFor(model => model.UrlImportar)
+                                @Html.AntiForgeryToken()
+                                <div class="form-row container">
+                                    <div class="form-group col-md-12">
+                                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-4 mb-3">
+                                            @Html.LabelFor(model => model.FechaInicial, new { @class = "validationCustom01" })
+                                            @Html.EditorFor(model => model.FechaInicial, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.FechaInicial, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            @Html.LabelFor(model => model.FechaFinal, new { @class = "control-label" })
+
+                                            @Html.EditorFor(model => model.FechaFinal, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.FechaFinal, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            @Html.LabelFor(model => model.Numero, new { @class = "control-label" })
+
+                                            @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            @Html.LabelFor(model => model.Identificacion, new { @class = "control-label" })
+
+                                            @Html.EditorFor(model => model.Identificacion, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Identificacion, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            @Html.LabelFor(model => model.Nombre, new { @class = "control-label" })
+
+                                            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            @Html.LabelFor(model => model.IdComprobante, new { @class = "control-label" })
+
+                                            @Html.DropDownList("IdComprobante", null, "--Todos--", new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            @Html.LabelFor(model => model.IdEstadoFacse, new { @class = "control-label" })
+
+                                            @Html.DropDownList("IdEstadoFacse", null, "--Todos--", new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-12">
+                                            <input type="submit" id="search" name="_search" value="Buscar" class="btn btn-info" onclick="validar();" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <hr />
+                            </div>
+
+                            <div class="col-md-12  text-right">
+                                <input type="submit" id="search" name="_search" value="Refrescar" class="btn   btn-secondary  btn-sm" onclick="validar();" />
+                                <input type="submit" id="exportar" name="_exportar" value="Exportar" class="btn btn-success  btn-sm" />
+
+                                @*@Html.ActionLink("Volver", "Index", "EmisorInicio", null, new { @class = " btn btn-danger  btn-sm ", style = "font-size: small" })*@
+                            </div>
+                        }
+
+                        <hr />
+
+                        <div class="form-group col-md-12">
+                            @using (Ajax.BeginForm("AdicionarNuevoDocumento", "EmisorProveedor", new AjaxOptions { HttpMethod = "POST", OnSuccess = "AdicionarDocumento()", LoadingElementId = "loading", InsertionMode = InsertionMode.Replace, UpdateTargetId = "adicionar" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <button class="btn btn-link" type="submit">
+                                    <img src="../../Content/Images/adicionar_documentos.png" />
+                                </button>
+
+
+                            }
+                        </div>
+                    </div>
+                    <div id="adicionar"></div>
+                    <div id="grilla">
+                        <div class="form-group col-md-12">
+                            <span id="errorinicio" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-9">
+                            <div class="form-row">
+                                <div class="col-12">
+                                    <button class="btn btn-warning btn-sm" onclick="EnvioAcuse(); return false;" style="cursor:pointer">Reenvio de Acuse</button>
+                                    <button class="btn btn-success btn-sm " onclick="EnvioRecibido(); return false;" style="cursor:pointer;">Aceptar</button>
+                                    <button class="btn btn-danger btn-sm" onclick="EnvioRechazado(); return false;"
+                                            style="cursor:pointer;">
+                                        Rechazar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+
+                        <table id="ListadoEmisor" class="table table-striped table-bordered">
+                            <thead class="thead-dark text-capitalize">
+                                <tr>
+                                    <th style="display: none;"></th>
+                                    <th>
+                                        <input type="checkbox" id="checkUncheckAll" onClick="CheckUncheckAll()" />
+                                    </th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>Tipo</th>
+                                    <th>Perfijo</th>
+                                    <th>Nro</th>
+                                    <th>Identificacion</th>
+                                    <th>Nombre</th>
+                                    <th>Emisión</th>
+                                    <th>Envio</th>
+                                    <th>Recibido</th>
+                                    <th>Total</th>
+                                    <th>Usu</th>
+                                    <th>Acuse</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+
+                        <div id="pagerListadoEmisor"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <label>&nbsp;</label>
+
+        </div>
+    </div>
+
+</div>
+<div id="loading" class="updateProgress" style="display:none;">
+    <img src="~/Content/Images/procesando.gif" />
+</div>
+@section scripts{
+    <script type="text/javascript">
+
+        var table;
+    $(document).ready(function () {
+        ListadoEmisorProveedor();
+     });
+
+        function AceptarRechazar(idDocumento, validacion, element) {
+            Loading("block");
+            window.setTimeout('AceptarRechazar1(\'' + idDocumento + '\',' + validacion + ',' + element + ')', 1000);
+        }
+
+        function AceptarRechazar1(idDocumento, validacion, element) {
+
+             $.ajax({
+                 url: '@Url.Action("AceptadoRechazo", "EmisorProveedor")',
+                 type: 'POST',
+                 data: JSON.stringify({ 'idDocumento': idDocumento, 'validacion': validacion  }),
+                    async: false,
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8", //Added so ASP recognized JSON
+                    traditional: true,
+                    success: function (data) {
+                            if (data.isValid) {
+                                var tds = document.getElementById(element).parentElement.parentElement.getElementsByTagName("td");
+
+                                document.getElementById(element).parentElement.innerHTML = "";
+
+                                if (validacion) {
+                                    tds[2].innerHTML = '<a class="tooltip" style="cursor: pointer"><img     title="Aceptado receptor" src="/Content/Images/estados/aceptado_receptor.png"></  a>';
+                                }
+                                else {
+                                    tds[2].innerHTML = '<a class="tooltip" style="cursor: pointer"><img title="Rechazado receptor" src="/Content/Images/estados/rechazado_receptor.png"></a>';
+                                }
+                            }
+                            else {
+                                mensaje(data.mensaje, 'error');
+                            }
+                        },
+                    error: function (e) {
+                        if (e.status == 403) {
+                            window.location.href = '@Url.Content("~/Login/Index/Se caduco la session")';
+                        }
+                        else {
+                            window.location.href = '@Url.Content("~/Login/Index/Se presento un inconveniente inesperado volver a intentar, si el incoveniente persiste comuniquese con el administrador")';
+                        }
+                    }
+            });
+            Loading("none");
+        }
+
+    function onSucces(result, ref) {
+        if (result.archivo) {
+            window.location.href = "@Url.RouteUrl(new
+            { Controller = "EmisorProveedor", Action = "Download"})/?file=" + result.pan;
+        }
+        else {
+            $("#divEmisor").html(result.pan);
+            ListadoEmisorProveedor();
+        }
+    }
+
+    function validar() {
+        var inicio = document.getElementById('FechaInicial').value;
+        var finalq = document.getElementById('FechaFinal').value;
+        inicio = new Date(inicio);
+        finalq = new Date(finalq);
+        if (inicio > finalq)
+            alert('La fecha de inicio no puede ser mayor que la fecha fin');
+    }
+
+    function myFunction() {
+        var input, filter, table, tr, td, i, t;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            var filtered = false;
+            var tds = tr[i].getElementsByTagName("td");
+            if (tds.length == 0) {
+                filtered = true;
+            }
+            for (t = 0; t < tds.length - 1; t++) {
+                var td = tds[t];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        filtered = true;
+                    }
+                }
+            }
+            if (filtered === true) {
+                tr[i].style.display = '';
+            }
+            else {
+                tr[i].style.display = 'none';
+            }
+        }
+    }
+
+        function CheckUncheckAll() {
+        var selectAllCheckbox = document.getElementById("checkUncheckAll");
+        if (selectAllCheckbox.checked == true) {
+            var checkboxes = document.getElementsByName("rowSelectCheckBox");
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = true;
+            }
+        } else {
+            var checkboxes = document.getElementsByName("rowSelectCheckBox");
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = false;
+            }
+        }
+    }
+        function mensaje(mensaje, icon) {
+            try {
+                swal({
+                    title: mensaje,
+                    icon: icon
+                });
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+        function EnvioAcuse() {
+            Loading("block");
+            window.setTimeout('EnvioAcuse1()', 1000);
+        }
+
+    function EnvioAcuse1() {
+        var token = $('input[name="__RequestVerificationToken"]').val();
+
+        var toStore = [];
+        var i = 0;
+        $('#ListadoEmisor').each(function () {
+            $("input[type=\"checkbox\"]:checked").each(function () {
+                if (this.id != "checkUncheckAll") {
+                    toStore[i] = {};
+                    $(this).closest('td').siblings().each(function () {
+                        $(this).find(':input').each(function () {
+                            toStore[i][this.name] = this.value;
+                        });
+                    });
+                    i++;
+                }
+            });
+        });
+        if (i == 0) {
+            $('#errorinicio').text("Debe Seleccionar un Documento");
+        }
+        else {
+            toStore = JSON.stringify({ 'listadoDocumentoProveedor': toStore});
+
+                $.ajax({
+                    url: '@Url.Action("ReenvioAcuse", "EmisorProveedor")',
+                    type: 'POST',
+                    data: toStore,
+                    async: false,
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8", //Added so ASP recognized JSON
+                    traditional: true,
+                    success: function (data) {
+                        if (data) {
+                            mensaje('Proceso Reenvio Acuse con Exito', 'success');
+                            table.ajax.reload(null, false);
+                        }
+                    },
+                    error: function (e) {
+                        if (e.status == 403) {
+                            window.location.href = '@Url.Content("~/Login/Index/Se caduco la session")';
+                        }
+                        else {
+                            window.location.href = '@Url.Content("~/Login/Index/Se presento un inconveniente inesperado volver a intentar, si el incoveniente persiste comuniquese con el administrador")';
+                        }
+                    }
+            });
+        }
+        Loading("none");
+        }
+
+        function Loading(tipo) {
+            document.getElementById("loading").style.display = tipo;
+        }
+
+        function EnvioRecibido() {
+            Loading("block");
+            window.setTimeout('EnvioRecibido1()', 1000);
+        }
+
+        function EnvioRecibido1() {
+
+        var token = $('input[name="__RequestVerificationToken"]').val();
+
+        var toStore = [];
+        var i = 0;
+        $('#ListadoEmisor').each(function () {
+            $("input[type=\"checkbox\"]:checked").each(function () {
+                if (this.id != "checkUncheckAll") {
+                    toStore[i] = {};
+                    $(this).closest('td').siblings().each(function () {
+                        $(this).find(':input').each(function () {
+                            toStore[i][this.name] = this.value;
+                        });
+                    });
+                    i++;
+                }
+            });
+        });
+        if (i == 0) {
+            $('#errorinicio').text("Debe Seleccionar un Documento");
+        }
+        else {
+            toStore = JSON.stringify({ 'listadoDocumentoProveedor': toStore});
+
+                $.ajax({
+                    url: '@Url.Action("ReenvioRecibido", "EmisorProveedor")',
+                    type: 'POST',
+                    data: toStore,
+                    async: false,
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8", //Added so ASP recognized JSON
+                    traditional: true,
+                    success: function (data) {
+                        if (data) {
+                            mensaje('Proceso de Recibido con Exito', 'success');
+                            table.ajax.reload(null, false);
+                        }
+                    },
+                    error: function (e) {
+                        if (e.status == 403) {
+                            window.location.href = '@Url.Content("~/Login/Index/Se caduco la session")';
+                        }
+                        else {
+                            window.location.href = '@Url.Content("~/Login/Index/Se presento un inconveniente inesperado volver a intentar, si el incoveniente persiste comuniquese con el administrador")';
+                        }
+                    }
+                });
+
+            }
+            Loading("none");
+        }
+
+        function EnvioRechazado() {
+            Loading("block");
+            window.setTimeout('EnvioRechazado1()', 1000);
+        }
+
+        function EnvioRechazado1() {
+
+        var token = $('input[name="__RequestVerificationToken"]').val();
+
+        var toStore = [];
+        var i = 0;
+        $('#ListadoEmisor').each(function () {
+            $("input[type=\"checkbox\"]:checked").each(function () {
+                if (this.id != "checkUncheckAll") {
+                    toStore[i] = {};
+                    $(this).closest('td').siblings().each(function () {
+                        $(this).find(':input').each(function () {
+                            toStore[i][this.name] = this.value;
+                        });
+                    });
+                    i++;
+                }
+            });
+        });
+        if (i == 0) {
+            $('#errorinicio').text("Debe Seleccionar un Documento");
+        }
+        else {
+            toStore = JSON.stringify({ 'listadoDocumentoProveedor': toStore });
+
+                $.ajax({
+                    url: '@Url.Action("ReenvioRechazado", "EmisorProveedor")',
+                    type: 'POST',
+                    data: toStore,
+                    async: false,
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8", //Added so ASP recognized JSON
+                    traditional: true,
+                    success: function (data) {
+                        if (data) {
+
+                            mensaje('Proceso de Recibido con Exito', 'success');
+                            table.ajax.reload(null, false);
+                        }
+                    },
+                    error: function (e) {
+                        if (e.status == 403) {
+                            window.location.href = '@Url.Content("~/Login/Index/Se caduco la session")';
+                        }
+                        else {
+                            window.location.href = '@Url.Content("~/Login/Index/Se presento un inconveniente inesperado volver a intentar, si el incoveniente persiste comuniquese con el administrador")';
+                        }
+                    }
+            });
+        }
+        Loading("none");
+            }
+
+            function CancelarAdicionar() {
+                $("#adicionar").html('');
+                $("#grilla").attr('style', 'display:block;');
+                $("#grillabuscar").attr('style', 'display:block;');
+            }
+
+        function guardarDocumento(data) {
+            try {
+                if (data.isValid) {
+                    mensaje('Enviado Documento con Exito', 'success');
+                    $("#adicionar").html('');
+                    $("#grilla").attr('style', 'display:block;');
+                    $("#grillabuscar").attr('style', 'display:block;');
+                    table.ajax.reload(null, false);
+                }
+                else {
+                    mensaje(data.mensaje, 'error');
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        function AdicionarDocumento() {
+            $("#grilla").attr('style', 'display:none;');
+            $("#grillabuscar").attr('style', 'display:none;');
+        }
+
+    </script>
+}

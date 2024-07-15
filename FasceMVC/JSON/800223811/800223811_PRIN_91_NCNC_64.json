@@ -1,0 +1,221 @@
+{
+  "Comprobante": {
+    "OrigenDocumento": "AE436474-1101-46B8-BC4D-C83C23542B21",
+    "TipoComprobante": "90",
+    "Fecha": "2019-11-30",
+    "Prefijo": "NCNC",
+    "Numero": "64",
+    "Moneda": "COP",
+    "Referencia": "SETT53233",
+    "ConceptoRef": "2",
+    "Observaciones": null,
+    "Usuario": "800223811",
+    "Descripcion": [],
+    "MetodoPago": [
+      {
+        "FormaPago": "2",
+        "MedioPago": "ZZZ",
+        "Fecha": "2019-11-30"
+      }
+    ],
+    "NumeroOrden": "",
+    "NumeroDespacho": "",
+    "NumeroRecepcion": "",
+    "DocumentoAdicionalNotaCredito": "",
+    "DocumentoReferenciaCodigo": ""
+  },
+  "Emisor": {
+    "Identificacion": "800223811",
+    "DigitoVerificador": "6",
+    "TipoPersona": "1",
+    "TipoIdentificacion": "31",
+    "TipoEmisor": "O-99",
+    "RazonSocial": "MOLINOS EL YOPAL LTDA",
+    "NombreComercial": "MOLINOS EL YOPAL LTDA",
+    "Sucursal": "PRIN",
+    "Direccion": "AUTOPISTA NORTE KM 19-20",
+    "Telefono": "3102411380",
+    "email": "asistentecontable@arrozcasanare.com",
+    "Pais": "Colombia",
+    "PaisCodigo": "CO",
+    "Departamento": "Casanare",
+    "DepartamentoCodigo": "85",
+    "Ciudad": "YOPAL",
+    "CiudadCodigo": "85001",
+    "CodigoPostal": "85001",
+    "Descripcion": null,
+    "NumeroMatriculaMercantil": "9351"
+  },
+  "Receptor": {
+    "Identificacion": "7363919",
+    "DigitoVerificador": "6",
+    "TipoPersona": "1",
+    "TipoIdentificacion": "13",
+    "TipoReceptor": "O-99",
+    "RazonSocial": "COGOLLO FUENTES EDIL CASIMIRO ",
+    "NombreComercial": "COGOLLO FUENTES EDIL CASIMIRO ",
+    "Direccion": "CR 11 10 35 BRR 20 DE JUL",
+    "Telefono": "321441864800",
+    "email": "FERNANDOBASTILLABASTILLA@GMAIL.COM                          ",
+    "Pais": "Colombia",
+    "PaisCodigo": "CO",
+    "Departamento": " CASANARE           ",
+    "DepartamentoCodigo": "85",
+    "Ciudad": "Bogota",
+    "CiudadCodigo": "85001",
+    "CodigoPostal": "85001",
+    "Descripcion": null,
+    "NumeroMatriculaMercantil": null
+  },
+  "Detalles": [
+    {
+      "idDetalle": "0",
+      "Nombre": "CASANARE PAQ  460 GR  X 25    ",
+      "UnidadCodigo": "EA",
+      "Cantidad": "10",
+      "ValorUnitario": "31,664.00",
+      "SubTotal": "316,640.00",
+      "Total": "316,640.00",
+      "codigo": "0",
+      "Impuestos": [
+        {
+          "Base": "316,640.00",
+          "CodigoImpuesto": "ZY",
+          "Nombre": "No causa",
+          "Porcentaje": "0.00",
+          "Impuesto": "0.00"
+        }
+      ],
+      "Descripcion": [],
+      "AllowanceCharge": null,
+      "PricingReference": null,
+      "Descuento": "0.00",
+      "Cargos": "0.00",
+      "AplicaImpuesto": true,
+      "Fecha": null,
+      "ValorDebito": null,
+      "ValorCredito": null
+    },
+    {
+      "idDetalle": "0",
+      "Nombre": "CASANARE KILO X 15 UNIDS      ",
+      "UnidadCodigo": "EA",
+      "Cantidad": "5",
+      "ValorUnitario": "41,304.00",
+      "SubTotal": "206,520.00",
+      "Total": "206,520.00",
+      "codigo": "0",
+      "Impuestos": [
+        {
+          "Base": "206,520.00",
+          "CodigoImpuesto": "ZY",
+          "Nombre": "No causa",
+          "Porcentaje": "0.00",
+          "Impuesto": "0.00"
+        }
+      ],
+      "Descripcion": [],
+      "AllowanceCharge": null,
+      "PricingReference": null,
+      "Descuento": "0.00",
+      "Cargos": "0.00",
+      "AplicaImpuesto": true,
+      "Fecha": null,
+      "ValorDebito": null,
+      "ValorCredito": null
+    },
+    {
+      "idDetalle": "0",
+      "Nombre": "CASANARE PAQ  2 5 KG X 6      ",
+      "UnidadCodigo": "EA",
+      "Cantidad": "4",
+      "ValorUnitario": "41,304.00",
+      "SubTotal": "165,216.00",
+      "Total": "165,216.00",
+      "codigo": "0",
+      "Impuestos": [
+        {
+          "Base": "165,216.00",
+          "CodigoImpuesto": "ZY",
+          "Nombre": "No causa",
+          "Porcentaje": "0.00",
+          "Impuesto": "0.00"
+        }
+      ],
+      "Descripcion": [],
+      "AllowanceCharge": null,
+      "PricingReference": null,
+      "Descuento": "0.00",
+      "Cargos": "0.00",
+      "AplicaImpuesto": true,
+      "Fecha": null,
+      "ValorDebito": null,
+      "ValorCredito": null
+    },
+    {
+      "idDetalle": "0",
+      "Nombre": "CUSIANA PAQ 460 GR X 25       ",
+      "UnidadCodigo": "EA",
+      "Cantidad": "5",
+      "ValorUnitario": "29,864.00",
+      "SubTotal": "149,320.00",
+      "Total": "149,320.00",
+      "codigo": "0",
+      "Impuestos": [
+        {
+          "Base": "149,320.00",
+          "CodigoImpuesto": "ZY",
+          "Nombre": "No causa",
+          "Porcentaje": "0.00",
+          "Impuesto": "0.00"
+        }
+      ],
+      "Descripcion": [],
+      "AllowanceCharge": null,
+      "PricingReference": null,
+      "Descuento": "0.00",
+      "Cargos": "0.00",
+      "AplicaImpuesto": true,
+      "Fecha": null,
+      "ValorDebito": null,
+      "ValorCredito": null
+    }
+  ],
+  "Totales": {
+    "Total": "837,696.00",
+    "TotalEnLetras": "OCHOCIENTOS TREINTA Y SIETE MIL SEISCIENTOS NOVENTA Y SEIS",
+    "SubTotal": "837,696.00",
+    "Cargos": "0.00",
+    "Descuentos": "0.00",
+    "SubTotalSinCargosDescuentos": "837,696.00",
+    "IVA": "0.00"
+  },
+  "TotalImpuestos": [
+    {
+      "Base": "837,696.00",
+      "CodigoImpuesto": "ZY",
+      "Nombre": "No causa",
+      "Porcentaje": "0.00",
+      "Impuesto": "0.00"
+    }
+  ],
+  "DetallesComprobante": [],
+  "DescripcionDetalles": [],
+  "Descripcion": {
+    "Nombre": null,
+    "Valor": null
+  },
+  "Credenciales": {
+    "ClientToken": "0e77e6e521333df2dff85168504a803915af467cd9ad0b098a",
+    "AccessToken": "6409b3f74b98ef16ad36142ac6ae03d77f8875f08dc90cecdc"
+  },
+  "AllowanceCharge": null,
+  "PaymentExchangeRate": null,
+  "TerminosPago": {
+    "Codigo": "2",
+    "UnidadCodigo": "DAY",
+    "Duracion": "15"
+  },
+  "QR": null,
+  "MetodoPago": []
+}

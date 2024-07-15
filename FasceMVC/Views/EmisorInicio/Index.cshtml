@@ -1,0 +1,664 @@
+﻿@model DataBase.adm_documento
+
+@{
+    ViewBag.Title = "Inicio";
+}
+
+<title>.::FACSE::..</title>
+
+@Scripts.Render("~/Scripts/sweetalert.min.js")
+@*<script>
+        $("#gview_jqgrid_ctrs .ui-jqgrid-titlebar").removeClass('ui-widget-header');
+        $("#gview_jqgrid_ctrs .ui-jqgrid-titlebar").addClass('jqgrid-header');
+    </script>*@
+<style type="text/css">
+
+    .updateProgress {
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        opacity: 0.5;
+        filter: alpha(opacity=70);
+        text-align: center;
+    }
+
+    .ui-widget-header {
+        background: rgba(63,216,56,1);
+        background: -moz-linear-gradient(45deg, rgba(63,216,56,1) 0%, rgba(63,216,56,1) 58%, rgba(99,186,18,1) 100%);
+        background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(63,216,56,1)), color-stop(58%, rgba(63,216,56,1)), color-stop(100%, rgba(99,186,18,1)));
+        background: -webkit-linear-gradient(45deg, rgba(63,216,56,1) 0%, rgba(63,216,56,1) 58%, rgba(99,186,18,1) 100%);
+        background: -o-linear-gradient(45deg, rgba(63,216,56,1) 0%, rgba(63,216,56,1) 58%, rgba(99,186,18,1) 100%);
+        background: -ms-linear-gradient(45deg, rgba(63,216,56,1) 0%, rgba(63,216,56,1) 58%, rgba(99,186,18,1) 100%);
+        background: linear-gradient(45deg, rgba(63,216,56,1) 0%, rgba(63,216,56,1) 58%, rgba(99,186,18,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3fd838', endColorstr='#63ba12', GradientType=1 );
+        color: #FFFFFF;
+        border: solid;
+        border-color: white;
+    }
+
+    .jqgrid-header {
+        background: red;
+        color: #FFFFFF;
+        border: solid;
+        border-color: white;
+    }
+
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+        border: none;
+        background: #f6f6f6;
+        font-weight: bold;
+        color: #454545;
+        font-size: x-small;
+    }
+
+
+    .colorblanco {
+        color: #FFFFFF;
+    }
+
+    .fuente {
+        font-size: 11px;
+    }
+
+    .checkbox label:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+
+    .checkbox .cr {
+        position: relative;
+        display: inline-block;
+        border: 1px solid #a9a9a9;
+        border-radius: .25em;
+        width: 1.3em;
+        height: 1.3em;
+        float: left;
+        margin-right: .5em;
+    }
+
+        .checkbox .cr .cr-icon {
+            position: absolute;
+            font-size: .8em;
+            line-height: 0;
+            top: 50%;
+            left: 15%;
+        }
+
+    .checkbox label input[type="checkbox"] {
+        display: none;
+    }
+
+        .checkbox label input[type="checkbox"] + .cr > .cr-icon {
+            opacity: 0;
+        }
+
+        .checkbox label input[type="checkbox"]:checked + .cr > .cr-icon {
+            opacity: 1;
+        }
+
+        .checkbox label input[type="checkbox"]:disabled + .cr {
+            opacity: .5;
+        }
+
+    a.crear {
+        background: url("../../Content/Images/crear.png") no-repeat top left;
+        display: block;
+        height: 83px;
+        text-indent: -9999px;
+    }
+
+    a.proveedores {
+        background: url("../../Content/Images/proveedores.png") no-repeat top left;
+        display: block;
+        height: 83px;
+        text-indent: -9999px;
+    }
+
+    a.clientes {
+        background: url("../../Content/Images/ConsultarClientes.png") no-repeat top left;
+        display: block;
+        height: 83px;
+        text-indent: -9999px;
+    }
+
+    a.configuracion {
+        background: url("../../Content/Images/configuracion.png") no-repeat top left;
+        display: block;
+        height: 83px;
+        text-indent: -9999px;
+    }
+
+    .modal {
+        position: fixed;
+        z-index: 999;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        background-color: Black;
+        filter: alpha(opacity=60);
+        opacity: 0.6;
+        -moz-opacity: 0.8;
+        display: none;
+    }
+
+    .hiddenClass {
+        display: none;
+    }
+</style>
+
+<div id="divEmisor">
+    @if ((Guid)Session["i_id_perfil"] == Guid.Parse("74D2CF52-4355-49FE-8B1F-E92E50DC8E33") || (Guid)Session["i_id_perfil"] == Guid.Parse("7721348C-A740-4E1F-AFFA-334235D26DCA") || (Guid)Session["i_id_perfil"] == Guid.Parse("99B8DD93-8CC1-402C-8082-B6361CCAF92F") || (Guid)Session["i_id_perfil"] == Guid.Parse("213216B2-3774-42A3-9C50-654D7D847D6F"))
+
+    {
+        <!-- Icon Cards-->
+        <div class="row">
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card fondoCard border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Facturas Generadas</div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col mr-2">
+                                <div class="h1 mb-0 font-weight-bold text-gray-800">@ViewBag.Factura</div>
+                                <div style="font-size:xx-small; color:red" class="text-xs font-weight-bold text-uppercase mb-1">Último cargue : @ViewBag.FFecha</div>
+                                <div style="font-size:x-small; color:red" class="text-xs font-weight-bold text-uppercase mb-1">Fecha Vto Resolución: @ViewBag.FvencimientoResolucionFactura </div>
+
+                            </div>
+                            <div class="col-auto">
+                                <img src="~/Content/Images/iconos.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card fondoCard border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Notas Crédito</div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col mr-2">
+                                <div class="h1 mb-0 font-weight-bold text-gray-800">@ViewBag.NCredito</div>
+                                <div style="font-size:xx-small; color:red" class="text-xs font-weight-bold text-uppercase mb-1">Último cargue : @ViewBag.FNCredito</div>
+                                <div style="font-size:x-small; color:red" class="text-xs font-weight-bold text-uppercase mb-1">Fecha Vto Resolución: @ViewBag.FvencimientoResolucionFactura1 </div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="~/Content/Images/iconos.png" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card fondoCard border-left-info shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Notas Débito</div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col mr-2">
+                                <div class="h1 mb-0 font-weight-bold text-gray-800">@ViewBag.NDebito</div>
+                                <div style="font-size:xx-small; color:red" class="text-xs font-weight-bold text-uppercase mb-1">Último cargue : @ViewBag.FNDebito</div>
+                                <div style="font-size:x-small; color:red" class="text-xs font-weight-bold text-uppercase mb-1">Fecha Vto Resolución: @ViewBag.FvencimientoResolucionFactura2 </div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="~/Content/Images/iconos.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card fondoCard border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Resoluciones</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mr-2">
+                                <div class="h1 mb-0 font-weight-bold text-gray-800">@ViewBag.Prefijo</div>
+                                <div style="font-size:x-small; color:red" class="text-xs font-weight-bold text-uppercase mb-1">Facturas Restantes: @string.Format("{0:N0}", ViewBag.FacturasRestantes) </div>
+                            </div>
+                            <div class="col-auto">
+                                <img src="~/Content/Images/iconos.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Area Chart Example-->
+        <div class="card mb-3 fondopciones">
+            <div style="color:#ffffff" class="card-header amarillo">
+                <i class="fas fa-chart-area"></i>
+                Más Opciones
+            </div>
+            <div class="card-body">
+                <div class="row">
+
+                    @if ((Guid)Session["i_id_perfil"] != Guid.Parse("99B8DD93-8CC1-402C-8082-B6361CCAF92F"))
+                    {
+                        <div class=" col-lg-2 col-md-2 mb-1">
+                            @Html.ActionLink("Clientes", "Index", "ConsultarClientes", null, new { @class = "clientes" })
+                        </div>
+                        <div class=" col-lg-2 col-md-2 mb-1">
+                            @Html.ActionLink("Crear", "Buscar", "FacturacionManual", null, new { @class = "crear" })
+                        </div>
+                        <div class=" col-lg-2 col-md-2 mb-1">
+                            @Html.ActionLink("Proveedores", "Index", "EmisorProveedor", null, new { @class = "proveedores" })
+                            @*<img src="~/Content/Images/proveedores.png" />*@
+                        </div>
+                        <div class=" col-lg-2 col-md-2 mb-1">
+                            @Html.ActionLink("Index", "Index", "Configuracion", null, new { @class = "configuracion" })
+                        </div>
+                        <div class=" col-lg-2 col-md-2 mb-1">
+                            <img src="~/Content/Images/ayuda.png" />
+                        </div>
+                        <div class=" col-lg-2 col-md-2 mb-1">
+                            <a target="_blank" href="@Model.UrlImportar"><img src="~/Content/Images/documento.png" /></a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class=" col-lg-2 col-md-2 mb-1">
+                            @Html.ActionLink("Clientes", "Index", "ConsultarClientes", null, new { @class = "clientes" })
+                        </div>
+                        <div class=" col-lg-2 col-md-2 mb-1">
+                            @Html.ActionLink("Crear", "Buscar", "FacturacionManual", null, new { @class = "crear" })
+                        </div>
+                        <div class=" col-lg-2 col-md-2 mb-1">
+                            <img src="~/Content/Images/ayuda.png" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="card mb-3 fondopciones">
+        <div style=" color: #ffffff" class="card-header rojo">
+            <i class="fas fa-table"></i>
+            Consultar Facturas / @Session["i_susuario"]
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                    <a class="btn btn-primary azul " data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Filtros Específicos
+                    </a>
+
+                    <br />
+                    <br />
+                    @using (Ajax.BeginForm("ListadoBuscar", new AjaxOptions()
+                    {
+                        InsertionMode = InsertionMode.Replace,
+                        OnSuccess = "onSucces(data, this)",
+                        LoadingElementId = "progress"
+                    }))
+                    {
+                        <div class="collapse" id="collapseExample">
+
+                            @Html.HiddenFor(model => model.UrlImportar)
+                            @Html.AntiForgeryToken()
+                            <div class="form-row container">
+                                <div class="form-group col-md-12">
+                                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-3">
+                                        @Html.LabelFor(model => model.FechaInicial, new { @class = "validationCustom01" })
+                                        @Html.EditorFor(model => model.FechaInicial, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.FechaInicial, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        @Html.LabelFor(model => model.FechaFinal, new { @class = "control-label" })
+
+                                        @Html.EditorFor(model => model.FechaFinal, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.FechaFinal, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        @Html.LabelFor(model => model.Numero, new { @class = "control-label" })
+
+                                        @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        @Html.LabelFor(model => model.Identificacion, new { @class = "control-label" })
+
+                                        @Html.EditorFor(model => model.Identificacion, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Identificacion, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        @Html.LabelFor(model => model.Nombre, new { @class = "control-label" })
+
+                                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        @Html.LabelFor(model => model.IdComprobante, new { @class = "control-label" })
+
+                                        @Html.DropDownList("IdComprobante", null, "--Todos--", new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        @Html.LabelFor(model => model.IdEstado, new { @class = "control-label" })
+
+                                        @Html.DropDownList("IdEstado", null, "--Todos--", new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        @Html.LabelFor(model => model.IdEstadoFacse, new { @class = "control-label" })
+
+                                        @Html.DropDownList("IdEstadoFacse", null, "--Todos--", new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="submit" id="search" name="_search" value="Buscar" class="btn btn-info" onclick="validar();" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr />
+                        </div>
+
+                        <div class="col-md-12  text-right">
+                            <input type="submit" id="search" name="_search" value="Refrescar" class="btn   btn-secondary  btn-sm" onclick="validar();" />
+                            <input type="submit" id="exportar" name="_exportar" value="Exportar" class="btn btn-success  btn-sm" />
+                        </div>
+                    }
+                    <div class="form-group col-md-9">
+                        <div class="form-row">
+                            <div class="col-2">
+
+                                <button class="btn btn-success " onclick="EnvioDian(); return false;" style="cursor:pointer">Reenvio de Dian</button>
+
+                            </div>
+                            <div class="col-3">
+                                <input class="form-control" type="email" id="email" onchange="validarEmail(this.value)" />
+
+                            </div>
+                            <div class="col">
+
+                                <button class="btn btn-primary" onclick="EnvioCorreo(); return false;" style="cursor:pointer;">Reenvio de Correo</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <span id="errorinicio" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <table id="ListadoEmisor" class="table table-striped table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th style="display: none;"></th>
+                                <th>
+                                    <input type="checkbox" id="checkUncheckAll" onClick="CheckUncheckAll()" />
+                                </th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>Tipo</th>
+                                <th>Prefijo</th>
+                                <th>Numero</th>
+                                <th>Identificacion</th>
+                                <th>Nombre</th>
+                                <th>Fecha Emisión</th>
+                                <th>Fecha Envio</th>
+                                <th>Total</th>
+                                <th>Usuario</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <div id="pagerListadoEmisor"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="loading" class="updateProgress" style="display:none;">
+    <img src="~/Content/Images/procesando.gif" />
+</div>
+@section scripts{
+    <script type="text/javascript">
+
+    var tableInicio;
+    $(document).ready(function () {
+        ListadoFacturacion();
+    });
+
+        function onSucces(result, ref) {
+        if (result.archivo) {
+            window.location.href = "@Url.RouteUrl(new
+            { Controller = "EmisorInicio", Action = "Download"})/?file=" + result.pan;
+        }
+        else {
+            $("#divEmisor").html(result.pan);
+            ListadoFacturacion();
+        }
+    }
+
+    function validar() {
+        var inicio = document.getElementById('FechaInicial').value;
+        var finalq = document.getElementById('FechaFinal').value;
+        inicio = new Date(inicio);
+        finalq = new Date(finalq);
+        if (inicio > finalq)
+            alert('La fecha de inicio no puede ser mayor que la fecha fin');
+    }
+
+    function myFunction() {
+        var input, filter, table, tr, td, i, t;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            var filtered = false;
+            var tds = tr[i].getElementsByTagName("td");
+            if (tds.length == 0) {
+                filtered = true;
+            }
+            for (t = 0; t < tds.length - 1; t++) {
+                var td = tds[t];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        filtered = true;
+                    }
+                }
+            }
+            if (filtered === true) {
+                tr[i].style.display = '';
+            }
+            else {
+                tr[i].style.display = 'none';
+            }
+        }
+    }
+
+        function CheckUncheckAll() {
+        var selectAllCheckbox = document.getElementById("checkUncheckAll");
+        if (selectAllCheckbox.checked == true) {
+            var checkboxes = document.getElementsByName("rowSelectCheckBox");
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = true;
+            }
+        } else {
+            var checkboxes = document.getElementsByName("rowSelectCheckBox");
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = false;
+            }
+        }
+    }
+
+        function Loading(tipo) {
+            document.getElementById("loading").style.display = tipo;
+        }
+
+        function EnvioDian() {
+            Loading("block");
+            window.setTimeout('EnvioDian1()', 1000);
+        }
+
+        function EnvioDian1() {
+        var token = $('input[name="__RequestVerificationToken"]').val();
+
+        var toStore = [];
+        var i = 0;
+        $('#ListadoEmisor').each(function () {
+            $("input[type=\"checkbox\"]:checked").each(function () {
+                if (this.id != "checkUncheckAll") {
+                    toStore[i] = {};
+                    $(this).closest('td').siblings().each(function () {
+                        $(this).find(':input').each(function () {
+                            toStore[i][this.name] = this.value;
+                        });
+                    });
+                    i++;
+                }
+            });
+        });
+        if (i == 0) {
+            $('#errorinicio').text("Debe Seleccionar un Documento");
+        }
+        else {
+            toStore = JSON.stringify({ 'listadoDocumento': toStore});
+
+                $.ajax({
+                    url: '@Url.Action("ReenvioDian", "EmisorInicio")',
+                    type: 'POST',
+                    data: toStore,
+                    async: false,
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8", //Added so ASP recognized JSON
+                    traditional: true,
+                    success: function (data) {
+                        if (data) {
+                            mensaje('Proceso Reenvio Dian con Exito', 'success');
+                            tableInicio.ajax.reload(null, false);
+                        }
+                    },
+                    error: function (e) {
+                        if (e.status == 403) {
+                            window.location.href = '@Url.Content("~/Login/Index/Se caduco la session")';
+                        }
+                        else {
+                            window.location.href = '@Url.Content("~/Login/Index/Se presento un inconveniente inesperado volver a intentar, si el incoveniente persiste comuniquese con el administrador")';
+                        }
+                    }
+            });
+            }
+            Loading("none");
+    }
+
+        function EnvioCorreo() {
+            Loading("block");
+            window.setTimeout('EnvioCorreo1()', 1000);
+        }
+
+        function EnvioCorreo1() {
+        var token = $('input[name="__RequestVerificationToken"]').val();
+
+        var toStore = [];
+        var i = 0;
+        $('#ListadoEmisor').each(function () {
+            $("input[type=\"checkbox\"]:checked").each(function () {
+                if (this.id != "checkUncheckAll") {
+                    toStore[i] = {};
+                    $(this).closest('td').siblings().each(function () {
+                        $(this).find(':input').each(function () {
+                            toStore[i][this.name] = this.value;
+                        });
+                    });
+                    i++;
+                }
+            });
+        });
+        if (i == 0) {
+            $('#errorinicio').text("Debe Seleccionar un Documento");
+        }
+        else {
+            toStore = JSON.stringify({ 'listadoDocumento': toStore, 'email': document.getElementById("email").value});
+
+                $.ajax({
+                    url: '@Url.Action("ReenvioCorreo", "EmisorInicio")',
+                    type: 'POST',
+                    data: toStore,
+                    async: false,
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8", //Added so ASP recognized JSON
+                    traditional: true,
+                    success: function (data) {
+                        if (data) {
+                            mensaje('Proceso Reenvio Correo con Exito', 'success');
+                            tableInicio.ajax.reload(null, false);
+                        }
+                    },
+                    error: function (e) {
+                        if (e.status == 403) {
+                            window.location.href = '@Url.Content("~/Login/Index/Se caduco la session")';
+                        }
+                        else {
+                            window.location.href = '@Url.Content("~/Login/Index/Se presento un inconveniente inesperado volver a intentar, si el incoveniente persiste comuniquese con el administrador")';
+                        }
+                    }
+            });
+            }
+            Loading("none");
+    }
+
+        function mensaje(mensaje, icon) {
+            try {
+                swal({
+                    title: mensaje,
+                    icon: icon
+                });
+            } catch (e) {
+                console.log(e);
+            }
+        }
+    function validarEmail(email) {
+
+            var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+            if (!reg.test(email)) {
+                alert("Correo Invalido");
+                document.getElementById("email").value = "";
+            }
+        }
+
+    </script>
+}

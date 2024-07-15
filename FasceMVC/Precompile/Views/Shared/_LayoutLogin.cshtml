@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>.::FACSE::..</title>
+    <!-- Bootstrap core CSS -->
+    @Styles.Render("~/Content/bootstrap.css")
+    @Styles.Render("~/Content/css/inicio.css")
+
+
+    @*<link href="~/Content/css/inicio.css" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="~/Content/Images/iconos.ico" />*@
+
+</head>
+
+<body class="fondo">
+    <!-- Navigation -->
+    <div class="container-fluid " style="background-color: #28A745; color: #ffffff">
+        <h6 style="font-size:small">Somos Proveedores Tecnologicos Certificados por la - DIAN</h6>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light  border-bottom banner  Small shadow">
+        <div class="container">
+            <a class="navbar-brand  " href="#">
+                <img src="~/Content/Images/logo_facse.png" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <!--<a class="nav-link" href="#">
+                                Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Services</a>
+                        </li>-->
+                    <li class="nav-item">
+                        <a class="nav-link glyphicon glyphicon-star" href="@Url.Action(ViewBag.RutaBoton, "Login")">
+                            <img src="@Url.Content((string)@ViewBag.ImagenBoton)" />
+                            @ViewBag.LetraBoton
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    @RenderBody()
+
+    <footer class="text-center">
+        @{
+            Html.RenderPartial("_Footer");
+        }
+    </footer>
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+
+</body>
+</html>

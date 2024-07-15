@@ -1,0 +1,225 @@
+﻿@model FasceMVC.Models.Plantilla
+
+@using System.Configuration
+@{
+    /**/
+
+}
+
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Styles.Render("~/Content/bootstrap.css")
+@Scripts.Render("~/Scripts/pace.js")
+@Scripts.Render("~/Scripts/bootstrap.min.js")
+@Styles.Render("~/Content/css/inicio.css")
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+@Scripts.Render("~/Scripts/sweetalert.min.js")
+
+
+@section scripts {
+
+    @*--- CONFIGURACIÓN DEL EDITOR HTML TINY-MCE ---*@
+    <script type="text/javascript" src="/Scripts/tinymce/jquery.tinymce.min.js"></script>
+    <script type="text/javascript" src="/Scripts/tinymce/tinymce.min.js"></script>
+
+    <script type="text/javascript" src="/Scripts/tinymce/plugins/image/plugin.min.js"></script>
+    <script type="text/javascript" src="/Scripts/tinymce/plugins/link/plugin.min.js"></script>
+    <script type="text/javascript" src="/Scripts/tinymce/plugins/code/plugin.min.js"></script>
+    <script type="text/javascript" src="/Scripts/tinymce/plugins/colorpicker/plugin.min.js"></script>
+    <script type="text/javascript" src="/Scripts/tinymce/plugins/textcolor/plugin.min.js"></script>
+    <script type="text/javascript" src="/Scripts/tinymce/plugins/emoticons/plugin.min.js"></script>
+    <script type="text/javascript" src="/Scripts/tinymce/plugins/imagetools/plugin.min.js"></script>
+    <script type="text/javascript" src="/Scripts/tinymce/plugins/codesample/plugin.min.js"></script>
+
+    <script type="text/javascript" src="/Scripts/tinymce/themes/silver/theme.min.js"></script>
+
+    <script>
+
+        tinymce.init({
+            selector: '#prueba',
+            inline: true
+        });
+
+
+        tinymce.init({
+            selector: "#PrimerMensaje",
+            language: 'es',
+            mode: "none",
+            theme: "silver",
+            plugins: "codesample image imagetools emoticons table link code colorpicker textcolor preview searchreplace paste fullscreen noneditable nonbreaking wordcount",
+            browser_spellcheck: true,
+            relative_urls: false,
+            toolbar: "codesample blockquote formatselect fontselect fontsizeselect bold italic underline forecolor backcolor advlist image imagetools link code colorpicker textcolor preview fullscreen noneditable nonbreaking wordcount emoticons",
+            content_css: '/Content/tinymce.css'
+        });
+
+        tinymce.init({
+            selector: "#SegundoMensaje",
+            language: 'es',
+            mode: "none",
+            theme: "silver",
+            plugins: "codesample image imagetools emoticons table link code colorpicker textcolor preview searchreplace paste fullscreen noneditable nonbreaking wordcount",
+            browser_spellcheck: true,
+            relative_urls: false,
+            toolbar: "codesample blockquote formatselect fontselect fontsizeselect bold italic underline forecolor backcolor advlist image imagetools link code colorpicker textcolor preview fullscreen noneditable nonbreaking wordcount emoticons",
+            content_css: '/Content/tinymce.css'
+        });
+
+        tinymce.init({
+            selector: "#TercerMensaje",
+            language: 'es',
+            mode: "none",
+            theme: "silver",
+            plugins: "codesample image imagetools emoticons table link code colorpicker textcolor preview searchreplace paste fullscreen noneditable nonbreaking wordcount",
+            browser_spellcheck: true,
+            relative_urls: false,
+            toolbar: "codesample blockquote formatselect fontselect fontsizeselect bold italic underline forecolor backcolor advlist image imagetools link code colorpicker textcolor preview fullscreen noneditable nonbreaking wordcount emoticons",
+
+        });
+
+    </script>
+
+}
+
+<style type="text/css">
+    blockquote {
+        padding: 10px 20px;
+        margin: 0 0 20px;
+        font-size: 1em !important;
+        border-left: 5px solid #ffeb8e !important;
+        background: #FFF8DC !important;
+    }
+
+    code {
+        padding: 2px 4px;
+        font-size: 90%;
+        color: #c7254e;
+        background-color: #f9f2f4;
+        border-radius: 4px;
+    }
+</style>
+
+<div class="container">
+
+    <br />
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header rojo">
+                    <h5 style="color:white;"><img src="~/Content/Images/logo_blanco.png" /> @Model.Titulo</h5>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("EnviarFomularioPlantilla", "Configuracion", FormMethod.Post, new { autocomplete = "off", enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <label>Archivo</label>
+                                <input type="file" name="logoUpoad" id="fileUpoad" onchange="validarExtension(this);" />
+                            </div>
+                        </div>
+                        if (Model.Image != null)
+                        {
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-6">
+                                    
+                                    <img src="@ConfigurationManager.AppSettings["ruta_api"].ToString().Substring(0, ConfigurationManager.AppSettings["ruta_api"].ToString().IndexOf("api"))@Model.Image.Replace("~", "")" alt="Image" />
+                                </div>
+                            </div>
+                        }
+                        <div id="prueba">
+
+                        </div>
+
+                        <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-6">
+                            <label>Primer Mensaje</label>
+                           
+                                @Html.TextArea("PrimerMensaje", new { rows = 20, style = "width: 100%;", @class = "form-control" })
+                                @Html.ValidationMessage("PrimerMensaje", "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                
+                                <label>Segundo Mensaje</label>
+                                @Html.TextArea("SegundoMensaje", new { rows = 20, style = "width: 100%;", @class = "form-control" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Tercer Mensaje</label>
+                                @Html.TextArea("TercerMensaje", new { rows = 20, style = "width: 100%;", @class = "form-control" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col">
+                                @Html.HiddenFor(Model => Model.IdEmisorSucursalPlantilla)
+                                @Html.HiddenFor(Model => Model.IdEmisorSucursal)
+                                @Html.HiddenFor(Model => Model.IdUsuarioCreacion)
+                                @Html.HiddenFor(Model => Model.FechaCreacion)
+                                @Html.HiddenFor(Model => Model.EsuEmisor)
+                                @Html.HiddenFor(Model => Model.IdEmisorSucursalLogueo)
+                                <label id="lblMensaje" class="text-danger"></label><br />
+                                <button type="submit" class="btn btn-sm btn-success" id="btnGuardar">Guardar</button>
+                                @Html.ActionLink("Cancelar", "Plantilla", new { }, new { @class = "btn btn-sm btn-danger" })
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br />
+<script>
+    /**
+    * Valida que el archivo que está adjuntando el usuario corresponda con el formato de la planilla
+    * param input     Es el control del input
+    */
+    function validarExtension(input) {
+        try {
+            var filePath = input.value;
+            var extension = filePath.split('.');
+            if (filePath != "") {
+                switch (extension[1]) {
+                    case 'png':
+                    case 'jpg':
+                        var reader = new FileReader();
+                        reader.onload = (e) => {
+                            //console.log(e.target.result.replace("data:application/x-pkcs12;base64,", ""));
+                            $("#sLogo").val(e.target.result.replace("data:application/x-pkcs12;base64,", ""));
+                        }
+                        $('#Logo').val(filePath);
+                        $("#lblMensaje").html("");
+                        reader.readAsDataURL(input.files[0]);
+                        break;
+                    default:
+                        $(input).val("");
+                        $("#lblMensaje").html("Solo se admiten archivos de extensión .png y .jpg");
+                        break;
+                }
+            }
+            else {
+                $(input).val();
+                $("#lblMensaje").html("Archivo incorrecto");
+            }
+        } catch (err) {
+            console.log(err);
+            $(input).val();
+            $("#lblMensaje").html("Ha ocurrido un error al leer el documento");
+        }
+    }
+
+</script>

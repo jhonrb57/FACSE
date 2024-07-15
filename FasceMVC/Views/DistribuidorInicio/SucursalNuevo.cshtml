@@ -1,0 +1,104 @@
+﻿@model DataBase.adm_emisor_sucursal
+@{
+    /**/
+
+    Layout = null;
+}
+@Scripts.Render("~/bundles/modernizr")
+@Styles.Render("~/Content/bootstrap.css")
+@Styles.Render("~/Content/css/inicio.css")
+
+@Styles.Render("~/Content/pace-theme-mac-osx.css")
+@Scripts.Render("~/bundles/jquery")
+
+
+@using (Ajax.BeginForm("CrearSucursal", new AjaxOptions()
+{
+    InsertionMode = InsertionMode.Replace,
+    OnSuccess = "onSuccessCatalogo(data,this)"
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.esu_emisor)
+
+    <br />
+
+    <div class="card mb-3 fondopciones">
+        <div style="color:#ffffff" class="card-header amarillo">
+            <i class="fas fa-chart-area"></i>
+            Adicionar Sucursal
+        </div>
+        <div class="card-body">
+            <div>
+                <div class="form-group col-md-12">
+                    @Html.LabelFor(model => model.esu_nombre, htmlAttributes: new { @class = "inputState" })
+
+                    @Html.EditorFor(model => model.esu_nombre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.esu_nombre, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-12">
+                    @Html.LabelFor(model => model.esu_abreviatura, htmlAttributes: new { @class = "inputState" })
+
+                    @Html.EditorFor(model => model.esu_abreviatura, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.esu_abreviatura, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-12">
+                    @Html.LabelFor(model => model.esu_departamento, htmlAttributes: new { @class = "inputState" })
+
+                    @Html.DropDownList("esu_departamento", null, "--Seleccione--", new { @class = "form-control", onchange = "OnChangeDepartamentoSucursal()" })
+                    @Html.ValidationMessageFor(model => model.esu_departamento, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-12">
+                    @Html.LabelFor(model => model.esu_municipio, htmlAttributes: new { @class = "inputState" })
+
+                    @Html.DropDownList("esu_municipio", null, "--Seleccione--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.esu_municipio, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-12">
+                    @Html.LabelFor(model => model.esu_correo, htmlAttributes: new { @class = "inputState" })
+
+                    @Html.EditorFor(model => model.esu_correo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.esu_correo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-12">
+                    @Html.LabelFor(model => model.esu_direccion, htmlAttributes: new { @class = "inputState" })
+
+                    @Html.EditorFor(model => model.esu_direccion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.esu_direccion, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-12">
+                    @Html.LabelFor(model => model.esu_codigo_postal, htmlAttributes: new { @class = "inputState" })
+
+                    @Html.EditorFor(model => model.esu_codigo_postal, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.esu_codigo_postal, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-12">
+                    @Html.LabelFor(model => model.esu_correo_entrada, htmlAttributes: new { @class = "inputState" })
+
+                    @Html.DropDownListFor(Model => Model.esu_correo_entrada, (List<SelectListItem>)ViewBag.ListadoCorreoEntrada, new { @class = "form-control obligatorio" })
+                    @*@Html.EditorFor(model => model.esu_correo_entrada, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(model => model.esu_correo_entrada, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-12">
+                    @Html.LabelFor(model => model.esu_correo_salida, htmlAttributes: new { @class = "inputState" })
+                    @Html.DropDownListFor(Model => Model.esu_correo_salida, (List<SelectListItem>)ViewBag.ListadoCorreoSalida, new { @class = "form-control obligatorio" })
+                    @*@Html.EditorFor(model => model.esu_correo_salida, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(model => model.esu_correo_salida, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-12">
+                    @Html.LabelFor(model => model.esu_activo, htmlAttributes: new { @class = "inputState" })
+                    @Html.EditorFor(model => model.esu_activo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.esu_activo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-12">
+                    <button type="submit" class="btn btn-primary">Crear</button>
+
+                    <a class="btn btn-danger" style="color:white; cursor:pointer" onclick="cancelarSucursal()" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Cancelar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

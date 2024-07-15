@@ -1,0 +1,132 @@
+﻿@model DataBase.adm_usuario_perfil_tipo
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>.::FACSE::..</title>
+    @Styles.Render("~/Content/bootstrap.css")
+    @Styles.Render("~/Content/css/inicio.css")
+
+    <style type="text/css">
+        .banner_m {
+            background: rgba(0,122,39,1);
+            background: -moz-linear-gradient(left, rgba(0,122,39,1) 0%, rgba(64,217,56,1) 100%);
+            background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0,122,39,1)), color-stop(100%, rgba(64,217,56,1)));
+            background: -webkit-linear-gradient(left, rgba(0,122,39,1) 0%, rgba(64,217,56,1) 100%);
+            background: -o-linear-gradient(left, rgba(0,122,39,1) 0%, rgba(64,217,56,1) 100%);
+            background: -ms-linear-gradient(left, rgba(0,122,39,1) 0%, rgba(64,217,56,1) 100%);
+            background: linear-gradient(to right, rgba(0,122,39,1) 0%, rgba(64,217,56,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007a27', endColorstr='#40d938', GradientType=1 );
+        }
+    </style>
+</head>
+<body style="background-color:#ffffff">
+    <div class="container">
+        <!-- Heading Row -->
+        <div class="row align-items-center my-1">
+            <div class="col-lg-7">
+                <img class="img-fluid rounded mb-6 mb-lg-0" src="~/Content/Images/inicio_em.png" alt="">
+
+            </div>
+            <!-- /.col-lg-8 -->
+            <div class="col-lg-5">
+                <h1 class="font-weight-light">Bienvenidos a FACSE</h1>
+                <hr />
+                <p>Como quieres trabajar.</p>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group col-md-12">
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    </div>
+                    foreach (var item in Model.ListadoUsuarioPerfil)
+                    {
+                        <div class="form-group col-md-12">
+                            @Html.HiddenFor(model => model.upt_tipo_usuario, new { @Value = item.upt_tipo_usuario })
+                            @Html.HiddenFor(model => model.upt_persona, new { @Value = item.upt_persona })
+                            <input class="btn btn-warning" type="submit" value="@item.sys_tipo_usuario.tus_descripcion" name="@item.sys_tipo_usuario.tus_descripcion" />
+                        </div>
+                    }
+                }
+            </div>
+            <!-- /.col-md-4 -->
+        </div>
+        <!-- /.row -->
+        <!-- Call to Action Well -->
+
+        <div class="card-body banner_m shadow p-3 mb-5 bg-white rounded">
+            <p class="text-white m-0">CON FACSE LA FACTURACION ELECTRONICA ES MUCHO MAS SENCILLA ! </p>
+        </div>
+
+        <!-- Content Row -->
+        <div class="row">
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h4 class="card-title">Como Importa tu factura <img src="~/Content/Images/excel_em.png" /></h4>
+
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime </p>
+                    </div>
+                    <div class="card-footer">
+
+
+
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Mas informacion</button>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--<div class="col-md-4 mb-5">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h2 class="card-title">Card Two</h2>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="btn btn-primary btn-sm">More Info</a>
+                </div>
+              </div>
+            </div>
+             <div class="col-md-4 mb-5">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h2 class="card-title">Card Three</h2>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="btn btn-primary btn-sm">More Info</a>
+                </div>
+              </div>
+            </div>-->
+
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+    <!-- Footer -->
+    <!-- /.container -->
+  
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <img src="~/Content/Images/impor_em.png" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+

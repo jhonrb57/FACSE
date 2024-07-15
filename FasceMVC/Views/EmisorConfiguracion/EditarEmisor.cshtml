@@ -1,0 +1,232 @@
+﻿@model DataBase.adm_emisor
+@{
+    /**/
+
+}
+
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+@Styles.Render("~/Content/bootstrap.css")
+@Scripts.Render("~/Scripts/pace.js")
+@Scripts.Render("~/Scripts/bootstrap.min.js")
+@Styles.Render("~/Content/css/inicio.css")
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+@Scripts.Render("~/Scripts/sweetalert.min.js")
+
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header rojo">
+                    <h5 style="color:white;"><img src="~/Content/Images/logo_blanco.png" /> @Model.Titulo</h5>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("ActualizarEmisor", "EmisorConfiguracion", FormMethod.Post, new { autocomplete = "off" }))
+                    {
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Tipo persona</label>
+                                @Html.DropDownListFor(Model => Model.emi_tipo_persona, (List<SelectListItem>)ViewBag.ListadoTipoPersona, new { @class = "form-control" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Tipo emisor</label>
+                                @Html.DropDownListFor(Model => Model.emi_tipo_emisor, (List<SelectListItem>)ViewBag.ListadoTipoEmisor, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Tipo identificación</label>
+                                @Html.DropDownListFor(Model => Model.emi_tipo_identificacion, (List<SelectListItem>)ViewBag.ListadoTipoIdentificacion, new { @class = "form-control" })
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                <label>N° Identifiación</label>
+                                @Html.TextBoxFor(Model => Model.emi_identificacion, new { @class = "form-control" })
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-2">
+                                <label>Dígito</label>
+                                @Html.TextBoxFor(Model => Model.emi_digito, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Nombre</label>
+                                @Html.TextBoxFor(Model => Model.emi_nombre, new { @class = "form-control" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Razón social</label>
+                                @Html.TextBoxFor(Model => Model.emi_razon_social, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <label>País</label>
+                                @Html.DropDownListFor(Model => Model.emi_pais, (List<SelectListItem>)ViewBag.ListadoPaises, new { @class = "form-control", onchange = "CambioPais(this.value);" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <label>Departamento</label>
+                                @Html.DropDownListFor(Model => Model.emi_departamento, (List<SelectListItem>)ViewBag.ListadoDepartamentos, new { @class = "form-control", onchange = "CambioDepto(this.value);" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <label>Ciudad</label>
+                                @Html.DropDownListFor(Model => Model.emi_municipio, (List<SelectListItem>)ViewBag.ListadoMunicipios, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Dirección</label>
+                                @Html.TextBoxFor(Model => Model.emi_direccion, new { @class = "form-control" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-3">
+                                <label>Teléfono</label>
+                                @Html.TextBoxFor(Model => Model.emi_telefono, new { @class = "form-control" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-3">
+                                <label>Código postal</label>
+                                @Html.TextBoxFor(Model => Model.emi_codigo_posta, new { @class = "form-control" })
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-6">
+                                <label>Correo</label>
+                                @Html.TextBoxFor(Model => Model.emi_correo, new { @class = "form-control" })
+                            </div>
+                            <div class="col-sm-12 col-lg-6">
+                                <label>Matrícula mercantil</label>
+                                @Html.TextBoxFor(Model => Model.emi_matricula_mercantil, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-6">
+                                <label>Test ID</label>
+                                @Html.TextBoxFor(Model => Model.emi_test_id, new { @class = "form-control" })
+                            </div>
+                            <div class="col-sm-12 col-lg-6">
+                                <label>Ciiu</label>
+                                @Html.DropDownListFor(Model => Model.emi_ciiu, (List<SelectListItem>)ViewBag.ListadoCiiu, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col">
+                                <label>Activo</label>
+                                @Html.CheckBoxFor(Model => Model.emi_activo)
+                            </div>
+                            <div class="col">
+                                <label>Correo Automatico</label>
+                                @Html.CheckBoxFor(Model => Model.emi_correo_automatico)
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col">
+                                <label>Client token</label>
+                                @Html.TextBoxFor(Model => Model.emi_cliente_token, new { @class = "form-control", disabled = "disabled" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label>Access token</label>
+                                @Html.TextBoxFor(Model => Model.emi_access_token, new { @class = "form-control", disabled = "disabled" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col">
+                                @Html.HiddenFor(Model => Model.emi_id)
+                                @Html.HiddenFor(Model => Model.emi_grupo)
+                                @Html.HiddenFor(Model => Model.emi_sofware)
+                                @Html.HiddenFor(Model => Model.emi_ciiu)
+                                @Html.HiddenFor(Model => Model.emi_distribuidor)
+                                @Html.HiddenFor(Model => Model.emi_access_token)
+                                @Html.HiddenFor(Model => Model.emi_cliente_token)
+
+                                <button class="btn btn-success btn-sm" type="submit">Guardar</button>
+                                @Html.ActionLink("Volver", "Index", "Configuracion", null, new { @class = "btn btn-danger btn-sm" })
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br />
+
+<script>
+    $('select').chosen();
+
+    function CambioPais(pais) {
+        try {
+
+            $("#emi_departamento").empty();
+
+            Pace.track(() => {
+                $.ajax({
+                    type: "GET",
+                    url: "/Adquiriente/CargarListadoDepartamentos",
+                    data: { pais: pais },
+                    success: (data) => {
+                        console.log(data);
+                        //var result = JSON.parse(data);
+                        //console.table(result);
+                        if (data != null) {
+                            if (data.length > 0) {
+                                var listadodptos = $("#emi_departamento")
+                                $(data).each((index, item) => {
+                                    listadodptos.append($("<option>").val(item.Value).text(item.Text));
+                                });
+                                console.log(data[0].Value);
+                                CambioDepto(listadodptos[0].Value);
+                            }
+                            $("#emi_departamento").trigger("chosen:updated").change();
+                            $("#emi_municipio").trigger('chosen:updated').change();
+                        }
+                    },
+                    error: (error) => {
+                        console.error(error);
+                    }
+                });
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function CambioDepto(dpto) {
+        try {
+            $("#emi_municipio").empty();
+
+            Pace.track(() => {
+                $.ajax({
+                    type: "GET",
+                    url: "/Adquiriente/CargarListadoMunicipios",
+                    data: { dpto: dpto },
+                    success: (data) => {
+                        console.log(data);
+                        if (data != null) {
+                            if (data.length > 0) {
+                                var listmun = $("#emi_municipio");
+
+                                $(data).each((index, item) => {
+                                    listmun.append($("<option>").val(item.Value).text(item.Text));
+                                });
+                            }
+                            $("#emi_municipio").trigger('chosen:updated').change();
+                        }
+                    },
+                    error: (error) => {
+                        console.error(error);
+                    }
+                });
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+</script>

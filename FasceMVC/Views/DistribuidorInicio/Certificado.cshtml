@@ -1,0 +1,110 @@
+﻿@model DataBase.ListadoEmisor
+@{
+    /**/
+
+    Layout = null;
+}
+@Scripts.Render("~/bundles/modernizr")
+@Styles.Render("~/Content/bootstrap.css")
+@Styles.Render("~/Content/css/inicio.css")
+
+@Styles.Render("~/Content/pace-theme-mac-osx.css")
+@Scripts.Render("~/bundles/jquery")
+
+
+<br />
+@using (Ajax.BeginForm("AdicionarCertificado", new AjaxOptions()
+{
+    InsertionMode = InsertionMode.Replace,
+    //OnSuccess = "onSuccess(data,this)"
+    UpdateTargetId = "adicionar"
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Emisor)
+    <button type="submit" role="button" aria-expanded="false" aria-controls="collapseExample" class="btn btn-primary grilla">Adicionar Certificado</button>
+}
+
+<br />
+
+<div id="adicionar"></div>
+
+@if (Model.ListadoEmisorCertificado != null && Model.ListadoEmisorCertificado.Any())
+{
+    <table id="" class="table  tablaDatos">
+        <thead style="color:white" class="azul ">
+            <tr>
+
+                <th>
+                    Archivo
+                </th>
+                <th>
+                    Certificado
+                </th>
+                <th>
+                    Fecha Vigencia
+                </th>
+                <th>
+                    Activo
+                </th>
+                <th>
+                    Contraseña
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListadoEmisorCertificado)
+            {
+                <tr>
+                    @*<td>
+                        @using (Ajax.BeginForm("EliminarEmisorCertificado", new AjaxOptions()
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            //OnSuccess = "onSuccess(data,this)"
+                            OnSuccess = "onSuccessCatalogo(data,this)"
+                        }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.Id, new { @Value = item.ece_id })
+                            @Html.HiddenFor(model => model.Emisor)
+                            <button type="submit" role="button" aria-expanded="false" aria-controls="collapseExample" class="btn btn-link editar"></button>
+                        }
+                    </td>*@
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.ece_archivo)
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.ece_certificado)
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.ece_fecha_vegencia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.ece_activo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.ece_contrasena)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<script type="text/javascript">
+
+     
+    @Html.Raw(Model.JsFuncion)
+
+    function mensaje(mensaje, icon) {
+        swal({
+            title: mensaje,
+            icon: icon
+        });
+    }
+
+    function cancelarCatalogo() {
+        $("#adicionar").html('');
+    }
+</script>
+

@@ -1,0 +1,192 @@
+﻿
+@{
+}
+
+
+<style type="text/css">
+    .CrearUsuario {
+        background-image: url(../../Content/Images/crear_usuarios.png);
+        background-repeat: no-repeat;
+        text-align: center;
+        width: 108px;
+        height: 98px;
+        text-indent: -9999px;
+    }
+
+    .Sucursal {
+        background-image: url(../../Content/Images/crear_sucursales.png);
+        background-repeat: no-repeat;
+        text-align: center;
+        width: 108px;
+        height: 98px;
+        text-indent: -9999px;
+    }
+
+    .Resolucion {
+        background-image: url(../../Content/Images/crear_resolucion.png);
+        background-repeat: no-repeat;
+        text-align: center;
+        width: 108px;
+        height: 98px;
+        text-indent: -9999px;
+    }
+
+    .Correo {
+        background-image: url(../../Content/Images/correo.png);
+        background-repeat: no-repeat;
+        text-align: center;
+        width: 108px;
+        height: 98px;
+        text-indent: -9999px;
+    }
+
+    .Certificado {
+        background-image: url(../../Content/Images/certificado.png);
+        background-repeat: no-repeat;
+        text-align: center;
+        width: 108px;
+        height: 98px;
+        text-indent: -9999px;
+    }
+
+    .Catalogo {
+        background-image: url(../../Content/Images/catalogo.png);
+        background-repeat: no-repeat;
+        text-align: center;
+        width: 108px;
+        height: 98px;
+        text-indent: -9999px;
+    }
+
+    .Emisor {
+        background-image: url(../../Content/Images/usuario_emisor.png);
+        background-repeat: no-repeat;
+        text-align: center;
+        width: 108px;
+        height: 98px;
+        text-indent: -9999px;
+    }
+
+    .clave {
+        background-image: url(../../Content/Images/clave_tecnica.png);
+        background-repeat: no-repeat;
+        text-align: center;
+        width: 108px;
+        height: 98px;
+        text-indent: -9999px;
+    }
+
+    .Producto {
+        background-image: url(../../Content/Images/productos.png);
+        background-repeat: no-repeat;
+        text-align: center;
+        width: 108px;
+        height: 98px;
+        text-indent: -9999px;
+    }
+
+    .Impuesto {
+        background-image: url(../../Content/Images/impuesto.png);
+        background-repeat: no-repeat;
+        text-align: center;
+        width: 108px;
+        height: 98px;
+        text-indent: -9999px;
+    }
+
+    .Plantilla {
+        background-image: url(../../Content/Images/plantilla.png);
+        background-repeat: no-repeat;
+        text-align: center;
+        width: 108px;
+        height: 98px;
+        text-indent: -9999px;
+    }
+</style>
+
+
+
+
+<h2>
+    Módulo de Configuración <span class="float-right">
+        @Html.ActionLink("Volver", "Index", "EmisorInicio", null, new { @class = "btn btn-danger btn-sm " })
+    </span>
+</h2>
+
+
+<hr />
+
+<div class="card mb-3 fondopciones">
+
+
+    <div style="color:#ffffff" class="card-header azul ">
+        <i class="fas fa-chart-area"></i>
+        Emisor
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class=" col-lg-2 col-md-2 mb-1">
+                @Html.ActionLink("Emisor", "EditarEmisor", "EmisorConfiguracion", new { idEmisor = (Guid)Session["i_id_emisor"] }, new { @class = "btn btn-link Emisor" })
+            </div>
+            <div class=" col-lg-2 col-md-2 mb-1">
+                @Html.ActionLink("Clave Tecnica", "ConsultarClaveTecnica", "EmisorConfiguracion", null, new { @class = "btn btn-link clave" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-3 fondopciones">
+
+
+    <div style="color:#ffffff" class="card-header amarillo">
+        <i class="fas fa-chart-area"></i>
+        Comience con su configuración
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class=" col-lg-2 col-md-2 mb-1">
+                @Html.ActionLink("Certificado", "Certificado", "Configuracion", null, new { @class = "btn btn-link Certificado" })
+            </div>
+            <div class=" col-lg-2 col-md-2 mb-1">
+                @Html.ActionLink("Catalogo", "Catalogo", "Configuracion", new { idTipoCat = Guid.Empty }, new { @class = "btn btn-link Catalogo" })
+            </div>
+            <div class=" col-lg-2 col-md-2 mb-1">
+                @Html.ActionLink("Impuesto", "Impuesto", "Configuracion", new { }, new { @class = "btn btn-link Impuesto" })
+            </div>
+            <div class=" col-lg-2 col-md-2 mb-1">
+                @Html.ActionLink("Producto", "Producto", "Configuracion", new { }, new { @class = "btn btn-link Producto" })
+            </div>
+            <div class=" col-lg-2 col-md-2 mb-1">
+                @Html.ActionLink("Correo", "Correo", "Configuracion", null, new { @class = "btn btn-link Correo" })
+            </div>
+            <div class=" col-lg-2 col-md-2 mb-1">
+                @Html.ActionLink("Resolucion", "Resolucion", "Configuracion", null, new { @class = "btn btn-link Resolucion" })
+            </div>
+            <div class=" col-lg-2 col-md-2 mb-1">
+                @Html.ActionLink("Sucursal", "Sucursal", "Configuracion", null, new { @class = "btn btn-link Sucursal" })
+            </div>
+            <div class=" col-lg-2 col-md-2 mb-1">
+                @Html.ActionLink("Usuario", "Usuario", "Configuracion", null, new { @class = "btn btn-link CrearUsuario" })
+            </div>
+            <div class=" col-lg-2 col-md-2 mb-1">
+                @Html.ActionLink("Plantilla", "Plantilla", "Configuracion", new { }, new { @class = "btn btn-link Plantilla" })
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    @Html.Raw(ViewBag.JsFuncion)
+
+    function mensaje(mensaje, icon) {
+        try {
+            swal({
+                title: mensaje,
+                icon: icon
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+</script>

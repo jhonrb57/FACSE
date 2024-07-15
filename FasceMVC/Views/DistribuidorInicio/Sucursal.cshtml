@@ -1,0 +1,128 @@
+﻿@model DataBase.ListadoEmisor
+@{
+    Layout = null;
+}
+@Scripts.Render("~/bundles/modernizr")
+@Styles.Render("~/Content/bootstrap.css")
+@Styles.Render("~/Content/css/inicio.css")
+
+@Styles.Render("~/Content/pace-theme-mac-osx.css")
+@Scripts.Render("~/bundles/jquery")
+
+
+<br />
+@using (Ajax.BeginForm("AdicionarSucursal", new AjaxOptions()
+{
+    InsertionMode = InsertionMode.Replace,
+    //OnSuccess = "onSuccess(data,this)"
+    UpdateTargetId = "adicionar"
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Emisor)
+    @Html.HiddenFor(model=>model.Pais)
+    <button type="submit" role="button" aria-expanded="false" aria-controls="collapseExample" class="btn btn-primary grilla">Adicionar Sucursal</button>
+}
+
+<div id="adicionar"></div>
+<br />
+
+@if (Model.ListadoEmisorSucursal != null && Model.ListadoEmisorSucursal.Any())
+{
+    <table id="" class="table  tablaDatos">
+        <thead style="color:white" class="azul ">
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Abreviatura
+                </th>
+                <th>
+                    Departamento
+                </th>
+                <td>
+                    Municipio
+                </td>
+                <th>
+                    Correo
+                </th>
+                <th>
+                    Dirección
+                </th>
+                <th>
+                    Código Postal
+                </th>
+                <th>
+                    Telefono
+                </th>
+                <th>
+                    Correo Entrada
+                </th>
+                <th>
+                    Correo Salida
+                </th>
+                <th>
+                    Activo
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListadoEmisorSucursal)
+            {
+                <tr>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.esu_nombre)
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.esu_abreviatura)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.NombreDepartamento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.NombreMunicipio)
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.esu_correo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.esu_direccion)
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.esu_codigo_postal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.esu_telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.esu_correo_entrada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.esu_correo_salida)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.esu_activo)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+<script type="text/javascript">
+     
+    @Html.Raw(Model.JsFuncion)
+
+    function mensaje(mensaje, icon) {
+        swal({
+            title: mensaje,
+            icon: icon
+        });
+    }
+
+    function cancelarSucursal() {
+        $("#adicionar").html('');
+    }
+</script>

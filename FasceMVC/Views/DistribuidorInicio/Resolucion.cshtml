@@ -1,0 +1,136 @@
+﻿@model DataBase.ListadoEmisor
+@{
+    Layout = null;
+}
+@Scripts.Render("~/bundles/modernizr")
+@Styles.Render("~/Content/bootstrap.css")
+@Styles.Render("~/Content/css/inicio.css")
+
+@Styles.Render("~/Content/pace-theme-mac-osx.css")
+@Scripts.Render("~/bundles/jquery")
+
+
+<br />
+@using (Ajax.BeginForm("AdicionarResolucion", new AjaxOptions()
+{
+    InsertionMode = InsertionMode.Replace,
+    //OnSuccess = "onSuccess(data,this)"
+    UpdateTargetId = "adicionar"
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Emisor)
+    <button type="submit" role="button" aria-expanded="false" aria-controls="collapseExample" class="btn btn-primary grilla">Adicionar Resolucion</button>
+}
+
+<div id="adicionar"></div>
+<br />
+
+@if (Model.ListadoEmisorResolucion != null && Model.ListadoEmisorResolucion.Any())
+{
+    <table id="" class="table  tablaDatos">
+        <thead style="color:white" class="azul ">   
+            <tr>
+                @*<th></th>*@
+                <th>
+                    Tipo Documento
+                </th>
+                <th>
+                    Prefijo
+                </th>
+                <th>
+                    Numero Resolucion
+                </th>
+                <th>
+                    Fecha
+                </th>
+                <th>
+                    Numero Inicial
+                </th>
+                <th>
+                    Numero Final
+                </th>
+                <th>
+                    Clave Tecnica
+                </th>
+                <th>
+                    Fecha Inicio
+                </th>
+                <th>
+                    Fecha Final
+                </th>
+                <th>
+                    Activo
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListadoEmisorResolucion)
+            {
+                <tr>
+                    @*<td>
+                        @using (Ajax.BeginForm("EliminarEmisoResolucion", new AjaxOptions()
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            //OnSuccess = "onSuccess(data,this)"
+                            OnSuccess = "onSuccessCatalogo(data,this)"
+                        }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.Id, new { @Value = item.ere_id })
+                            @Html.HiddenFor(model => model.Emisor)
+                            <button type="submit" role="button" aria-expanded="false" aria-controls="collapseExample" class="btn btn-link editar"></button>
+                        }
+                    </td>*@
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.NombreTipoDocumento)
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.ere_prefijo)
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.ere_numero_resolucion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.ere_fecha)
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.ere_numero_inicial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.ere_numero_final)
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.ere_clave_tecnica)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.ere_fecha_inicio)
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.ere_fecha_final)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.ere_activo)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+<script type="text/javascript">
+    
+    @Html.Raw(Model.JsFuncion)
+
+    function mensaje(mensaje, icon) {
+        swal({
+            title: mensaje,
+            icon: icon
+        });
+    }
+
+    function cancelarCatalogo() {
+        $("#adicionar").html('');
+    }
+</script>

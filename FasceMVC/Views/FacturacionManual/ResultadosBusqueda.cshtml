@@ -1,0 +1,53 @@
+﻿@model FasceMVC.Models.Buscar
+@{
+    Layout = null;
+}
+
+<div class="container-fluid">
+    <div class="row">
+
+        @if (Model.listaResultados != null && Model.listaResultados.Any())
+        {
+
+
+
+            for (int i = 0; i < Model.listaResultados.Count; i++)
+            {
+                <br>
+                <div class="col-sm-12 col-md-12 col-lg-6">
+                    <a onclick="$('#idForm@(Model.listaResultados[i].IdReceptor)').submit()" style="cursor:pointer">
+                        <div class="alert alert-warning alert-dismissible fade show">
+
+                            <div>
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>Receptor:</strong>   @Model.listaResultados[i].RazonSocial
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>  Identificación:</strong>  @Model.listaResultados[i].NumeroIdentificacion
+                                    </div>
+                                </div>
+                                @using (Html.BeginForm("IrIndex", "FacturacionManual", FormMethod.Post, new { id = "idForm" + @Model.listaResultados[i].IdReceptor }))
+                                {
+                                    @Html.HiddenFor(model => model.Id, new { @Value = @Model.listaResultados[i].IdReceptor })
+                                    @Html.HiddenFor(model => model.Tipodocumento)
+                                    @*@Html.TextBoxFor(model=>model.Tipodocumento)*@
+                                }
+                            </div>
+                        </div>
+                    </a>
+                    <br />
+                </div>
+            }
+        }
+        else
+        {
+            <br>
+            <div class="col-sm-12 col-md-12 col-lg-6">
+                <h5>No se han encontrado resultados para tu búsqueda</h5>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,690 @@
+﻿@model FasceMVC.Models.NotaCredito
+@{
+
+}
+@Scripts.Render("~/Scripts/pace.js")
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="card">
+                <h5 style="color:white " class="card-header  amarillo">Editar Nota crédito</h5>
+                <div class="card-body">
+                    @using (Html.BeginForm("Index", "EditarNotaCredito", FormMethod.Post, new { autocomplete = "off" }))
+                    {
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>Prefijo:</label>
+                                @Html.TextBoxFor(Model => Model.Prefijo, new { @class = "form-control obligatorio" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label>N° Nota crédito:</label>
+                                @Html.TextBoxFor(Model => Model.NumeroFactura, new { @class = "form-control obligatorio" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-8">
+                                <label>Concepto:</label>
+                                @Html.DropDownListFor(Model => Model.Concepto, Model.ListadoConceptos, new { @class = "form-control", onchange = "CambiarConcepto(this.value);" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-2">
+                                <label>&nbsp;</label>
+                                <button class="btn btn-success" type="submit" onmousedown="limpiarSession();">Buscar</button>
+                            </div>
+                        </div>
+                    }
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <label>Referencia:</label>
+                            @Html.TextBoxFor(Model => Model.Referencia, new { @class = "form-control", disabled = "disabled" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label>Fecha:</label>
+                            @Html.EditorFor(Model => Model.FechaTrm, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", Value = string.Format("{0:yyyy-MM-dd}", Model.FechaTrm) } })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <label>Moneda:</label>
+                            @Html.TextBoxFor(Model => Model.Moneda, new { @class = "form-control", disabled = "disabled" })
+                            @Html.HiddenFor(Model => Model.Moneda)
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12" id="idDivTrm">
+                        <label>TRM:</label>
+                        @Html.TextBoxFor(Model => Model.Trm, new { @class = "form-control", disabled = "disabled" })
+                        @Html.HiddenFor(Model => Model.Trm)
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <label>Forma de pago:</label>
+                            @Html.TextBoxFor(Model => Model.FormaPago, new { @class = "form-control", disabled = "disabled" })
+                            @Html.HiddenFor(Model => Model.FormaPago)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <label>Medio pago:</label>
+                            @Html.TextBoxFor(Model => Model.MedioPago, new { @class = "form-control", disabled = "disabled" })
+                            @Html.HiddenFor(Model => Model.MedioPago)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-4">
+                            <label>N° Orden compra</label>
+                            @Html.TextBoxFor(Model => Model.OrdenCompra, new { @class = "form-control", disabled = "disabled" })
+                        </div>
+                        <div class="col-sm-12 col-lg-4">
+                            <label>N° Despacho</label>
+                            @Html.TextBoxFor(Model => Model.Despacho, new { @class = "form-control", disabled = "disabled" })
+
+                        </div>
+                        <div class="col-sm-12 col-lg-4">
+                            <label>N° Recepción</label>
+                            @Html.TextBoxFor(Model => Model.Recepcion, new { @class = "form-control", disabled = "disabled" })
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <br />
+
+                <table id="tableCatalogoFactura" class="table table-bordered table-striped table-sm table-responsive-sm table-responsive-md">
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th>Descripción</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+
+                    @for (int i = 0; i < Model.ListadoCatalogoGeneral.Count(); i++)
+                    {
+                        <tr>
+                            <td class="" width="300">@Model.ListadoCatalogoGeneral[i].Descripcion.ToString()</td>
+                            @if (Model.ListadoCatalogoGeneral[i].Lista)
+                            {
+                                <td class="catValor">
+                                    @Html.DropDownListFor(Model => Model.ListadoCatalogoGeneral[i].ListadoCag[0].Selected, Model.ListadoCatalogoGeneral[i].ListadoCag, new { @class = "form-control", onchange = "GuardarCatalogoFactura('" + Model.ListadoCatalogoGeneral[i].Id + "',this.value);" })
+                                </td>
+                            }
+                            else
+                            {
+                                <td class="catValor">
+                                    @Html.TextBoxFor(Model => Model.ListadoCatalogoGeneral[i].Valor, new { @class = "form-control text-right imputtrasnparente", onchange = "GuardarCatalogoFactura('" + Model.ListadoCatalogoGeneral[i].Id + "',this.value);" })
+                                </td>
+                            }
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="card">
+                <h5 style="color:white " class="card-header  rojo">Receptor </h5>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Razon social:&nbsp;&nbsp;</label>
+                        @Html.TextBox("RazonSocial", @Model.RazonSocial, new { @class = "form-control", disabled = "disabled" })
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-8">
+                            <label>Identificación:&nbsp;&nbsp;</label>
+                            @Html.TextBox("Identificacion", @Model.Identificacion, new { @class = "form-control", disabled = "disabled" })
+
+                        </div>
+                        <div class="col">
+                            <label>Digito:&nbsp;&nbsp;</label>
+                            @Html.TextBox("Digito", @Model.Digito, new { @class = "form-control", disabled = "disabled" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Res.fiscal:&nbsp;&nbsp;</label>
+                        @Html.TextBox("Responsabilidad fiscal", @Model.ResFiscal, new { @class = "form-control", disabled = "disabled", Value = Model.ResFiscal })
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <label>País:&nbsp;&nbsp;</label>
+                            @Html.TextBox("Pais", @Model.Pais, new { @class = "form-control", disabled = "disabled" })
+                        </div>
+                        <div class="col">
+                            <label>Ciudad:&nbsp;&nbsp;</label>
+                            @Html.TextBox("Ciudad", @Model.Ciudad, new { @class = "form-control", disabled = "disabled" })
+                        </div>
+
+                        <div class="col">
+                            <label>Departamento:&nbsp;&nbsp;</label>
+                            @Html.TextBox("Departamento", @Model.Departamento, new { @class = "form-control", disabled = "disabled" })
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <label>Télefono:&nbsp;&nbsp;</label>
+                            @Html.TextBox("Telefono", @Model.Telefono, new { @class = "form-control", disabled = "disabled" })
+                        </div>
+                        <div class="col">
+                            <label>Dirección:&nbsp;&nbsp;</label>
+                            @Html.TextBox("Direccion", @Model.Direccion, new { @class = "form-control", disabled = "disabled" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Correo:&nbsp;&nbsp;</label>
+                        @Html.TextBox("Correo", @Model.Correo, new { @class = "form-control", disabled = "disabled" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col">
+            <div class="card">
+
+                <h5 style="color:white;" class="azul card-header">Detalles</h5>
+
+                <div class="card-body">
+                    @if (Model.ListadoDetalles != null && Model.ListadoDetalles.Any())
+                    {
+
+                        <table id="tablaDetalles" class="table table-bordered table-striped table-sm table-responsive-sm table-responsive-md">
+                            <thead class="thead-dark text-center">
+                                <tr>
+                                    <th width="25"></th>
+                                    <th>Código</th>
+                                    <th>Descripción</th>
+                                    <th>Cantidad</th>
+                                    <th>V/Unidad</th>
+                                    <th>Descuento</th>
+                                    <th>Cargo</th>
+                                    <th>Valor impuesto</th>
+                                    <th>Total</th>
+                                    <th width="25"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.ListadoDetalles)
+                                {
+                                    <tr>
+                                        <td class="text-center">@Html.ActionLink("Editar", "Editar", new { id = item.IdDetalle, nombre = item.Descripcion }, new { @class = "editar" })</td>
+                                        <td>@item.Codigo</td>
+                                        <td>@item.Descripcion</td>
+                                        <td class="text-right">@string.Format("{0:N0}", item.Cantidad)</td>
+                                        <td class="text-right">@string.Format("{0:C2}", item.ValorUnidad)</td>
+                                        <td class="text-right">@string.Format("{0:C2}", item.Descuento)</td>
+                                        <td class="text-right">@string.Format("{0:C2}", item.Cargo)</td>
+                                        <td class="text-right">@string.Format("{0:C2}", item.ValorImpuesto)</td>
+                                        <td class="text-right">@string.Format("{0:C2}", item.Total)</td>
+                                        <td class="text-center">@Html.ActionLink("Eliminar", "Eliminar", new { id = item.Codigo, prefijo = Model.Prefijo, numeroFactura = Model.NumeroFactura }, new { @class = "eliminar" })</td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    }
+                    else
+                    {
+                        <h6>No cuenta con detalles</h6>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    @using (Ajax.BeginForm("EnviarDatosFactura", null, new AjaxOptions() { InsertionMode = InsertionMode.Replace, OnSuccess = "onSuccess(data,this)", LoadingElementId = "loading" }, new { autocomplete = "off", id = "formEnviar" }))
+    {
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-3">
+                                <label>Subtotal</label>
+                                @Html.EditorFor(Model => Model.SubTotal, new { htmlAttributes = new { @class = "form-control inputClass", Value = string.Format("{0:N2}", Model.SubTotal), id = "SubTotaledit", Name = "SubTotaledit" } })
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-3">
+                                <label>Impuesto</label>
+                                @Html.EditorFor(Model => Model.Impuesto, new { htmlAttributes = new { @class = "form-control inputClass", Value = string.Format("{0:N2}", Model.Impuesto) } })
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-3">
+                                <label>Cargo:</label>
+                                @Html.TextBoxFor(Model => Model.Cargo, new { @class = "form-control", Value = string.Format("{0:N2}", Model.Cargo), onchange = "CalcularTotalPrincipal();", id = "Cargoedit", Name = "Cargoedit" })
+                                @Html.HiddenFor(Model => Model.Cargo)
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-3">
+                                <label>Descuento:</label>
+                                @Html.TextBoxFor(Model => Model.Descuento, new { @class = "form-control", Value = string.Format("{0:N2}", Model.Descuento), onchange = "CalcularTotalPrincipal();", id = "Descuentoedit", Name = "Descuentoedit" })
+                                @Html.HiddenFor(Model => Model.Descuento)
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-9">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-3">
+                                <label>Total:</label>
+                                @Html.EditorFor(Model => Model.Total, new { htmlAttributes = new { @class = "form-control inputClass", Value = string.Format("{0:N2}", Model.Total) } })
+                            </div>
+                        </div>
+                        <hr />
+
+                        <div class="form-row">
+                            <div class="col-4">
+                                <label>Retención:</label>
+                                @Html.DropDownListFor(Model => Model.IdRetencion, Model.ListaRetenciones, new { @class = "form-control", onchange = "CargarDescripcionRetencion()" })
+                            </div>
+                            <div class="col-4">
+                                <div id="divtiporetencion">
+                                    <label>Descripción:</label><br />
+                                    @if (ViewBag.IdTipoRetencion != null)
+                                    {
+                                        @Html.DropDownList("IdTipoRetencion", null, htmlAttributes: new { @class = "form-control", onchange = "CargarPorcentajeRetencion(this.value);", style = " border: 1px #c83822 solid;" })
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <label>Porcentaje:</label>
+                                <br />
+                                <b>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label id="Porcentaje" style="border: 1px #c83822 solid; font-size: 30px">@Model.PorcentajeRetencion</label>
+                                </b>
+                                @Html.HiddenFor(Model => Model.PorcentajeRetencion, new { @Value = Model.PorcentajeRetencion })
+                                @Html.HiddenFor(Model => Model.SubTotal, new { @Value = Model.SubTotal })
+                                @*<input type="text" id="Porcentaje" class="form-control" />*@
+                            </div>
+
+                            <div class="col-1">
+                                <button style="background-color:transparent" type="button" class="btn  bg-transparent" onclick="CalcularTotalRetenciones()">
+                                    <img src="~/Content/Images/anadir.png" />
+                                </button>
+                            </div>
+                            <div class="col-1">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <table id="idTablaRetencion" class="table table-bordered table-striped table-sm table-responsive-sm table-responsive-md">
+                                <thead class="thead-dark text-center">
+                                    <tr>
+                                        <th class="text-center">Retención</th>
+                                        <th class="text-center">Porcentaje</th>
+                                        <th class="text-center">Valor</th>
+                                        <th class="text-center">Descripción</th>
+                                        <th class=" text-sm-right"></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <label>Total retenciones:</label>
+                                @Html.EditorFor(Model => Model.TotalRetencion, new { htmlAttributes = new { @class = "form-control inputClass", Value = string.Format("{0:N2}", Model.TotalRetencion), disabled = "disabled" } })
+
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-9">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-9">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-3">
+                                <label>Total Con Retenciones:</label>
+                                @Html.EditorFor(Model => Model.TotalFinalRetencion, new { htmlAttributes = new { @class = "form-control inputClass", Value = string.Format("{0:N2}", Model.TotalFinalRetencion), disabled = "disabled" } })
+                            </div>
+
+                            <div class="col-12">
+                                <label>Observaciones:</label>
+                                @Html.TextArea("Observacion", Model.Observacion, new { @class = "form-control", onchange = "AgregarObservacion(this.value);" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col">
+                @Html.HiddenFor(Model => Model.Concepto)
+                @Html.HiddenFor(Model => Model.Prefijo)
+                @Html.HiddenFor(Model => Model.NumeroFactura)
+                <label class="text-danger" id="lblmensajeErrror"></label><br />
+                <button type="submit" class="btn btn-success btn-sm btnGo" id="btnEnviar">Enviar</button>
+                @Html.ActionLink("Cancelar", "Cancelar", "EditarNotaCredito", null, new { @class = "btn  btn-danger btn-sm" })
+            </div>
+        </div>
+
+    }
+    <br />
+    <div class="row">
+        <div class="col">
+            <div id="divMensaje"></div>
+        </div>
+    </div>
+    <br /><br />
+    <div id="loading" class="updateProgress" style="display:none;">
+        <img src="~/Content/Images/procesando.gif" />
+    </div>
+
+</div>
+
+
+<style>
+    a.editar {
+        background: url("../../Content/Images/edit.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+
+    a.eliminar {
+        background: url("../../Content/Images/basura.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+
+    .inputClass {
+        pointer-events: none;
+        background-color: #e9ecef;
+    }
+
+    .updateProgress {
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        opacity: 0.5;
+        filter: alpha(opacity=70);
+        text-align: center;
+    }
+</style>
+
+<script>
+
+
+    @Html.Raw(ViewBag.JsFuncion)
+
+    $(".btnGo").click(function () {
+        var form = $("#formEnviar");
+        // event.preventDefault(); doesn't work in IE8 so do the following instead
+        (event.preventDefault) ? event.preventDefault() : event.returnValue = false;
+        form.submit();
+    });
+
+    $(document).ready(function () {
+
+        var moneda = $("#Moneda").val();
+
+        if (moneda.toUpperCase().trim() == 'USD') {
+            $("#idDivTrm").show();
+        }
+        else {
+            $("#idDivTrm").hide();
+        }
+        validarSessionRetenciones();
+        ValidarValor();
+    });
+
+    function limpiarSession() {
+        $.ajax({
+            type: "POST",
+            url: "/EditarNotaCredito/BorrarSession",
+            success: (data) => {
+                console.log(data);
+            }
+        });
+    }
+
+
+    function onSuccess(result, ref) {
+
+        if (result.isValid) {
+            $("#divMensaje").html(result.data);
+        } else {
+            jQuery("#form1").html(result.data);
+            if (result = "OK") {
+                location.href = "/FacturacionManual/Buscar";
+                $("#divMensaje").html(result.data);
+            } else {
+                jQuery("#form1").html(result.data);
+            }
+        }
+    }
+
+    function ValidarValor() {
+        try {
+            var total = $("#Total").val();
+            var prefijo = $("#Prefijo").val();
+            var numeroFactura = $("#NumeroFactura").val();
+
+            console.log(prefijo, numeroFactura, total);
+
+
+
+            if (parseFloat(total) > 0) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/EditarNotaCredito/ValidarValor",
+                    data: { prefijo: prefijo, numeroFactura: numeroFactura, total: total },
+                    success: (data) => {
+                        if (data.result) {
+                            $("#btnEnviar").prop('disabled', false);
+                            $("#lblmensajeErrror").text(data.texto);
+                        }
+                        else {
+                            $("#btnEnviar").prop('disabled', true);
+                            $("#lblmensajeErrror").text(data.texto);
+                        }
+                    }
+                });
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function CambiarConcepto(id) {
+        try {
+                $.ajax({
+                    type: "GET",
+                    url: "/EditarNotaCredito/CambioConcepto",
+                    data: { idConcepto: id },
+                    success: (data) => {
+
+                    }
+                });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function GuardarCatalogoFactura(id, valor) {
+        try {
+            console.log(id, valor);
+                $.ajax({
+                    type: "POST",
+                    url: "/EditarNotaCredito/ActualizarCatalogoGeneral",
+                    data: { idCatalogo: id, valor: valor },
+                    success: (data) => {
+                        if (data != null) {
+                            console.log(data);
+                        }
+                    },
+                    error: (error) => {
+                        console.error(error);
+                    }
+                });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function mensaje(mensaje, icon) {
+        try {
+            swal({
+                title: mensaje,
+                icon: icon
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function CalcularTotalPrincipal() {
+        try {
+            var subTotal = $("#SubTotal").val().replace(/,/g, "");
+            var impuesto = $("#Impuesto").val().replace(/,/g, "");
+            var cargo = $("#Cargoedit").val().replace(/,/g, "");
+            var descuento = $("#Descuentoedit").val().replace(/,/g, "");
+
+            //if (parseFloat(cargo) == 'isNaN') {
+            //    cargo = 0;
+            //}
+            if ((isNaN(parseFloat(cargo)))) {
+                cargo = 0;
+            }
+            if ((isNaN(parseFloat(descuento)))) {
+                descuento = 0;
+            }
+
+            $("#Cargo").val(cargo);
+            $("#Descuento").val(descuento);
+
+            var total = (parseFloat(subTotal) + parseFloat(impuesto) + parseFloat(cargo) - parseFloat(descuento));
+            $("#Total").val(Intl.NumberFormat('en').format(total));
+            $("#Cargoedit").val(Intl.NumberFormat('en').format(cargo));
+            $("#Descuentoedit").val(Intl.NumberFormat('en').format(descuento));
+
+            if (total > 0) {
+                $("#btnEnviar").prop('disabled', false);
+            }
+            else {
+                $("#btnEnviar").prop('disabled', true);
+            }
+
+            $("#btnEnviar").prop('disabled', true);
+            ValidarValor();
+
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+  //retenciones
+
+     function validarSessionRetenciones() {
+        try {
+            $("#idTablaRetencion tbody").empty();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ValidarRetenciones", "EditarNotaCredito")',
+                data: {},
+                success: (data) => {
+                    var htmlTag = '';
+                    $(data.data).each((index, item) => {
+                        htmlTag = htmlTag + '<tr>' + '<td>' + item.Descripcion + '</td><td class="text-right">' + item.PorcentajeRetencion + '</td>' + '<td class="text-right">' + Intl.NumberFormat('en').format(item.Valor) + '</td>' + '<td>' + item.DescripcionRetencion + '</td>  <td>'
+                            + '<a style="cursor: pointer;" onclick="EliminarRetencionGeneral(\'' + item.Id + '\')"><img src="../../Content/Images/basura.png"/></a>' + '</td>' + '</tr>'
+                    });
+                    //console.log(htmlTag);
+                    $("#idTablaRetencion tbody").append(htmlTag);
+                    $("#TotalRetencion").val(Intl.NumberFormat('en').format(data.total));
+                    var total = $("#Total").val().replace(/,/g, "");
+                    $("#TotalFinalRetencion").val(Intl.NumberFormat('en').format(parseFloat(total) - data.total));
+                }
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function CargarPorcentajeRetencion(Porcentaje) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("CargarPorcentaje", "EditarNotaCredito")',
+                data: { gTipoRetencion: Porcentaje },
+                async: false,
+                dataType: "text",
+                success: function (result) {
+                    document.getElementById("Porcentaje").innerHTML = result;
+                    document.getElementById("PorcentajeRetencion").value = result;
+            },
+                error: function (result) {
+                console.error(error)
+            }
+        });
+    }
+
+       function CalcularTotalRetenciones() {
+           try {
+            $("#idTablaRetencion tbody").empty();
+                $.ajax({
+                    url: '@Url.Action("GuardarRetencionGeneral", "EditarNotaCredito")',
+                    type: 'POST',
+                    data: $("#formEnviar").serialize(),
+                    success: (data) => {
+                        if (data != null) {
+                            console.log(data);
+                            var htmlTag = '';
+                            $(data.data).each((index, item) => {
+                                htmlTag = htmlTag + '<tr>' + '<td>' + item.Descripcion + '</td><td class="text-right">' + item.PorcentajeRetencion + '</td>' + '<td class="text-right">' + Intl.NumberFormat('en').format(item.Valor) + '</td>' + '<td>' + item.DescripcionRetencion + '</td>  <td>'
+                                    + '<a style="cursor: pointer;" onclick="EliminarRetencionGeneral(\'' + item.Id + '\')"><img src="../../Content/Images/basura.png"/></a>' + '</td>' + '</tr>'
+                            });
+                            //console.log(htmlTag);
+                            $("#idTablaRetencion tbody").append(htmlTag);
+                            $("#TotalRetencion").val(Intl.NumberFormat('en').format(data.total));
+                            var total = $("#Total").val().replace(/,/g, "");
+                            $("#TotalFinalRetencion").val(Intl.NumberFormat('en').format(parseFloat(total)-data.total));
+                            }
+                    },
+                    error: (error) => {
+                        console.error(error);
+                    }
+            });
+
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+     function EliminarRetencionGeneral(id) {
+        try {
+            debugger;
+            $("#idTablaRetencion tbody").empty();
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("EliminarRetencionGeneral", "EditarNotaCredito")',
+                    data: { id: id },
+                    success: (data) => {
+                        var htmlTag = '';
+                        $(data.data).each((index, item) => {
+
+                            htmlTag = htmlTag + '<tr>' + '<td>' + item.Descripcion + '</td><td>' + item.PorcentajeRetencion + '</td>' + '<td class="valor">' + Intl.NumberFormat('en').format(item.Valor) + '</td>' + '<td>' + item.DescripcionRetencion + '</td>  <td>'
+                                + '<a style="cursor: pointer;" onclick="EliminarRetencionGeneral(\'' + item.Id + '\')"><img src="../../Content/Images/basura.png"/></a>' + '</td>' + '</tr>'
+                        });
+                        //console.log(htmlTag);
+                        $("#idTablaRetencion tbody").append(htmlTag);
+                        $("#TotalRetencion").val(Intl.NumberFormat('en').format(data.total));
+                        var total = $("#Total").val().replace(/,/g, "");
+                        $("#TotalFinalRetencion").val(Intl.NumberFormat('en').format(parseFloat(total) - data.total));
+                    },
+                    error: (error) => {
+                        alert("ohhh");
+                        console.error(error);
+                    }
+                });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+</script>

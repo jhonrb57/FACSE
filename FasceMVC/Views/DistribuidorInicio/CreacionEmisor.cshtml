@@ -1,0 +1,220 @@
+﻿@model DataBase.adm_emisor
+@{
+    Layout = null;
+}
+@Scripts.Render("~/bundles/modernizr")
+@Styles.Render("~/Content/bootstrap.css")
+@Styles.Render("~/Content/css/inicio.css")
+
+@Styles.Render("~/Content/pace-theme-mac-osx.css")
+@Scripts.Render("~/bundles/jquery")
+
+@using (Ajax.BeginForm("GuardarEmisor", new AjaxOptions()
+{
+    InsertionMode = InsertionMode.Replace,
+    OnSuccess = "onSuccess(data,this)"
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+
+    <div class="card mb-3 fondopciones">
+        <div style="color:#ffffff" class="card-header azul">
+            <i class="fas fa-chart-area"></i>
+            Crear Emisor
+        </div>
+        <div class="card-body">
+            <div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.emi_grupo, htmlAttributes: new { @class = "inputState" })
+
+                    @Html.DropDownList("emi_grupo", null, null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.emi_grupo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col">
+                            @Html.LabelFor(model => model.emi_tipo_persona, htmlAttributes: new { @class = "inputState" })
+
+                            @Html.DropDownList("emi_tipo_persona", null, "--Seleccione--", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.emi_tipo_persona, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col">
+                            @Html.LabelFor(model => model.emi_tipo_identificacion, htmlAttributes: new { @class = "inputState" })
+
+                            @Html.DropDownList("emi_tipo_identificacion", null, "--Seleccione--", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.emi_tipo_identificacion, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col">
+                            @Html.LabelFor(model => model.emi_identificacion, htmlAttributes: new { @class = "inputState" })
+
+                            @Html.EditorFor(model => model.emi_identificacion, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.emi_identificacion, "", new { @class = "text-danger" })
+
+
+                        </div>
+                        <div class="col">
+                            @Html.LabelFor(model => model.emi_digito, htmlAttributes: new { @class = "inputState" })
+
+                            @Html.EditorFor(model => model.emi_digito, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.emi_digito, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="wrap-input2 validate-input" data-validate="Name is required">
+                    @Html.LabelFor(model => model.emi_nombre, htmlAttributes: new { @class = "inputState" })
+
+                    @Html.EditorFor(model => model.emi_nombre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.emi_nombre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="wrap-input2 validate-input" data-validate="Name is required">
+                    @Html.LabelFor(model => model.emi_razon_social, htmlAttributes: new { @class = "inputState" })
+
+                    @Html.EditorFor(model => model.emi_razon_social, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.emi_razon_social, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col">
+                        @Html.LabelFor(model => model.emi_pais, htmlAttributes: new { @class = "inputState" })
+
+                        @Html.DropDownList("emi_pais", null, "--Seleccione--", new { @class = "form-control", @onchange = "OnChangePais()" })
+                        @Html.ValidationMessageFor(model => model.emi_pais, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col">
+                        @Html.LabelFor(model => model.emi_departamento, htmlAttributes: new { @class = "inputState" })
+
+                        @Html.DropDownList("emi_departamento", null, "--Seleccione--", new { @class = "form-control", onchange = "OnChangeDepartamento()" })
+                        @Html.ValidationMessageFor(model => model.emi_departamento, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col">
+                        @Html.LabelFor(model => model.emi_municipio, htmlAttributes: new { @class = "inputState" })
+
+                        @Html.DropDownList("emi_municipio", null, "--Seleccione--", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.emi_municipio, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col">
+                        <div class="wrap-input2 validate-input" data-validate="Name is required">
+                            @Html.LabelFor(model => model.emi_codigo_posta, htmlAttributes: new { @class = "inputState" })
+
+                            @Html.EditorFor(model => model.emi_codigo_posta, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.emi_codigo_posta, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="wrap-input2 validate-input" data-validate="Name is required">
+                            @Html.LabelFor(model => model.emi_telefono, htmlAttributes: new { @class = "inputState" })
+
+                            @Html.EditorFor(model => model.emi_telefono, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.emi_telefono, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="wrap-input2 validate-input" data-validate="Name is required">
+                            @Html.LabelFor(model => model.emi_correo, htmlAttributes: new { @class = "inputState" })
+
+                            @Html.EditorFor(model => model.emi_correo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.emi_correo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="wrap-input2 validate-input" data-validate="Name is required">
+                            @Html.LabelFor(model => model.emi_direccion, htmlAttributes: new { @class = "inputState" })
+
+                            @Html.EditorFor(model => model.emi_direccion, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.emi_direccion, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.emi_tipo_emisor, htmlAttributes: new { @class = "inputState" })
+
+                @Html.DropDownList("emi_tipo_emisor", null, "--Seleccione--", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.emi_tipo_emisor, "", new { @class = "text-danger" })
+            </div>
+
+
+            @*<div class="form-group">
+            <label for="exampleFormControlFile1">Subir Logo</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>*@
+
+            <div class="form-group">
+                <div class="wrap-input2 validate-input" data-validate="Name is required">
+                    @Html.LabelFor(model => model.emi_test_id, htmlAttributes: new { @class = "inputState" })
+
+                    @Html.EditorFor(model => model.emi_test_id, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.emi_test_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col">
+                        @Html.LabelFor(model => model.emi_sofware, htmlAttributes: new { @class = "inputState" })
+
+                        @Html.DropDownList("emi_sofware", null, "--Seleccione--", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.emi_sofware, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col">
+                        @Html.LabelFor(model => model.emi_ciiu, htmlAttributes: new { @class = "inputState" })
+
+                        @Html.DropDownList("emi_ciiu", null, "--Seleccione--", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.emi_ciiu, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="wrap-input2 validate-input" data-validate="Name is required">
+                    @Html.LabelFor(model => model.emi_matricula_mercantil, htmlAttributes: new { @class = "inputState" })
+
+                    @Html.EditorFor(model => model.emi_matricula_mercantil, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.emi_matricula_mercantil, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="wrap-input2 validate-input" data-validate="Name is required">
+                    @Html.LabelFor(model => model.emi_correo_automatico, htmlAttributes: new { @class = "inputState" })
+
+                    @Html.EditorFor(model => model.emi_correo_automatico, new { htmlAttributes = new { @class = "" } })
+                    @Html.ValidationMessageFor(model => model.emi_correo_automatico, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            <button type="submit" class="btn btn-primary">Crear</button>
+
+            <a class="btn btn-danger" style="color:white; cursor:pointer" onclick="cancelarEmisor()" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Cancelar
+            </a>
+        </div>
+    </div>
+
+
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

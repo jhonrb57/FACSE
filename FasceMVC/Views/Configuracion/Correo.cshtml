@@ -1,0 +1,86 @@
+﻿@model FasceMVC.Models.Correo
+@{
+
+}
+
+<div class="container">
+    <br />
+    <h2>
+        <img src="~/Content/Images/logo_titulos.png" />   Correo
+    </h2>
+    <hr />
+    <div class="row">
+        <div class="col">
+            @Html.ActionLink("Volver", "Index", "Configuracion", null, new { @class = "btn btn-danger btn-sm" })
+            @Html.ActionLink("Agregar", "CrearEditarCorreo", "Configuracion", new { idCorreo = Guid.Empty }, new { @class = "btn btn-success btn-sm" })
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col">
+            @if (Model.ListadoCorreo != null && Model.ListadoCorreo.Any())
+            {
+            <table class="table table-bordered table-striped table-sm table-responsive-sm table-responsive-md">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th width="45"></th>
+                        <th>Tipo correo</th>
+                        <th>Nombre</th>
+                        <th>Servidor</th>
+                        <th>Puerto</th>
+                        <th>Correo</th>
+                        <th>SSL</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ListadoCorreo)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink("Editar", "CrearEditarCorreo", new { idCorreo = item.IdCorreo }, new { @class = "editar" })
+                            </td>
+                            <td>@item.TipoCorreoText</td>
+                            <td>@item.Nombre</td>
+                            <td>@item.Servidor</td>
+                            <td>@item.Puerto</td>
+                            <td>@item.Correo</td>
+                            <td>@item.Ssl</td>
+                            <td>
+                                @Html.CheckBox("Activo", item.Estado, new { disabled = "disabled" })
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            }
+            else
+            {
+                <h5>No cuenta con correos configurados</h5>
+            }
+        </div>
+    </div>
+</div>
+<br /><br />
+<style>
+    a.editar {
+        background: url("../../Content/Images/edit.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+</style>
+<script>
+    @Html.Raw(Model.JsFuncion)
+
+    function mensaje(mensaje, icon) {
+        try {
+            swal({
+                title: mensaje,
+                icon: icon
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+</script>

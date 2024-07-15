@@ -1,0 +1,359 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" href="~/Content/Images/iconos.ico" />
+    <title>.::FACSE::.. @ViewBag.Title</title>
+    <!-- Bootstrap core CSS -->
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Content/datatables")
+    @Scripts.Render("~/bundles/modernizr")
+    
+    <style type="text/css">
+
+
+        .grilla {
+            background: rgba(73,155,234,1);
+            background: -moz-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(73,155,234,1)), color-stop(100%, rgba(32,124,229,1)));
+            background: -webkit-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+            background: -o-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+            background: -ms-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+            background: linear-gradient(to bottom, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5', GradientType=0 );
+        }
+
+        table {
+            font-size: 12px !important;
+        }
+
+            table tbody tr:hover {
+                background: #FFF0CC;
+            }
+
+
+
+
+        .md-form {
+            position: relative;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tooltip {
+            text-decoration: none;
+            border-bottom: 1px dotted #004B6B;
+            color: #004B6B;
+            outline: none;
+            position: static;
+            display: inline;
+            opacity: 1;
+        }
+
+        /*For tooltip box*/
+        #mcTooltip {
+            line-height: 16px;
+            border-width: 1px;
+            color: #333;
+            border-color: #BBB;
+            padding: 20px;
+            font-size: 12px;
+            font-family: Verdana, Arial;
+            border-radius: 6px;
+            background-color: #F6F6F6;
+        }
+
+            #mcTooltip.no-padding {
+                padding: 0;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            }
+
+        #mcTooltip, #mcttCo b {
+            box-shadow: 0 1px 8px rgba(0,0,0,0.5);
+        }
+
+            /* For hyperlink within tooltip */
+            #mcTooltip a {
+                color: #069;
+            }
+
+        /*Close button. Available when sticky or overlay has been set to true, or is on touch-enabled devices. */
+        #mcttCloseButton {
+            border-radius: 4px;
+            width: 18px;
+            height: 18px;
+            margin-right: 2px;
+            margin-top: 2px;
+            background: black;
+        }
+
+            /*Close button X symbol*/
+            #mcttCloseButton:after {
+                font: normal 38px/18px arial, sans-serif;
+                color: white;
+                top: 0;
+                left: -2px;
+            }
+
+        /*Give the close button a bigger size on smaller devices*/
+        @@media only screen and (max-width: 736px) {
+            #mcttCloseButton {
+                width: 28px;
+                height: 28px;
+            }
+
+                #mcttCloseButton:after {
+                    font-size: 48px;
+                    line-height: 28px;
+                }
+        }
+
+        /* Useful when overlay has been set to true or 1 in JS */
+        #mcOverlay {
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            z-index: 4;
+        }
+
+        #mcTooltip img {
+            border: 0;
+            vertical-align: middle;
+        }
+
+        /*The settings below should remain unchanged*/
+        #mcTooltipWrapper {
+            position: absolute;
+            visibility: hidden;
+            overflow: visible;
+            z-index: 9999999999;
+            top: -2000px;
+        }
+
+        #mcTooltip {
+            float: left;
+            border-style: solid;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mcTooltipInner {
+            float: left;
+            position: relative;
+            width: auto;
+            height: auto;
+        }
+
+        #mcttCo, #mcttCo b {
+            position: absolute;
+            overflow: hidden;
+        }
+
+        /*compatible with bootstrap*/
+        #mcTooltip, #mcTooltip div {
+            box-sizing: content-box;
+        }
+
+        .breadcrumb {
+            display: block !important;
+        }
+
+
+
+
+
+        .inp {
+            position: relative;
+            margin: auto;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            font-size: 16px;
+            color: #9098A9;
+            font-weight: 500;
+            transform-origin: 0 0;
+            transition: all .2s ease;
+        }
+    </style>
+</head>
+<body class="fondo">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light  border-bottom banner  Small ">
+        <div class="container-fluid">
+            <a class="navbar-brand  " href="#">
+
+                <img src="~/Content/Images/logo_facse_dst.png" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link glyphicon glyphicon-star" href="index.html">
+                            @Html.ActionLink("Inicio", "VolverAinicio", "Login", null, new { @class = "nav-link glyphicon glyphicon-star" })
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link glyphicon glyphicon-star" href="index.html">
+                            @Html.ActionLink("Cerrar Sesión", "Cerrar", "Login", null, new { @class = "nav-link glyphicon glyphicon-star" })
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br />
+
+    <!-- Page Content -->
+    <!-- Page Content -->
+    <div id="content-wrapper">
+        <div class="container-fluid">
+            <div class="breadcrumb azul">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div style="color:#ffffff" class="breadcrumb-item active ">
+                            <h5>@Session["i_s_nombreDistribuidor"]</h5>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2  text-right">
+                        @*<img src="~/Content/Images/emisor.png" />
+                            <img src="~/Content/Images/grupo_emisor.png" />*@
+                    </div>
+                </div>
+            </div>
+            @RenderBody()
+            <hr />
+            @{
+                Html.RenderPartial("_Footer");
+            }
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        //    Pace.on("done", function () {
+        //        $('#page_overlay').delay(300).fadeOut(600);
+        //    });
+
+        //        $(document).ajaxStart(function () {
+        //        Pace.restart();
+        //    $('#page_overlay').fadeIn(300);
+        //});
+
+    !function (a) { a(["jquery"], function (a) { return function () { function b(a, b, c) { return o({ type: u.error, iconClass: p().iconClasses.error, message: a, optionsOverride: c, title: b }) } function c(b, c) { return b || (b = p()), r = a("#" + b.containerId), r.length ? r : (c && (r = l(b)), r) } function d(a, b, c) { return o({ type: u.info, iconClass: p().iconClasses.info, message: a, optionsOverride: c, title: b }) } function e(a) { s = a } function f(a, b, c) { return o({ type: u.success, iconClass: p().iconClasses.success, message: a, optionsOverride: c, title: b }) } function g(a, b, c) { return o({ type: u.warning, iconClass: p().iconClasses.warning, message: a, optionsOverride: c, title: b }) } function h(a) { var b = p(); r || c(b), k(a, b) || j(b) } function i(b) { var d = p(); return r || c(d), b && 0 === a(":focus", b).length ? void q(b) : void (r.children().length && r.remove()) } function j(b) { for (var c = r.children(), d = c.length - 1; d >= 0; d--) k(a(c[d]), b) } function k(b, c) { return b && 0 === a(":focus", b).length ? (b[c.hideMethod]({ duration: c.hideDuration, easing: c.hideEasing, complete: function () { q(b) } }), !0) : !1 } function l(b) { return r = a("<div />").attr("id", b.containerId).addClass(b.positionClass).attr("aria-live", "polite").attr("role", "alert"), r.appendTo(a(b.target)), r } function m() { return { tapToDismiss: !0, toastClass: "toast", containerId: "toast-container", debug: !1, showMethod: "fadeIn", showDuration: 300, showEasing: "swing", onShown: void 0, hideMethod: "fadeOut", hideDuration: 1e3, hideEasing: "swing", onHidden: void 0, extendedTimeOut: 1e3, iconClasses: { error: "toast-error", info: "toast-info", success: "toast-success", warning: "toast-warning" }, iconClass: "toast-info", positionClass: "toast-top-right", timeOut: 5e3, titleClass: "toast-title", messageClass: "toast-message", target: "body", closeHtml: "<button>&times;</button>", newestOnTop: !0 } } function n(a) { s && s(a) } function o(b) { function d(b) { return !a(":focus", j).length || b ? j[g.hideMethod]({ duration: g.hideDuration, easing: g.hideEasing, complete: function () { q(j), g.onHidden && "hidden" !== o.state && g.onHidden(), o.state = "hidden", o.endTime = new Date, n(o) } }) : void 0 } function e() { (g.timeOut > 0 || g.extendedTimeOut > 0) && (i = setTimeout(d, g.extendedTimeOut)) } function f() { clearTimeout(i), j.stop(!0, !0)[g.showMethod]({ duration: g.showDuration, easing: g.showEasing }) } var g = p(), h = b.iconClass || g.iconClass; "undefined" != typeof b.optionsOverride && (g = a.extend(g, b.optionsOverride), h = b.optionsOverride.iconClass || h), t++ , r = c(g, !0); var i = null, j = a("<div />"), k = a("<div />"), l = a("<div />"), m = a(g.closeHtml), o = { toastId: t, state: "visible", startTime: new Date, options: g, map: b }; return b.iconClass && j.addClass(g.toastClass).addClass(h), b.title && (k.append(b.title).addClass(g.titleClass), j.append(k)), b.message && (l.append(b.message).addClass(g.messageClass), j.append(l)), g.closeButton && (m.addClass("toast-close-button").attr("role", "button"), j.prepend(m)), j.hide(), g.newestOnTop ? r.prepend(j) : r.append(j), j[g.showMethod]({ duration: g.showDuration, easing: g.showEasing, complete: g.onShown }), g.timeOut > 0 && (i = setTimeout(d, g.timeOut)), j.hover(f, e), !g.onclick && g.tapToDismiss && j.click(d), g.closeButton && m && m.click(function (a) { a.stopPropagation ? a.stopPropagation() : void 0 !== a.cancelBubble && a.cancelBubble !== !0 && (a.cancelBubble = !0), d(!0) }), g.onclick && j.click(function () { g.onclick(), d() }), n(o), g.debug && console && console.log(o), j } function p() { return a.extend({}, m(), v.options) } function q(a) { r || (r = c()), a.is(":visible") || (a.remove(), a = null, 0 === r.children().length && r.remove()) } var r, s, t = 0, u = { error: "error", info: "info", success: "success", warning: "warning" }, v = { clear: h, remove: i, error: b, getContainer: c, info: d, options: {}, subscribe: e, success: f, version: "2.0.3", warning: g }; return v }() }) }("function" == typeof define && define.amd ? define : function (a, b) { "undefined" != typeof module && module.exports ? module.exports = b(require("jquery")) : window.toastr = b(window.jQuery) });
+
+
+    var timerID = null;          //Identidad del temporizador
+    var timerRunning = false;    //Flag para saber si el reloj esta activo
+
+    function stopTimer() {        //Para el reloj
+    if (timerRunning) {
+    clearTimeout(timerID);
+    timerRunning = false;
+    }
+    }
+
+    function startTimer() {     // Para el reloj, si esta activo y lo arranca.
+    window.history.forward();
+    stopTimer();
+    runClock();
+    nobackbutton();
+    }
+
+    function runClock() {
+    var Hora = timeNow();  // Solo para evitar hacer varias llamadas
+    var Dia = fechahoy();
+    // Mostrar la hora en los elementos que se desee
+    window.document.getElementById("reloj").innerHTML = Dia + " " + Hora;
+    window.status = Dia + " " + Hora;
+    //window.document.title=Dia + " " + Hora; //Si no hay frames
+    top.document.title = Dia + " " + Hora;      //Por si hay frames
+    timerID = setTimeout("runClock()", 1000); //setTimeout() se llama a si mismo.
+    timerRunning = true;
+    }
+
+    function timeNow() {        //Toma la hora y la formatea
+    now = new Date();
+    hours = now.getHours();
+    minutes = now.getMinutes();
+    seconds = now.getSeconds();
+    timeStr = ((hours < 10) ? "0" : "") + hours;
+    timeStr += ((minutes < 10) ? ":0" : ":") + minutes;
+    timeStr += ((seconds < 10) ? ":0" : ":") + seconds;
+    return timeStr;
+    }
+
+    function fechahoy() {
+    var diasemana = new Array('Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo');
+    var nombremes = new Array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
+    'Octubre', 'Noviembre', 'Diciembre');
+    var ahora;
+    var fecha = new Date();
+    var mes = fecha.getMonth();
+    var dia = fecha.getDay();
+    var num = fecha.getDate();
+    var ano = fecha.getFullYear();
+    ahora = diasemana[dia] + ", " + num + " de " + nombremes[mes] + " de " + ano;
+    return ahora;
+    }
+
+    function nobackbutton() {
+
+    window.location.hash = "no-back-button";
+
+    window.location.hash = "Again-No-back-button" //chrome
+
+    window.onhashchange = function () { window.location.hash = "no-back-button"; }
+
+    }
+
+    $('#SreSucursal').change(function () {
+    var ddl = $("#SreSucursal");
+    if ($("#SreSucursal").val().length > 0) {
+    document.getElementById("cambiosu").submit();
+    @*$.ajax(
+        {
+            url: '@Url.Action("CambiarSucursal", "Base")',
+            type: "POST",
+            data: $("#SreSucursal").serialize(),
+            async: false,
+            dataType: "text",
+            success: function (result) {
+
+                var existe = JSON.parse(result);
+                $(existe).each(function () {
+                    ddl.append($("<option>").val(this.IdCiudad).text(this.Nombre));
+                });
+            },
+            error: function (result) {
+                alert("Status: " + result.status + " Message:" + result.statusText);
+            }
+        });*@
+    }
+    });
+    </script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/datatables")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

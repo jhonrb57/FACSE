@@ -1,0 +1,3 @@
+2019-07-30 22:12:08,905 [9] ERROR LoginController  - Error al validar usuario: System.InvalidOperationException: The property 'DocConsecutivo' is not a String or Byte array. Length can only be configured for String and Byte array properties.
+   en Metodos.ClsUsuario.ValidarUsuario(String sUsuario, String sContrasena) en D:\APP\FACSE\Metodos\ClsUsuario.cs:línea 37
+   en FasceMVC.Controllers.LoginController.ValidarUsuario(Login login) en D:\APP\FACSE\FasceMVC\Controllers\LoginController.cs:línea 41

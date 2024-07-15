@@ -1,0 +1,121 @@
+﻿@model FasceMVC.Models.SucursalResolucion
+@{
+
+}
+
+
+<div class="container">
+    <br />
+    <h2>
+        <img src="~/Content/Images/logo_titulos.png" />    Asignar Resolución a la sucursal
+    </h2>
+    <hr />
+    <div class="row">
+        <div class="col">
+            @Html.ActionLink("Volver", "Sucursal", "Configuracion", null, new { @class = "btn btn-danger btn-sm" })
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="card">
+                <div class="card-header rojo text-center">
+                    <h5 style="color: white">Disponibles</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table tablaDatos">
+                        <thead>
+                            <tr>
+                                <th>N° Resolución</th>
+                                <th>Prefijo</th>
+                                <th>Tipo Doc</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        @if (Model.Disponibles != null && Model.Disponibles.Any())
+                        {
+                            <tbody>
+                                @foreach (var item in Model.Disponibles)
+                                {
+                                    <tr>
+                                        <td>@item.NumeroResolucion</td>
+                                        <td>@item.Prefijo</td>
+                                        <td>@item.TipoDocumento</td>
+                                        <td width="50">
+                                            @Html.ActionLink("Asignar", "AsignarResolucionSucursal", new { idResolucion = item.Id, idSucursal = Model.IdSucursal }, new { @class = "asignar" })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="card">
+                <div class="card-header amarillo text-center">
+                    <h5 style="color: white">Asignadas</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table tablaDatos">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>N° Resolución</th>
+                                <th>Prefijo</th>
+                                <th>Tipo Doc</th>
+                            </tr>
+                        </thead>
+                        @if (Model.Asignados != null && Model.Asignados.Any())
+                        {
+                            <tbody>
+                                @foreach (var item in Model.Asignados)
+                                {
+                                    <tr>
+                                        <td width="50">
+                                            @Html.ActionLink("Eliminar", "EliminarResolucionSucursal", new { idResSuc = item.IdResSuc, idResolucion = item.Id, idSucursal = Model.IdSucursal }, new { @class = "eliminar" })
+                                        </td>
+                                        <td>@item.NumeroResolucion</td>
+                                        <td>@item.Prefijo</td>
+                                        <td>@item.TipoDocumento</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br />
+<style>
+    a.asignar {
+        background: url("../../Content/Images/punto-de-flecha-a-la-derecha.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+
+    a.eliminar {
+        background: url("../../Content/Images/basura.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+</style>
+
+<script>
+    @Html.Raw(Model.JsFuncion)
+
+
+    function mensaje(mensaje, icon) {
+        try {
+            swal({
+                title: mensaje,
+                icon: icon
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+</script>

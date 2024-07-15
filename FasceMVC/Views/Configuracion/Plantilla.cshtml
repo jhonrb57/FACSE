@@ -1,0 +1,101 @@
+﻿@model FasceMVC.Models.Plantilla
+@{
+    bool mostrarAgregar = true;
+}
+
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Styles.Render("~/Content/bootstrap.css")
+@Scripts.Render("~/Scripts/bootstrap.min.js")
+@Styles.Render("~/Content/css/inicio.css")
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+@Scripts.Render("~/Scripts/pace.js")
+@Scripts.Render("~/Scripts/sweetalert.min.js")
+
+
+<div class="container">
+    <br />
+    <h2>
+        <img src="~/Content/Images/logo_titulos.png" />   Plantilla Sucursal
+    </h2>
+    <hr />
+    <div class="row">
+        <div class="col">
+            @Html.ActionLink("Volver", "Index", "Configuracion", null, new { @class = "btn btn-danger btn-sm" })
+            @foreach (var item in Model.ListadoPlantilla)
+            {
+                if (item.IdEmisorSucursal == Model.IdEmisorSucursalLogueo)
+                {
+                    mostrarAgregar = false;
+                    break;
+                }
+            }
+            @if (mostrarAgregar)
+            {
+                @Html.ActionLink("Agregar", "CrearEditarPlantilla", "Configuracion", new { idPlantilla = Guid.Empty }, new { @class = "btn btn-success btn-sm" })
+            }
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col">
+            @if (Model.ListadoPlantilla != null && Model.ListadoPlantilla.Any())
+            {
+                <table class="table tablaDatos">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th></th>
+                            <th>Nombre Sucursal</th>
+                            <th>Usuario Creación</th>
+                            <th>Fecha Creación</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ListadoPlantilla)
+                        {
+                            if (item.IdEmisorSucursal == Model.IdEmisorSucursalLogueo)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink("Editar", "CrearEditarPlantilla", "Configuracion", new { idPlantilla = item.IdEmisorSucursalPlantilla }, new { @class = "editar" })
+                                    </td>
+                                    <td>@item.EmisorSucursal</td>
+                                    <td>@item.UsuarioCreacion</td>
+                                    <td>@item.FechaCreacion</td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <h5>No cuenta con plantillas configuradas</h5>
+            }
+        </div>
+    </div>
+</div>
+<br /><br />
+<style>
+    a.editar {
+        background: url("../../Content/Images/edit.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+</style>
+
+<script>
+
+    @Html.Raw(Model.JsFuncion)
+
+    function mensaje(mensaje, icon) {
+        swal({
+            title: mensaje,
+            icon: icon
+        });
+    }
+</script>

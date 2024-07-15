@@ -1,0 +1,99 @@
+﻿@model FasceMVC.Models.RecuperarContrasena
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.LetraBoton = "Inicio";
+    ViewBag.ImagenBoton = "~/Content/Images/homa.png";
+    ViewBag.RutaBoton = "Inicio";
+}
+
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Styles.Render("~/Content/bootstrap.css")
+@Scripts.Render("~/Scripts/pace.js")
+@Scripts.Render("~/Scripts/bootstrap.min.js")
+@Styles.Render("~/Content/css/inicio.css")
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+@Scripts.Render("~/Scripts/sweetalert2.js")
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <br />
+            <br />
+            <br />
+            <br />
+            <h5><img src="~/Content/Images/logo_titulos.png" /> Recuperar contraseña
+            </h5>
+            <hr />
+
+            <div class="card-body align-content-center">
+                @using (Html.BeginForm("Recuperar", "Login", FormMethod.Post, new { autocomplete = "off" }))
+                {
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-8">
+
+                            <div class="input-group mb-6">
+                                @*<input type="text" class="form-control" placeholder="Buscar..." aria-label="Buscar..." aria-describedby="button-addon2">*@
+                                @Html.TextBoxFor(Model => Model.Usuario, new { placeholder = "Usuario", @class = "form-control", aria_describedby = "button-addon2", type = "text", style = "width:60%" })
+                                <div class="input-group-append">
+                                    <button class="btn btn-success " type="submit">Recuperar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <hr />
+        </div>
+    </div>
+</div>
+
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+
+<br /><br />
+
+<script>
+
+    @Html.Raw(Model.JsFuncion)
+
+    function mensaje(mensaje, usuario) {
+        try {
+            Swal.fire({
+                title: "",
+                text: mensaje,
+                type: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Continuar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Login/EnviarCorreoRecuperacion",
+                        data: { usuario },
+                        success: (data) => {
+                            if (data) {
+                                location.href = "/Login/Index";
+                            }
+                        }
+                    });
+                }
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+
+
+
+</script>

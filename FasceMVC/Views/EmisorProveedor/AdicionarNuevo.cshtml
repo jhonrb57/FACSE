@@ -1,0 +1,132 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="container-fluid">
+    @using (Ajax.BeginForm("GuardarDocumentoProveedor", "EmisorProveedor", new AjaxOptions { HttpMethod = "POST", OnSuccess = "guardarDocumento(data)", LoadingElementId = "loading" }, new { autocomplete = "off", enctype = "multipart/form-data", id = "formSubirDetalle" }))
+    {
+
+        <div class="col-sm">
+            <div class="col-8">
+
+                <h6 style="font-size:small; color:red"> <label for="ImageUpload">PDF: (Max 12 MB)</label></h6>
+                <input type="file" class="btn btn-secondary btn-sm" name="ImageUploadPdf" id="ImageUploadPdf" onchange="validarFilesPDf(this);" />
+
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="col-8">
+                <h6 style="font-size:small; color:red">   <label for="ImageUpload">Documento Attached: (Max 12 MB)</label></h6>
+                <input type="file" class="btn btn-secondary btn-sm" name="ImageUploadDocumento" id="ImageUploadDocumento" onchange="validarFilesXlm(this);" />
+            </div>
+        </div>
+        <br />
+
+    }
+    @using (Ajax.BeginForm("GuardarArchivosAnexo", "EmisorProveedor", new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccess(data)", LoadingElementId = "loading" }, new { autocomplete = "off", enctype = "multipart/form-data", id = "formSubirAnexo" }))
+    {
+        <div class="col-sm">
+            <div class="col-8">
+                @Html.AntiForgeryToken()
+                <h6 style="font-size:small"> <label for="ImageUpload">Anexo: (Max 12 MB)</label></h6>
+                <input class="btn btn-secondary btn-sm" type="file" name="ImageUpload" id="ImageUpload" onchange="validarFiles(this.files);" />
+
+            </div>
+            <br />
+        </div>
+    }
+    <br />
+    <hr />
+
+    <div class="col">
+        <h6 style="font-size:x-small">
+            <label id="imgarchivosAdjuntos" for="ImageUpload" style="display: none">Adjunto listo para subir</label>
+        </h6>
+        <table id="archivosAdjuntos" class="table-bordered table tablaDatos">
+            <tbody></tbody>
+        </table>
+
+        <button type="button" onclick='$("#formSubirDetalle").submit();' class="btn btn-success btn-sm">Subir Documento</button>
+        <button class="btn btn-danger btn-sm" onclick="CancelarAdicionar();">Cancelar</button>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+
+    function onSuccess(data) {
+        try {
+            if (data.isValid) {
+                $("#ImageUpload").val("");
+                $("#archivosAdjuntos tbody").empty();
+                $("#archivosAdjuntos tbody").append(data.html);
+                $("#imgarchivosAdjuntos").attr('style', 'display:block;');
+            }
+            else {
+                alert("Debe ingresar un documento");
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    function validarFilesPDf(files) {
+        var fileName = files.files[0].name;
+        var ext = fileName.split('.').pop();
+        if (ext != 'pdf') {
+            alert('El archivo no tiene la extensión adecuada');
+            files.value = '';
+        }
+    }
+
+    function validarFilesXlm(files) {
+        var fileName = files.files[0].name;
+        var ext = fileName.split('.').pop();
+        if (ext != 'xml') {
+            alert('El archivo no tiene la extensión adecuada');
+            files.value = '';
+        }
+    }
+    function validarFiles(files) {
+        try {
+            $("#formSubirAnexo").submit();
+            if (files.length > 0) {
+                $("#btnAgregar").attr('disabled', false);
+            }
+            else {
+                $("#btnAgregar").attr('disabled', true);
+            }
+            console.log(files.length);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    function EliminarAnexoProveedorAdjunto(id) {
+        try {
+            $.ajax({
+                type: "POST",
+                url: "/EmisorProveedor/EliminarAnexoProveedorAdjunto",
+                data: { id },
+                success: (data) => {
+                    $("#archivosAdjuntos tbody").empty();
+                    $("#archivosAdjuntos tbody").append(data);
+                    $("#ImageUpload").val("");
+
+                    if (data == '') {
+                        $("#imgarchivosAdjuntos").attr('style', 'display:none;');
+                    }
+                    else {
+                        $("#imgarchivosAdjuntos").attr('style', 'display:block;');
+
+                    }
+
+                }
+            });
+        } catch (e) {
+            console.error(e);
+        }
+    }
+</script>

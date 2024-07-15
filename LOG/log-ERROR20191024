@@ -1,0 +1,107 @@
+2019-10-24 09:53:50,616 [24] ERROR AdquirienteController  - Error: System.FormatException: Formato de Guid desconocido.
+   en System.Guid.TryParseGuid(String g, GuidStyles flags, GuidResult& result)
+   en System.Guid.Parse(String input)
+   en FasceMVC.Controllers.AdquirienteController.CargarListadoMunicipios(String dpto) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\AdquirienteController.cs:línea 85
+2019-10-24 09:53:58,708 [24] ERROR AdquirienteController  - Error: System.FormatException: Formato de Guid desconocido.
+   en System.Guid.TryParseGuid(String g, GuidStyles flags, GuidResult& result)
+   en System.Guid.Parse(String input)
+   en FasceMVC.Controllers.AdquirienteController.CargarListadoMunicipios(String dpto) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\AdquirienteController.cs:línea 85
+2019-10-24 09:54:21,421 [18] ERROR AdquirienteController  - Error: System.FormatException: Formato de Guid desconocido.
+   en System.Guid.TryParseGuid(String g, GuidStyles flags, GuidResult& result)
+   en System.Guid.Parse(String input)
+   en FasceMVC.Controllers.AdquirienteController.CargarListadoMunicipios(String dpto) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\AdquirienteController.cs:línea 85
+2019-10-24 09:54:46,990 [20] ERROR AdquirienteController  - Error: System.FormatException: Formato de Guid desconocido.
+   en System.Guid.TryParseGuid(String g, GuidStyles flags, GuidResult& result)
+   en System.Guid.Parse(String input)
+   en FasceMVC.Controllers.AdquirienteController.CargarListadoMunicipios(String dpto) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\AdquirienteController.cs:línea 85
+2019-10-24 11:11:39,640 [10] ERROR FacturacionManualController  - Error: System.Exception: System.UriFormatException: URI no válido: URI está vacío.
+   en System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   en System.Uri..ctor(String uriString)
+   en System.Net.WebRequest.Create(String requestUriString)
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1310
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1346
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1221
+2019-10-24 11:14:18,976 [10] ERROR FacturacionManualController  - Error: System.Exception: System.Net.WebException: No se puede resolver el nombre remoto: 'apisep.com'
+   en System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   en System.Net.HttpWebRequest.GetRequestStream()
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1315
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1346
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1221
+2019-10-24 11:17:03,822 [14] ERROR FacturacionManualController  - Error: System.Exception: System.Net.WebException: No se puede resolver el nombre remoto: 'apcsep.com'
+   en System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   en System.Net.HttpWebRequest.GetRequestStream()
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1315
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1346
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1221
+2019-10-24 11:20:08,438 [10] ERROR FacturacionManualController  - Error: System.Exception: System.Net.WebException: Error en el servidor remoto: (404) No se encontró.
+   en System.Net.HttpWebRequest.GetResponse()
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1319
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1346
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1221
+2019-10-24 11:20:30,200 [6] ERROR FacturacionManualController  - Error: System.Exception: System.Net.WebException: No se puede resolver el nombre remoto: 'aacsep.com'
+   en System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   en System.Net.HttpWebRequest.GetRequestStream()
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1315
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1346
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1221
+2019-10-24 11:22:18,545 [6] ERROR FacturacionManualController  - Error: System.Exception: System.Net.WebException: No se puede resolver el nombre remoto: 'apcsep.com'
+   en System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   en System.Net.HttpWebRequest.GetRequestStream()
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1315
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1346
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1221
+2019-10-24 11:23:12,965 [12] ERROR FacturacionManualController  - Error: System.Exception: System.Net.WebException: Error en el servidor remoto: (404) No se encontró.
+   en System.Net.HttpWebRequest.GetResponse()
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1319
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1346
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1221
+2019-10-24 11:25:25,582 [15] ERROR FacturacionManualController  - Error: System.Exception: System.Net.WebException: Error en el servidor remoto: (404) No se encontró.
+   en System.Net.HttpWebRequest.GetResponse()
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1319
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1346
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1221
+2019-10-24 11:28:22,006 [22] ERROR FacturacionManualController  - Error: System.Exception: System.Net.WebException: No se puede resolver el nombre remoto: 'apcsep.com'
+   en System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   en System.Net.HttpWebRequest.GetRequestStream()
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1315
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1346
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1221
+2019-10-24 11:30:04,821 [17] ERROR FacturacionManualController  - Error: System.Exception: System.Net.WebException: Error en el servidor remoto: (404) No se encontró.
+   en System.Net.HttpWebRequest.GetResponse()
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1319
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1346
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1221
+2019-10-24 11:30:26,227 [17] ERROR FacturacionManualController  - Error: System.Exception: System.Net.WebException: Error en el servidor remoto: (404) No se encontró.
+   en System.Net.HttpWebRequest.GetResponse()
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1319
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1346
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1221
+2019-10-24 11:31:18,753 [30] ERROR FacturacionManualController  - Error: System.Exception: System.Net.WebException: Error en el servidor remoto: (404) No se encontró.
+   en System.Net.HttpWebRequest.GetResponse()
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1319
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1346
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1221
+2019-10-24 11:36:03,013 [8] ERROR FacturacionManualController  - Error: System.Exception: System.Net.WebException: No se puede resolver el nombre remoto: 'apcsep.com'
+   en System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   en System.Net.HttpWebRequest.GetRequestStream()
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1315
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1346
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1221
+2019-10-24 11:37:36,552 [13] ERROR FacturacionManualController  - Error: System.Exception: System.Net.WebException: No se puede resolver el nombre remoto: 'apicsep.com'
+   en System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   en System.Net.HttpWebRequest.GetRequestStream()
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1315
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1346
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1221
+2019-10-24 11:46:16,114 [6] ERROR FacturacionManualController  - Error: System.Exception: System.Net.WebException: No se puede resolver el nombre remoto: 'apcsep.com'
+   en System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   en System.Net.HttpWebRequest.GetRequestStream()
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1315
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1346
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1221
+2019-10-24 11:48:51,630 [11] ERROR FacturacionManualController  - Error: System.Exception: System.Net.WebException: No se puede resolver el nombre remoto: 'apcsep.com'
+   en System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   en System.Net.HttpWebRequest.GetRequestStream()
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1315
+   en FasceMVC.Controllers.FacturacionManualController.ConsumirApi(FacturacionManual facturacionManual, String metodoApi) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1346
+   en FasceMVC.Controllers.FacturacionManualController.EnviarDatosFactura(FacturacionManual facturacionManual) en D:\FST\VS2017\MVC\FACSE\FasceMVC\Controllers\FacturacionManualController.cs:línea 1221

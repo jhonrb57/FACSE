@@ -1,0 +1,74 @@
+﻿@model DataBase.adm_emisor_catalogo_lista
+@{
+    /**/
+
+    Layout = null;
+}
+@Scripts.Render("~/bundles/modernizr")
+@Styles.Render("~/Content/bootstrap.css")
+@Styles.Render("~/Content/css/inicio.css")
+
+@Styles.Render("~/Content/pace-theme-mac-osx.css")
+@Scripts.Render("~/bundles/jquery")
+
+
+@using (Ajax.BeginForm("CrearCatalogoLista", new AjaxOptions()
+{
+    InsertionMode = InsertionMode.Replace,
+    //OnSuccess = "onSuccess(data,this)"
+    UpdateTargetId = "CatalogoLista"
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ecl_emisor_catalogo)
+<div class="form-group col-md-8">
+    <div class="wrap-input2 validate-input" data-validate="Name is required">
+        @Html.LabelFor(model => model.ecl_descripcion, htmlAttributes: new { @class = "inputState" })
+
+        @Html.EditorFor(model => model.ecl_descripcion, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ecl_descripcion, "", new { @class = "text-danger" })
+    </div>
+    <button type="submit" role="button" aria-expanded="false" aria-controls="collapseExample" class="btn btn-primary grilla"><img src="~/Content/Images/btn_emisor.png" />Adicionar Nueva Lista</button>
+</div>
+    
+}
+
+
+@if (Model.ListadoEmisorCatalogo != null && Model.ListadoEmisorCatalogo.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ecl_descripcion)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListadoEmisorCatalogo)
+            {
+                <tr>
+                    <td>
+                        @using (Ajax.BeginForm("EliminarEmisorCatalogoLista", new AjaxOptions()
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            //OnSuccess = "onSuccess(data,this)"
+                            UpdateTargetId = "CatalogoLista"
+                        }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.ecl_id, new { @Value = item.ecl_id })
+                            @Html.HiddenFor(model => model.ecl_emisor_catalogo)
+                            <button type="submit" role="button" aria-expanded="false" aria-controls="collapseExample" class="btn btn-link editar"></button>
+                        }
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.ecl_descripcion)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

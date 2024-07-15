@@ -1,0 +1,57 @@
+﻿@model FasceMVC.Models.ClaveTecnica
+@{
+
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>Clave Técnica</h2>
+            <hr />
+            <div class="row">
+                <div class="col">
+                    @Html.ActionLink("Volver", "Index", "Configuracion", null, new { @class = "btn btn-danger btn-sm" })
+                </div>
+            </div>
+            <br />
+            @if (Model.ListadoClaveTecnica != null && Model.ListadoClaveTecnica.Any())
+            {
+                <table class="table tablaDatos">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Prefijo</th>
+                            <th>N° Inicial</th>
+                            <th>N° Final</th>
+                            <th>Fecha Resolución</th>
+                            <th>N° Resolución</th>
+                            <th>Clave Técnica</th>
+                            <th>Fecha Inicial</th>
+                            <th>Fecha Final</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ListadoClaveTecnica)
+                        {
+                            <tr>
+                                <td>@item.Prefijo</td>
+                                <td>@item.NumeroInicial</td>
+                                <td>@item.NumeroFinal</td>
+                                <td>@item.FechaResolucion</td>
+                                <td>@item.NumeroResolucion</td>
+                                <td>@item.ClaveTecnica</td>
+                                <td>@item.FechaInicial</td>
+                                <td>@item.FechaFinal</td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            }
+            else
+            {
+                <h5>No cuenta con clave técnica.</h5>
+            }
+        </div>
+    </div>
+</div>
+<br /><br />

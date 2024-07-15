@@ -1,0 +1,89 @@
+﻿@model DataBase.ListadoEmisor
+@{
+    /**/
+
+    Layout = null;
+}
+@Scripts.Render("~/bundles/modernizr")
+@Styles.Render("~/Content/bootstrap.css")
+@Styles.Render("~/Content/css/inicio.css")
+
+@Styles.Render("~/Content/pace-theme-mac-osx.css")
+@Scripts.Render("~/bundles/jquery")
+
+
+@using (Ajax.BeginForm("AdicionarNotificacion", new AjaxOptions()
+{
+    InsertionMode = InsertionMode.Replace,
+    //OnSuccess = "onSuccess(data,this)"
+    UpdateTargetId = "adicionar"
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Emisor)
+    <button type="submit" role="button" aria-expanded="false" aria-controls="collapseExample" class="btn btn-primary grilla"><img src="~/Content/Images/btn_emisor.png" />Adicionar Notificacion</button>
+}
+
+
+@if (Model.ListadoEmisorNotificacion != null && Model.ListadoEmisorNotificacion.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    Tipo Notificacion
+                </th>
+                <th>
+                    Descripcion
+                </th>
+                <th>
+                    Fecha
+                </th>
+                <th>
+                    Leido
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListadoEmisorNotificacion)
+            {
+                <tr>
+                    <td>
+                        @using (Ajax.BeginForm("EliminarEmisorNotificacion", new AjaxOptions()
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            //OnSuccess = "onSuccess(data,this)"
+                            OnSuccess = "onSuccessCatalogo(data,this)"
+                        }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.Id, new { @Value = item.eno_id })
+                            @Html.HiddenFor(model => model.Emisor)
+                            <button type="submit" role="button" aria-expanded="false" aria-controls="collapseExample" class="btn btn-link editar"></button>
+                        }
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.NombreTipoNotificacion)
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.eno_descripcion)
+                    </td>
+                    <td class="text-capitalize">
+                        @Html.DisplayFor(model => item.eno_fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.eno_leido)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<div id="adicionar"></div>
+<script type="text/javascript">
+    function cancelarCatalogo() {
+        $("#adicionar").html('');
+    }
+</script>

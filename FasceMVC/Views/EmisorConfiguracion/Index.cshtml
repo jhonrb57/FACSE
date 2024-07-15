@@ -1,0 +1,98 @@
+﻿@model DataBase.adm_emisor
+@{
+}
+
+
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+@Styles.Render("~/Content/bootstrap.css")
+@Scripts.Render("~/Scripts/pace.js")
+@Scripts.Render("~/Scripts/bootstrap.min.js")
+@Styles.Render("~/Content/css/inicio.css")
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+@Scripts.Render("~/Scripts/sweetalert.min.js")
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>Configuración emisor</h2>
+            <hr />
+            @Html.ActionLink("Volver", "Index", "Configuracion", null, new { @class = "btn btn-danger btn-sm" })
+            @*@Html.ActionLink("Agregar", "/", "EmisorConfiguracion", null, new { @class = "btn btn-success btn-sm" })*@
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col">
+            @if (Model.ListadoEmisor != null && Model.ListadoEmisor.Any())
+            {
+                <table class="table tablaDatos">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th></th>
+                            <th>Tipo identificación</th>
+                            <th>Identificación</th>
+                            <th>Nombre</th>
+                            <th>Departamento</th>
+                            <th>Municipio</th>
+                            <th>Correo</th>
+                            <th>Teléfono</th>
+                            <th>Fecha creación</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ListadoEmisor)
+                        {
+                            <tr>
+                                <td width="40">
+                                    @Html.ActionLink("Editar", "EditarEmisor", "EmisorConfiguracion", new { idEmisor = item.emi_id }, new { @class = "editar" })
+                                </td>
+                                <td>@item.NombreTipoIdentificacion</td>
+                                <td>@item.emi_identificacion</td>
+                                <td>@item.emi_nombre</td>
+                                <td>@item.NombreDepartamento</td>
+                                <td>@item.NombreMunicipio</td>
+                                <td>@item.emi_correo</td>
+                                <td>@item.emi_telefono</td>
+                                <td>@string.Format("{0:dd/MM/yyyy}", item.emi_fecha_creacion)</td>
+                                <td>
+                                    @Html.CheckBoxFor(Model => item.emi_activo, new { disabled = "disabled" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <h5>No cuenta con emisores</h5>
+            }
+        </div>
+    </div>
+</div>
+<br /><br />
+<style>
+    a.editar {
+        background: url("../../Content/Images/edit.png") no-repeat top left;
+        display: block;
+        text-indent: -9999px;
+    }
+</style>
+<script>
+    @Html.Raw(Model.JsFuncion)
+
+    function mensaje(mensaje, icon) {
+        try {
+            swal({
+                title: mensaje,
+                icon: icon
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+</script>

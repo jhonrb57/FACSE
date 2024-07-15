@@ -1,0 +1,83 @@
+﻿@model FasceMVC.Models.Login
+
+@{
+    Layout = null;
+}
+
+@Styles.Render("~/Content/bootstrap.css")
+@Styles.Render("~/Content/css/inicio.css")
+
+
+<div class="container-fluid " style="background-color:blueviolet; color: #ffffff">
+    <h6 style="font-size:small">Somos Proveedores Tecnológicos Certificados por la - DIAN</h6>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light  border-bottom banner  Small shadow">
+    <div class="container">
+        <a class="navbar-brand  " href="#">
+            <img src="~/Content/Images/logo_facse.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            
+        </div>
+    </div>
+</nav>
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                        <div class="card card-signin my-5">
+                            <div class="card-body">
+
+                                <h5 class=" text-center">Ingreso / Receptores</h5>
+                         
+                                @using (Html.BeginForm("LoginReceptor", "LoginReceptor"))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-label-group">
+                                        <label class="text-danger">@ViewBag.Mensaje</label>
+                                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-label-group">
+                                        @Html.EditorFor(model => Model.Usuario, new { htmlAttributes = new { @class = "form-control", placeholder = "Usuario", autofocus = true } })
+                                        @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="form-label-group">
+                                        @Html.EditorFor(model => Model.Contrasena, new { htmlAttributes = new { @class = "form-control", placeholder = "Contraseña" } })
+                                        @Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
+                                    </div>                                    
+                                    <input class="btn btn-sm btn-success btn-block text-uppercase" style="background-color:blueviolet" value="Ingresar" type="submit" />
+                                    <hr class="my-4">
+                                }
+                                <div class="flex-col-c p-t-170 p-b-40">
+                                    <span style="font-size:small">
+                                        Protegido con un Certificado Digital SSL https://.
+                                    </span>
+                                    <br />
+                                    <a href="#" style="color:blueviolet" class="txt3">
+                                        | Política de Privacidad |
+                                    </a>
+                                    <a href="#" style="color:blueviolet" class="txt3">
+                                        Términos de Servicio y Condiciones de Uso |
+                                    </a>
+                                </div>
+                                <hr />
+
+                                <h5 class="card-title text-center">Certificados por:</h5>
+
+                                <img src="~/Content/Images/dian.png" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

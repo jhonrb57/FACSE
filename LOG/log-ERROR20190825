@@ -1,0 +1,10 @@
+2019-08-25 10:53:22,751 [6] ERROR LoginController  - Error al validar usuario: System.Data.SqlClient.SqlException (0x80131904): Error relacionado con la red o específico de la instancia mientras se establecía una conexión con el servidor SQL Server. No se encontró el servidor o éste no estaba accesible. Compruebe que el nombre de la instancia es correcto y que SQL Server está configurado para admitir conexiones remotas. (provider: Named Pipes Provider, error: 40 - No se pudo abrir una conexión con SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): No se ha encontrado la ruta de acceso de la red
+   en Metodos.ClsUsuario.ValidarUsuario(String sUsuario, String sContrasena) en D:\APP\FACSE\Metodos\ClsUsuario.cs:línea 37
+   en FasceMVC.Controllers.LoginController.ValidarUsuario(Login login) en D:\APP\FACSE\FasceMVC\Controllers\LoginController.cs:línea 47
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20
+2019-08-25 10:54:01,917 [6] ERROR LoginController  - Error al validar usuario: System.Data.SqlClient.SqlException (0x80131904): Error relacionado con la red o específico de la instancia mientras se establecía una conexión con el servidor SQL Server. No se encontró el servidor o éste no estaba accesible. Compruebe que el nombre de la instancia es correcto y que SQL Server está configurado para admitir conexiones remotas. (provider: Named Pipes Provider, error: 40 - No se pudo abrir una conexión con SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): No se ha encontrado la ruta de acceso de la red
+   en Metodos.ClsUsuario.ValidarUsuario(String sUsuario, String sContrasena) en D:\APP\FACSE\Metodos\ClsUsuario.cs:línea 37
+   en FasceMVC.Controllers.LoginController.ValidarUsuario(Login login) en D:\APP\FACSE\FasceMVC\Controllers\LoginController.cs:línea 47
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20

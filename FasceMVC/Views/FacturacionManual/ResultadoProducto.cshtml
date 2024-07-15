@@ -1,0 +1,57 @@
+﻿@model FasceMVC.Models.ResultadoProducto
+@{
+    Layout = null;
+}
+
+<div class="col">
+    <table id="tablaDetalles" class="table table-bordered table-striped table-sm table-responsive-sm table-responsive-md">
+        <thead class="thead-dark text-center">
+            <tr>
+                <th></th>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th width="45">Cantidad</th>
+                <th>V/Unidad</th>
+                <th>Subtotal</th>
+                <th>Descuento</th>
+                <th>Cargo</th>
+                <th>Valor impuesto</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListadoProductosAgregados)
+            {
+                <tr>
+
+                    <td>
+                        <a onclick="EditarProducto('@item.IdProducto')" style="cursor:pointer"><img src="~/Content/Images/edit.png" /> </a>
+                    </td>
+                    <td>@item.Codigo</td>
+                    <td>@item.DescripcionDetalles</td>
+                    <td class="text-right">
+                        <input type="text" class="tamTexxbos" value="@string.Format("{0:N0}", item.Cantidad)" onkeyup="CambiarCantidad(this.value, '@item.IdProducto')" />
+                    </td>
+                    <td class="text-right">@string.Format("{0:C2}", item.ValorUnidad)</td>
+                    <td class="text-right">@string.Format("{0:C2}", item.SubTotal)</td>
+                    <td class="text-right">
+                        <input type="text" class="tamTexxbos" value="@string.Format("{0:N0}", item.Descuento)" onkeyup="CambiarDescuento(this.value, '@item.IdProducto')"/>
+                    </td>
+                    <td class="text-right">
+                        <input type="text" class="tamTexxbos" value="@string.Format("{0:N0}", item.Cargo)" onkeyup="CambiarCargo(this.value, '@item.IdProducto')" />
+                    </td>
+                    <td class="text-right">@string.Format("{0:C2}", item.ValorImpuesto)</td>
+                    <td class="text-right">@string.Format("{0:C2}", item.Total)</td>
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+<style>
+    .tamTexxbos {
+        width: 70px;
+    }
+</style>

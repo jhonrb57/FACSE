@@ -1,0 +1,211 @@
+﻿@model FasceMVC.Models.ViewPdf
+@{
+    Layout = null;
+}
+
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+@Styles.Render("~/Content/bootstrap.css")
+@Scripts.Render("~/Scripts/pace.js")
+@Scripts.Render("~/Scripts/bootstrap.min.js")
+@Styles.Render("~/Content/css/inicio.css")
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/Scripts/sweetalert.min.js")
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewPdf</title>
+</head>
+<body>
+    <br />
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-3">
+                @using (Html.BeginForm("EnviarAdjuntoPDF", "EmisorProveedor", FormMethod.Post, new { autocomplete = "off", id = "formEnviar" }))
+                {
+                    <div class="row">
+                        <div class="col">
+                            @Html.HiddenFor(Model => Model.IdDocumento)
+                            @Html.HiddenFor(Model => Model.RutaPdf)
+                        </div>
+                    </div>
+                }
+                @using (Ajax.BeginForm("GuardarArchivosAdjuntos", "EmisorProveedor", new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccess(data)", LoadingElementId = "loading" }, new { autocomplete = "off", enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(Model => Model.IdDocumento)
+                    <label for="ImageUpload">Anexo: (Max 12 MB)</label>
+                    <div class="row">
+                        <div class="btn-group">
+                            <div class="col-6">
+                                <input type="file" name="ImageUpload" id="ImageUpload" multiple onchange="validarFiles(this.files);" />
+                            </div>
+                            <br />
+                            <div class="col-2">
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div>
+                        <button id="btnAgregar" type="submit" class="btn btn-primary btn-sm" disabled>Agregar</button>
+                    </div>
+                }
+                <hr />
+                <div class="row">
+                    <div class="col">
+                        <table id="archivosAdjuntos" class="table-bordered table tablaDatos">
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <hr />
+                <br />
+                <button id="btnEnviar" class="btn btn-success btn-sm" onclick="$('#formEnviar').submit(); $('#loading').show();">Guardar</button>
+
+                <div class="row">
+                    <div class="col">
+                        <br />
+                        <hr />
+                        <h6>Historial Anexos (Reenviar)</h6>
+                        @if (ViewBag.ListadoAnexos != null)
+                        {
+                            <div class="row">
+                                <div class="col">
+                                    <table id="tableListadoAnexos" class="table-bordered table tablaDatos">
+                                        <tbody>
+                                            @for (int i = 0; i < ViewBag.ListadoAnexos.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td>@ViewBag.ListadoAnexos[i].dpa_nombre@ViewBag.ListadoAnexos[i].dpa_extension </td>
+                                                    <td width="40">
+                                                        <a onclick="eliminarAnexo('@ViewBag.ListadoAnexos[i].dpa_id', '@Model.IdDocumento')" style="cursor:pointer">
+                                                            <img src="~/Content/Images/basura.png" />
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <h6>Sin anexos Guardados</h6>
+                        }
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-9">
+                <embed width="100%" height="700" src="@Model.RutaPdf" />
+            </div>
+        </div>
+    </div>
+    <div id="loading" class="updateProgress" style="display:none;">
+        <img src="~/Content/Images/procesando.gif" />
+    </div>
+</body>
+</html>
+<style>
+    .updateProgress {
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        opacity: 0.5;
+        filter: alpha(opacity=70);
+        text-align: center;
+    }
+</style>
+
+<script>
+
+    @Html.Raw(ViewBag.JsFuncion)
+
+
+    function mensaje(mensaje, icon) {
+        try {
+            swal({
+                title: mensaje,
+                icon: icon
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function eliminarAnexo(id, idDocumento) {
+        alert(id);
+        alert(idDocumento);
+
+        try {
+            $.ajax({
+                type: "POST",
+                url: "/EmisorProveedor/EliminarAnexoProveedor",
+                data: { id, idDocumento },
+                success: (data) => {
+                    $("#tableListadoAnexos tbody").empty();
+                    $("#tableListadoAnexos tbody").append(data);
+
+                }
+            });
+        } catch (e) {
+            console.error(e);
+        }
+    }
+    function eliminarAnexoAdjunto(id, idDocumento) {
+        try {
+            $.ajax({
+                type: "POST",
+                url: "/EmisorProveedor/EliminarAnexoAdjunto",
+                data: { id, idDocumento },
+                success: (data) => {
+                    $("#archivosAdjuntos tbody").empty();
+                    $("#archivosAdjuntos tbody").append(data);
+                    $("#ImageUpload").val("");
+                }
+            });
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    function onSuccess(data) {
+        try {
+            $("#ImageUpload").val("");
+            $("#archivosAdjuntos tbody").empty();
+            $("#archivosAdjuntos tbody").append(data);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    function validarFiles(files) {
+        try {
+
+            if (files.length > 0) {
+                $("#btnAgregar").attr('disabled', false);
+            }
+            else {
+                $("#btnAgregar").attr('disabled', true);
+            }
+            console.log(files.length);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+
+</script>
+<br /><br />
